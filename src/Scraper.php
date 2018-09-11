@@ -33,7 +33,7 @@ class Scraper
         }
     }
 
-    public function scrapeSite(string $name, $url)
+    public function scrapeSite(string $name, string $url)
     {
         $crawler = $this->client->request('GET', $url);
         $crawler = $crawler->filter('.calendar-table table tr td');
@@ -43,14 +43,16 @@ class Scraper
             $classes = explode(' ', $class);
 
             if (in_array('buchbar', $classes)) {
-                $this->notify($name);
+                $this->notify($name, $url);
                 break;
             }
         }
     }
 
-    private function notify(string $name)
+    private function notify(string $name, string $url)
     {
-        $this->pushbullet->allDevices()->pushNote('Appointment found', 'Appointment found for: '.$name);
+        $title = 'Appointment Found';
+        $body = sprintf('%s appointment found', $name);
+        $this->pushbullet->allDevices()->pushLink($title, $url, $body);
     }
 }
