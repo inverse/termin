@@ -3,9 +3,7 @@
 namespace Inverse\Termin;
 
 use Goutte\Client;
-use function GuzzleHttp\Promise\queue;
 use Pushbullet\Pushbullet;
-
 
 class Scraper
 {
