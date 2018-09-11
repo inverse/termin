@@ -5,7 +5,9 @@
         "ext-dom": "*",
         "fabpot/goutte": "^3.2",
         "ivkos/pushbullet": "^3.3",
-        "vlucas/phpdotenv": "^2.5"
+        "vlucas/phpdotenv": "^2.5",
+        "pimple/pimple": "^3.2",
+        "monolog/monolog": "^1.23"
     },
     "autoload": {
         "psr-4": {
