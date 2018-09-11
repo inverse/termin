@@ -1,0 +1,16 @@
+{
+    "require": {
+        "php": "^7.1",
+        "fabpot/goutte": "^3.2",
+        "ivkos/pushbullet": "^3.3",
+        "vlucas/phpdotenv": "^2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Inverse\\Termin\\": "src/"
+        }
+    },
+    "require-dev": {
+        "deployer/deployer": "^6.3"
+    }
+}
