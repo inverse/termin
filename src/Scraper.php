@@ -42,7 +42,7 @@ class Scraper
             $class = $node->getAttribute('class');
             $classes = explode(' ', $class);
 
-            if (in_array('nichtbuchbar', $classes)) {
+            if (in_array('buchbar', $classes)) {
                 $this->notify($name);
                 break;
             }
