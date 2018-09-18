@@ -3,6 +3,7 @@
         "php": "^7.1",
         "ext-curl": "*",
         "ext-dom": "*",
+        "ext-json": "*",
         "fabpot/goutte": "^3.2",
         "ivkos/pushbullet": "^3.3",
         "vlucas/phpdotenv": "^2.5",
