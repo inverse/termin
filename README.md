@@ -2,7 +2,13 @@
 
 Simple PHP script for notifying for a free slot in Berlin.
 
+## Notifications
+
 Currently only supports notifications via Pushbullet.
+
+# Requirements
+
+PHP 7.1+
 
 ## Setup
 

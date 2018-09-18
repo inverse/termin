@@ -25,13 +25,13 @@ class Container extends Pimple
 
         $this[LoggerInterface::class] = function () {
             $logger = new Logger('name');
-            $logger->pushHandler(new StreamHandler(__DIR__.'../var/log/app.log', Logger::INFO));
+            $logger->pushHandler(new StreamHandler(__DIR__.'/../var/log/app.log', Logger::INFO));
 
             return $logger;
         };
 
         $this[Scraper::class] = function (Container $container) {
-            return new Scraper($container[LoggerInterface::class], $container[NotifyInterface::class]);
+            return new Scraper();
         };
 
         $this[SiteParser::class] = function () {
@@ -47,5 +47,15 @@ class Container extends Pimple
     public function getSiteParser(): SiteParser
     {
         return $this[SiteParser::class];
+    }
+
+    public function getLogger(): LoggerInterface
+    {
+        return $this[LoggerInterface::class];
+    }
+
+    public function getNotifier(): NotifyInterface
+    {
+        return $this[NotifyInterface::class];
     }
 }

@@ -5,8 +5,6 @@ namespace Inverse\Termin;
 use DateTime;
 use DOMElement;
 use Goutte\Client;
-use Inverse\Termin\Notify\NotifyInterface;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\DomCrawler\Crawler;
 
 class Scraper
@@ -16,27 +14,17 @@ class Scraper
      */
     private $client;
 
-    /**
-     * @var NotifyInterface
-     */
-    private $notifier;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    public function __construct(LoggerInterface $logger, NotifyInterface $notifier)
+    public function __construct()
     {
         $this->client = new Client();
-        $this->notifier = $notifier;
-        $this->logger = $logger;
     }
 
-    public function scrapeSite(string $name, string $url)
+    public function scrapeSite(string $name, string $url): Result
     {
         $crawler = $this->client->request('GET', $url);
         $crawler = $crawler->filter('.calendar-table table');
+
+        $result = Result::createNotFound();
 
         foreach ($crawler as $element) {
             $result = $this->processMonth($element);
@@ -46,19 +34,7 @@ class Scraper
             }
         }
 
-        if (isset($result) && $result->isFound()) {
-            $this->logger->info(
-                sprintf('Found availability for %s @ %s', $name, $result->getDate()->format('c'))
-            );
-
-            $this->notifier->notify($name, $url, $result->getDate());
-
-            return;
-        }
-
-
-        $this->logger->info('No availability found for: '.$name);
-
+        return $result;
     }
 
     private function processMonth(DOMElement $element): Result
@@ -74,10 +50,10 @@ class Scraper
             if (in_array('buchbar', $classes)) {
                 $date = sprintf('%s %s', $node->textContent, $month);
 
-                return new Result(true, new DateTime($date));
+                return Result::createFound(new DateTime($date));
             }
         }
 
-        return new Result(false);
+        return Result::createNotFound();
     }
 }

@@ -16,7 +16,7 @@ class Result
      */
     private $date;
 
-    public function __construct(bool $found, ?DateTime $dateTime = null)
+    private function __construct(bool $found, ?DateTime $dateTime = null)
     {
         $this->found = $found;
         $this->date = $dateTime;
@@ -30,5 +30,15 @@ class Result
     public function getDate(): ?DateTime
     {
         return $this->date;
+    }
+
+    public static function createFound(DateTime $dateTime): self
+    {
+        return new self(true, $dateTime);
+    }
+
+    public static function createNotFound(): self
+    {
+        return new self(false);
     }
 }

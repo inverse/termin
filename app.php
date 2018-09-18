@@ -15,8 +15,22 @@ $siteParser = $container->getSiteParser();
 $sites = $siteParser->parse(getenv('SITES'));
 
 $scraper = $container->getScraper();
+$logger = $container->getLogger();
+$notifier = $container->getNotifier();
 
 foreach ($sites as $name => $url) {
-    $scraper->scrapeSite($name, $url);
+    $result = $scraper->scrapeSite($name, $url);
+
+    if ($result->isFound()) {
+        $logger->info(
+            sprintf('Found availability for %s @ %s', $name, $result->getDate()->format('c'))
+        );
+
+        $notifier->notify($name, $url, $result->getDate());
+        continue;
+    }
+
+    $logger->info('No availability found for: '.$name);
 }
+
 
