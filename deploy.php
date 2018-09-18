@@ -27,7 +27,6 @@ host('sunshine.malachisoord.com')
     ->set('deploy_path', '~/{{application}}');
 
 
-
 // Tasks
 
 desc('Deploy your project');

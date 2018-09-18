@@ -1,5 +1,7 @@
 <?php
 
+use Inverse\Termin\Notify\NotifyInterface;
+use Inverse\Termin\Notify\PushbulletNotifier;
 use Inverse\Termin\Scraper;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -15,11 +17,15 @@ $dotenv->load();
 
 $container = new Container();
 
-$container[Pushbullet::class] = function (Container $container) {
+$container[Pushbullet::class] = function () {
     return new Pushbullet(getenv('PUSHBULLET_API_TOKEN'));
 };
 
-$container[LoggerInterface::class] = function (Container $container) {
+$container[NotifyInterface::class] = function (Container $container) {
+    return new PushbulletNotifier($container[Pushbullet::class]);
+};
+
+$container[LoggerInterface::class] = function () {
     $logger = new Logger('name');
     $logger->pushHandler(new StreamHandler(__DIR__.'/var/log/app.log', Logger::INFO));
 
@@ -27,7 +33,7 @@ $container[LoggerInterface::class] = function (Container $container) {
 };
 
 $container[Scraper::class] = function (Container $container) {
-    return new Scraper($container[LoggerInterface::class], $container[Pushbullet::class]);
+    return new Scraper($container[LoggerInterface::class], $container[NotifyInterface::class]);
 };
 
 $sites = [

@@ -5,8 +5,8 @@ namespace Inverse\Termin;
 use DateTime;
 use DOMElement;
 use Goutte\Client;
+use Inverse\Termin\Notify\NotifyInterface;
 use Psr\Log\LoggerInterface;
-use Pushbullet\Pushbullet;
 use Symfony\Component\DomCrawler\Crawler;
 
 class Scraper
@@ -17,19 +17,19 @@ class Scraper
     private $client;
 
     /**
-     * @var Pushbullet
+     * @var NotifyInterface
      */
-    private $pushbullet;
+    private $notifier;
 
     /**
      * @var LoggerInterface
      */
     private $logger;
 
-    public function __construct(LoggerInterface $logger, Pushbullet $pushbullet)
+    public function __construct(LoggerInterface $logger, NotifyInterface $notifier)
     {
         $this->client = new Client();
-        $this->pushbullet = $pushbullet;
+        $this->notifier = $notifier;
         $this->logger = $logger;
     }
 
@@ -51,7 +51,7 @@ class Scraper
                 sprintf('Found availability for %s @ %s', $name, $result->getDate()->format('c'))
             );
 
-            $this->notify($name, $url, $result->getDate());
+            $this->notifier->notify($name, $url, $result->getDate());
 
             return;
         }
@@ -79,12 +79,5 @@ class Scraper
         }
 
         return new Result(false);
-    }
-
-    private function notify(string $name, string $url, DateTime $date)
-    {
-        $title = 'Appointment Found';
-        $body = sprintf('%s appointment found for %s', $name, $date->format('jS M Y'));
-        $this->pushbullet->allDevices()->pushLink($title, $url, $body);
     }
 }
