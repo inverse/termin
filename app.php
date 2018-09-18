@@ -10,12 +10,9 @@ $dotenv->load();
 
 $container = new Container();
 
-
-
-
 $siteParser = $container->getSiteParser();
 
-$siteParser->parse(getenv('SITES'));
+$sites = $siteParser->parse(getenv('SITES'));
 
 $scraper = $container->getScraper();
 
