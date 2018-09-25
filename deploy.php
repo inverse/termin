@@ -21,11 +21,7 @@ set('writable_dirs', []);
 
 
 // Hosts
-
-host('sunshine.malachisoord.com')
-    ->port(4747)
-    ->set('deploy_path', '~/{{application}}');
-
+inventory('hosts.yml');
 
 // Tasks
 
