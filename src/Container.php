@@ -3,6 +3,7 @@
 namespace Inverse\Termin;
 
 use Inverse\Termin\Notify\NotifyInterface;
+use Inverse\Termin\Notify\NullNotifier;
 use Inverse\Termin\Notify\PushbulletNotifier;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -15,13 +16,22 @@ class Container extends Pimple
     public function __construct()
     {
         parent::__construct();
-        $this[Pushbullet::class] = function () {
-            return new Pushbullet(getenv('PUSHBULLET_API_TOKEN'));
-        };
+        $pushBulletApiToken = getenv('PUSHBULLET_API_TOKEN');
+
+        if (!empty($pushBulletApiToken)) {
+            $this[Pushbullet::class] = function () {
+                return new Pushbullet(getenv('PUSHBULLET_API_TOKEN'));
+            };
+        }
 
         $this[NotifyInterface::class] = function (Container $container) {
-            return new PushbulletNotifier($container[Pushbullet::class]);
+            if (isset($container[Pushbullet::class])) {
+                return new PushbulletNotifier($container[Pushbullet::class]);
+            }
+
+            return new NullNotifier();
         };
+
 
         $this[LoggerInterface::class] = function () {
             $logger = new Logger('name');
@@ -30,7 +40,7 @@ class Container extends Pimple
             return $logger;
         };
 
-        $this[Scraper::class] = function (Container $container) {
+        $this[Scraper::class] = function () {
             return new Scraper();
         };
 
