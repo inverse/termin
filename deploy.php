@@ -1,4 +1,5 @@
 <?php
+
 namespace Deployer;
 
 require 'recipe/common.php';
@@ -10,15 +11,14 @@ set('application', 'termin');
 set('repository', 'git@bitbucket.org:inverse/termin.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
-set('git_tty', true); 
+set('git_tty', true);
 
-// Shared files/dirs between deploys 
+// Shared files/dirs between deploys
 set('shared_files', ['.env']);
 set('shared_dirs', ['var/log']);
 
-// Writable dirs by web server 
+// Writable dirs by web server
 set('writable_dirs', []);
-
 
 // Hosts
 inventory('hosts.yml');
@@ -39,7 +39,7 @@ task('deploy', [
     'deploy:symlink',
     'deploy:unlock',
     'cleanup',
-    'success'
+    'success',
 ]);
 
 // [Optional] If deploy fails automatically unlock.
