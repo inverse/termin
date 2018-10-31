@@ -32,5 +32,3 @@ foreach ($sites as $name => $url) {
 
     $logger->info('No availability found for: '.$name);
 }
-
-
