@@ -2,6 +2,10 @@
 
 A simple PHP script for notifying for a free slot for any appointent lised on the [Berlin appointments website][0].
 
+[![StyleCI](https://github.styleci.io/repos/150996986/shield)](https://github.styleci.io/repos/150996986)
+
+
+
 ## Notifications
 
 Currently only supports notifications via Pushbullet.
