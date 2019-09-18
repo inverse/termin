@@ -1,19 +1,22 @@
 name: CI
-
-on: [push]
+on: [push, pull_request]
 
 jobs:
-  build:
-
+  unit-tests:
     runs-on: ubuntu-latest
-    
     steps:
     - uses: actions/checkout@v1
     - name: Install dependencies
       run: composer install
     - name: Run unit tests
       run: ./vendor/bin/phpunit
-    - name: PHPStan
-      run: docker://jakzal/phpqa:php7.1
-        with:
-          args: phpstan analyse --no-progress
+  phpstan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: composer install
+      - name: PHPStan
+        run: docker://jakzal/phpqa:php7.1
+          with:
+            args: phpstan analyse --no-progress
