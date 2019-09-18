@@ -2,9 +2,9 @@
 
 namespace Inverse\Termin;
 
-use Inverse\Termin\Notify\NotifyInterface;
 use Inverse\Termin\Notify\MultiNotifier;
 use Inverse\Termin\Notify\PushbulletNotifier;
+use Inverse\Termin\Notify\NotifyInterface;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Pimple\Container as Pimple;
@@ -24,7 +24,7 @@ class Container extends Pimple
             };
         }
 
-        $this[NotifyInterface::class] = function (Container $container) {
+        $this[NotifyInterface::class] = function (self $container) {
             $notifyService = new MultiNotifier();
 
             if (isset($container[Pushbullet::class])) {

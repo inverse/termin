@@ -18,7 +18,6 @@ class MultiNotifierTest extends TestCase
 
         $multiNotifier->notify('hello', 'http://example.com', new DateTime());
 
-
         $this->assertCount(1, $testNotifier->getNotifications());
     }
 
@@ -32,6 +31,7 @@ class MultiNotifierTest extends TestCase
         $multiNotifier->notify('hello', 'http://example.com', new DateTime());
         $multiNotifier->notify('hello', 'http://example.com', new DateTime());
         $multiNotifier->notify('hello', 'http://example.com', new DateTime());
+
         $this->assertCount(3, $testNotifier->getNotifications());
     }
 
