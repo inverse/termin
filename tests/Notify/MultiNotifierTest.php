@@ -1,11 +1,10 @@
 <?php
 
-namespace TestsInverse\Termin\Notify;
+namespace Tests\Inverse\Termin\Notify;
 
 use DateTime;
 use Inverse\Termin\Notify\MultiNotifier;
 use PHPUnit\Framework\TestCase;
-use Tests\Inverse\Termin\Notify\TestNotifier;
 
 class MultiNotifierTest extends TestCase
 {
