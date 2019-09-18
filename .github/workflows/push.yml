@@ -13,3 +13,7 @@ jobs:
       run: composer install
     - name: Run unit tests
       run: ./vendor/bin/phpunit
+    - name: PHPStan
+      run: docker://jakzal/phpqa:php7.1
+        with:
+          args: phpstan analyse --no-progress
