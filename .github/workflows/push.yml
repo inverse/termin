@@ -13,7 +13,7 @@ jobs:
   phpstan:
     runs-on: ubuntu-latest
     container:
-      image: jakzal/phpqa:php7.1
+      image: jakzal/phpqa:php7.2
     steps:
       - uses: actions/checkout@v1
       - name: Install dependencies
