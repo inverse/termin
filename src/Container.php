@@ -34,7 +34,6 @@ class Container extends Pimple
             return $notifyService;
         };
 
-
         $this[LoggerInterface::class] = function () {
             $logger = new Logger('name');
             $logger->pushHandler(new StreamHandler(__DIR__.'/../var/log/app.log', Logger::INFO));

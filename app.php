@@ -1,6 +1,5 @@
 <?php
 
-
 use Inverse\Termin\Container;
 
 require __DIR__.'/vendor/autoload.php';
