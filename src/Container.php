@@ -3,8 +3,8 @@
 namespace Inverse\Termin;
 
 use Inverse\Termin\Notify\MultiNotifier;
-use Inverse\Termin\Notify\PushbulletNotifier;
 use Inverse\Termin\Notify\NotifyInterface;
+use Inverse\Termin\Notify\PushbulletNotifier;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Pimple\Container as Pimple;
