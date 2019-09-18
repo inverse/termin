@@ -10,12 +10,14 @@ jobs:
       run: composer install
     - name: Run unit tests
       run: ./vendor/bin/phpunit
-#  phpstan:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v1
-#      - name: Install dependencies
-#        run: composer install
-#      - name: PHPStan
-#        run: docker run --init -it --rm -v ${{ github.workspace }}:/project -v ${{ github.workspace }}:/tmp-phpqa:/tmp -w /project jakzal/phpqa:php7.1 phpstan analyse
+  phpstan:
+    runs-on: ubuntu-latest
+    container:
+      image: jakzal/phpqa:php7.1
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: composer install
+      - name: PHPStan
+        run: phpstan analyse
 
