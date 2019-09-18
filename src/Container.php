@@ -3,7 +3,7 @@
 namespace Inverse\Termin;
 
 use Inverse\Termin\Notify\NotifyInterface;
-use Inverse\Termin\Notify\NullNotifier;
+use Inverse\Termin\Notify\MultiNotifier;
 use Inverse\Termin\Notify\PushbulletNotifier;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -25,12 +25,15 @@ class Container extends Pimple
         }
 
         $this[NotifyInterface::class] = function (Container $container) {
+            $notifyService = new MultiNotifier();
+
             if (isset($container[Pushbullet::class])) {
-                return new PushbulletNotifier($container[Pushbullet::class]);
+                $notifyService->addNotifier(new PushbulletNotifier($container[Pushbullet::class]));
             }
 
-            return new NullNotifier();
+            return $notifyService;
         };
+
 
         $this[LoggerInterface::class] = function () {
             $logger = new Logger('name');

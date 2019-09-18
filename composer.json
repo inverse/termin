@@ -15,7 +15,13 @@
             "Inverse\\Termin\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Inverse\\Termin\\": "tests/"
+        }
+    },
     "require-dev": {
-        "deployer/deployer": "^6.3"
+        "deployer/deployer": "^6.3",
+        "phpunit/phpunit": "^8.3"
     }
 }
