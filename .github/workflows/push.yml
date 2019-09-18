@@ -17,6 +17,5 @@ jobs:
       - name: Install dependencies
         run: composer install
       - name: PHPStan
-        run: docker://jakzal/phpqa:php7.1
-          with:
-            args: phpstan analyse --no-progress
+        run: docker run --init -it --rm -v ${{ github.workspace }}:/project -v ${{ github.workspace }}:/tmp-phpqa:/tmp -w /project jakzal/phpqa:php7.1 phpstan analyse
+
