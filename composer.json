@@ -1,6 +1,9 @@
 {
+    "name": "inverse/termin",
+    "description": "Simple PHP tool for finding a termin in Berlin",
+    "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "^7.1",
         "ext-curl": "*",
         "ext-dom": "*",
         "ext-json": "*",
@@ -15,13 +18,15 @@
             "Inverse\\Termin\\": "src/"
         }
     },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    },
     "autoload-dev": {
         "psr-4": {
             "Tests\\Inverse\\Termin\\": "tests/"
         }
     },
-    "require-dev": {
-        "deployer/deployer": "^6.3",
-        "phpunit/phpunit": "^8.3"
+    "config": {
+        "sort-packages": true
     }
 }

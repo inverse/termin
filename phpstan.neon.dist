@@ -2,4 +2,4 @@ parameters:
 	paths:
 		- %currentWorkingDirectory%/src
 		- %currentWorkingDirectory%/tests
-	level: 4
+	level: 7

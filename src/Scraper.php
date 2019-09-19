@@ -4,6 +4,7 @@ namespace Inverse\Termin;
 
 use DateTime;
 use DOMElement;
+use DOMNode;
 use Goutte\Client;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -37,12 +38,13 @@ class Scraper
         return $result;
     }
 
-    private function processMonth(DOMElement $element): Result
+    private function processMonth(DOMNode $element): Result
     {
         $crawler = new Crawler($element);
         $month = trim($crawler->filter('.month')->text());
         $crawler = $crawler->filter('tr td');
 
+        /** @var DOMElement $node */
         foreach ($crawler as $node) {
             $class = $node->getAttribute('class');
             $classes = explode(' ', $class);

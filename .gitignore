@@ -2,4 +2,4 @@
 /.env
 /.idea/
 /var/log/*.log
-/hosts.yml
+/composer.lock
