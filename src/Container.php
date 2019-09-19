@@ -19,7 +19,7 @@ class Container extends Pimple
 
         $pushBulletApiToken = getenv('PUSHBULLET_API_TOKEN');
         if (!empty($pushBulletApiToken) && is_string($pushBulletApiToken)) {
-            $this[Pushbullet::class] = function () {
+            $this[Pushbullet::class] = function () use ($pushBulletApiToken) {
                 return new Pushbullet($pushBulletApiToken);
             };
         }
