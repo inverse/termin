@@ -2,24 +2,22 @@ name: CI
 on: [push]
 
 jobs:
-  composer-install:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Install dependencies
-        run: composer install
   unit-tests:
-    needs: composer-install
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies
+      run: composer install
     - name: Run unit tests
       run: ./vendor/bin/phpunit
   phpstan:
-    needs: composer-install
     runs-on: ubuntu-latest
     container:
       image: jakzal/phpqa:php7.2
     steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: composer install
       - name: PHPStan
         run: phpstan analyse
 
