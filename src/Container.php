@@ -16,11 +16,11 @@ class Container extends Pimple
     public function __construct()
     {
         parent::__construct();
-        $pushBulletApiToken = getenv('PUSHBULLET_API_TOKEN');
 
-        if (!empty($pushBulletApiToken)) {
+        $pushBulletApiToken = getenv('PUSHBULLET_API_TOKEN');
+        if (!empty($pushBulletApiToken) && is_string($pushBulletApiToken)) {
             $this[Pushbullet::class] = function () {
-                return new Pushbullet(getenv('PUSHBULLET_API_TOKEN'));
+                return new Pushbullet($pushBulletApiToken);
             };
         }
 
