@@ -9,9 +9,10 @@
         "ext-json": "*",
         "fabpot/goutte": "^3.2",
         "ivkos/pushbullet": "^3.3",
-        "vlucas/phpdotenv": "^2.5",
+        "monolog/monolog": "^1.23",
         "pimple/pimple": "^3.2",
-        "monolog/monolog": "^1.23"
+        "telegram-bot/api": "^2.3",
+        "vlucas/phpdotenv": "^2.5"
     },
     "autoload": {
         "psr-4": {

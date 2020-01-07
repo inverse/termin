@@ -5,11 +5,13 @@ namespace Inverse\Termin;
 use Inverse\Termin\Notify\MultiNotifier;
 use Inverse\Termin\Notify\NotifyInterface;
 use Inverse\Termin\Notify\PushbulletNotifier;
+use Inverse\Termin\Notify\TelegramNotifier;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Pimple\Container as Pimple;
 use Psr\Log\LoggerInterface;
 use Pushbullet\Pushbullet;
+use TelegramBot\Api\BotApi;
 
 class Container extends Pimple
 {
@@ -19,16 +21,31 @@ class Container extends Pimple
 
         $pushBulletApiToken = getenv('PUSHBULLET_API_TOKEN');
         if (!empty($pushBulletApiToken) && is_string($pushBulletApiToken)) {
-            $this[Pushbullet::class] = function () use ($pushBulletApiToken) {
-                return new Pushbullet($pushBulletApiToken);
+            $this[PushbulletNotifier::class] = function () use ($pushBulletApiToken) {
+                $pushBullet = new Pushbullet($pushBulletApiToken);
+                return new PushbulletNotifier($pushBullet);
+            };
+        }
+
+        $telegramApiKey = getenv('TELEGRAM_API_KEY');
+        $telegramChatId = getenv('TELEGRAM_CHAT_ID');
+        if (!empty($telegramApiKey) && !empty($telegramChatId)) {
+            $this[TelegramNotifier::class] = function () use ($telegramApiKey, $telegramChatId) {
+                $botApi=  new BotApi($telegramApiKey);
+
+                return new TelegramNotifier($botApi, (int)$telegramChatId);
             };
         }
 
         $this[NotifyInterface::class] = function (self $container) {
             $notifyService = new MultiNotifier();
 
-            if (isset($container[Pushbullet::class])) {
-                $notifyService->addNotifier(new PushbulletNotifier($container[Pushbullet::class]));
+            if (isset($container[TelegramNotifier::class])) {
+                $notifyService->addNotifier($container[TelegramNotifier::class]);
+            }
+
+            if (isset($container[PushbulletNotifier::class])) {
+                $notifyService->addNotifier($container[PushbulletNotifier::class]);
             }
 
             return $notifyService;

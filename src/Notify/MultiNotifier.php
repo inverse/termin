@@ -23,6 +23,10 @@ class MultiNotifier implements NotifyInterface
 
     public function notify(string $name, string $url, DateTime $date): void
     {
+        if (empty($this->notifiers)) {
+            throw new NotifierException('No notifiers configured');
+        }
+
         foreach ($this->notifiers as $notify) {
             $notify->notify($name, $url, $date);
         }

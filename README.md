@@ -8,7 +8,10 @@ A simple PHP script for notifying for a free slot for any appointent lised on th
 
 ## Notifications
 
-Currently only supports notifications via Pushbullet.
+Currently only supports notifications via:
+
+- Pushbullet
+- Telegram
 
 # Requirements
 
@@ -18,7 +21,7 @@ Currently only supports notifications via Pushbullet.
 ## Setup
 
 - `composer install`
-- Configure `.env` based on the `.env.dist` with JSON encoded site information and a pushbullet API key
+- Configure `.env` based on the `.env.dist` with JSON encoded site information and notifier settings
 
 - Setup CRON job to call `app.php` on desired run interval e.g.
 
