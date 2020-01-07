@@ -50,7 +50,7 @@ class Scraper
             $class = $node->getAttribute('class');
             $classes = explode(' ', $class);
 
-            if (in_array('nichtbuchbar', $classes)) {
+            if (in_array('buchbar', $classes)) {
                 $date = sprintf('%s %s', $node->textContent, $this->monthConvert($monthStr));
 
                 return Result::createFound(new DateTime($date, new DateTimeZone('Europe/Berlin')));
