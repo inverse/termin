@@ -18,7 +18,7 @@ $logger = $container->getLogger();
 $notifier = $container->getNotifier();
 
 foreach ($sites as $name => $url) {
-    $result = $scraper->scrapeSite($name, $url);
+    $result = $scraper->scrapeSite($url);
 
     if ($result->isFound()) {
         $logger->info(

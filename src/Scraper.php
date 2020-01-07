@@ -21,7 +21,7 @@ class Scraper
         $this->client = new Client();
     }
 
-    public function scrapeSite(string $name, string $url): Result
+    public function scrapeSite(string $url): Result
     {
         $crawler = $this->client->request('GET', $url);
         $crawler = $crawler->filter('.calendar-table table');
@@ -50,7 +50,7 @@ class Scraper
             $class = $node->getAttribute('class');
             $classes = explode(' ', $class);
 
-            if (in_array('buchbar', $classes)) {
+            if (in_array('nichtbuchbar', $classes)) {
                 $date = sprintf('%s %s', $node->textContent, $this->monthConvert($monthStr));
 
                 return Result::createFound(new DateTime($date, new DateTimeZone('Europe/Berlin')));
