@@ -60,7 +60,7 @@ class Scraper
         return Result::createNotFound();
     }
 
-    private function monthConvert(string $monthStr)
+    private function monthConvert(string $monthStr): string
     {
         $mapper = ['Januar' => 'January',
             'Februar' => 'February',

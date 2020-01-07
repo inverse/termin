@@ -2,7 +2,6 @@
 
 A simple PHP script for notifying for a free slot for any appointent lised on the [Berlin appointments website][0].
 
-[![StyleCI](https://github.styleci.io/repos/150996986/shield)](https://github.styleci.io/repos/150996986)
 [![Actions Status](https://github.com/inverse/termin/workflows/CI/badge.svg)](https://github.com/inverse/termin/actions)
 
 
