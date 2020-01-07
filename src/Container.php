@@ -23,6 +23,7 @@ class Container extends Pimple
         if (!empty($pushBulletApiToken) && is_string($pushBulletApiToken)) {
             $this[PushbulletNotifier::class] = function () use ($pushBulletApiToken) {
                 $pushBullet = new Pushbullet($pushBulletApiToken);
+
                 return new PushbulletNotifier($pushBullet);
             };
         }
