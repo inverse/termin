@@ -4,10 +4,18 @@ namespace Tests\Inverse\Termin\Notify;
 
 use DateTime;
 use Inverse\Termin\Notify\MultiNotifier;
+use Inverse\Termin\Notify\NotifierException;
 use PHPUnit\Framework\TestCase;
 
 class MultiNotifierTest extends TestCase
 {
+    public function testNoneConfigured(): void
+    {
+        $this->expectException(NotifierException::class);
+        $multiNotifier = new MultiNotifier();
+        $multiNotifier->notify('hello', 'http://example.com', new DateTime());
+    }
+
     public function testNotifySingle(): void
     {
         $testNotifier = new TestNotifier();
