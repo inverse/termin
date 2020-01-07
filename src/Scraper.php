@@ -3,6 +3,7 @@
 namespace Inverse\Termin;
 
 use DateTime;
+use DateTimeZone;
 use DOMElement;
 use DOMNode;
 use Goutte\Client;
@@ -41,7 +42,7 @@ class Scraper
     private function processMonth(DOMNode $element): Result
     {
         $crawler = new Crawler($element);
-        $month = trim($crawler->filter('.month')->text());
+        $monthStr = trim($crawler->filter('.month')->text());
         $crawler = $crawler->filter('tr td');
 
         /** @var DOMElement $node */
@@ -49,13 +50,39 @@ class Scraper
             $class = $node->getAttribute('class');
             $classes = explode(' ', $class);
 
-            if (in_array('buchbar', $classes)) {
-                $date = sprintf('%s %s', $node->textContent, $month);
+            if (in_array('nichtbuchbar', $classes)) {
+                $date = sprintf('%s %s', $node->textContent, $this->monthConvert($monthStr));
 
-                return Result::createFound(new DateTime($date));
+                return Result::createFound(new DateTime($date, new DateTimeZone('Europe/Berlin')));
             }
         }
 
         return Result::createNotFound();
     }
+
+    private function monthConvert(string $monthStr)
+    {
+        $mapper = ['Januar' => 'January',
+            'Februar' => 'February',
+            'März' => 'March',
+            'April' => 'April',
+            'Mai' => 'May',
+            'Juni' => 'June',
+            'Juli' => 'July',
+            'August' => 'August',
+            'September' => 'September',
+            'Oktober' => 'October',
+            'November' => 'November',
+            'Dezember' => 'December'
+        ];
+
+        foreach ($mapper as $month => $replace) {
+            if (strpos($monthStr, $month) !== false) {
+                return str_replace($month, $replace, $monthStr);
+            }
+        }
+
+        return $monthStr;
+    }
+
 }
