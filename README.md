@@ -2,23 +2,25 @@
 
 A simple PHP script for notifying for a free slot for any appointent lised on the [Berlin appointments website][0].
 
-[![StyleCI](https://github.styleci.io/repos/150996986/shield)](https://github.styleci.io/repos/150996986)
 [![Actions Status](https://github.com/inverse/termin/workflows/CI/badge.svg)](https://github.com/inverse/termin/actions)
 
 
 ## Notifications
 
-Currently only supports notifications via Pushbullet.
+Currently only supports notifications via:
+
+- Pushbullet
+- Telegram
 
 # Requirements
 
-- PHP 7.1+
+- PHP 7.2+
 - composer
 
 ## Setup
 
 - `composer install`
-- Configure `.env` based on the `.env.dist` with JSON encoded site information and a pushbullet API key
+- Configure `.env` based on the `.env.dist` with JSON encoded site information and notifier settings
 
 - Setup CRON job to call `app.php` on desired run interval e.g.
 
