@@ -31,9 +31,9 @@ class Container extends Pimple
         $telegramChatId = getenv('TELEGRAM_CHAT_ID');
         if (!empty($telegramApiKey) && !empty($telegramChatId)) {
             $this[TelegramNotifier::class] = function () use ($telegramApiKey, $telegramChatId) {
-                $botApi=  new BotApi($telegramApiKey);
+                $botApi = new BotApi($telegramApiKey);
 
-                return new TelegramNotifier($botApi, (int)$telegramChatId);
+                return new TelegramNotifier($botApi, (int) $telegramChatId);
             };
         }
 
