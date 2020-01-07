@@ -15,7 +15,7 @@ Currently only supports notifications via:
 
 # Requirements
 
-- PHP 7.1+
+- PHP 7.2+
 - composer
 
 ## Setup
