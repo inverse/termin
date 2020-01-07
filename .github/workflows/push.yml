@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['7.1', '7.2', '7.3']
+        php-versions: ['7.4', '7.3', '7.2']
     steps:
     - uses: actions/checkout@v1
     - name: Install PHP
@@ -20,7 +20,7 @@ jobs:
   phpstan:
     runs-on: ubuntu-latest
     container:
-      image: jakzal/phpqa:php7.1
+      image: jakzal/phpqa:php7.4
     steps:
       - uses: actions/checkout@v1
       - name: Install dependencies
