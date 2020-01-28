@@ -24,7 +24,7 @@ Currently only supports notifications via:
 
 - Setup CRON job to call `app.php` on desired run interval e.g.
 
- `*/5 * * * *  php ~/termin/current/app.php`
+ `*/30 * * * *  php ~/termin/current/app.php`
 
 - Wait for a notification
 
