@@ -67,7 +67,7 @@ class Scraper
             $class = $node->getAttribute('class');
             $classes = explode(' ', $class);
 
-            if (in_array(self::CLASS_UNAVAILABLE, $classes)) {
+            if (in_array(self::CLASS_AVAILABLE, $classes)) {
 
                 $dateTime = $this->createDateTime($node->textContent, $this->monthConvert($monthStr));
 
