@@ -6,58 +6,92 @@ use DateTime;
 use DateTimeZone;
 use DOMElement;
 use DOMNode;
+use Exception;
 use Goutte\Client;
 use Symfony\Component\DomCrawler\Crawler;
 
 class Scraper
 {
+    private const CLASS_AVAILABLE = 'buchbar';
+    private const CLASS_UNAVAILABLE = 'nichtbuchbar';
+
     /**
      * @var Client
      */
     private $client;
 
-    public function __construct()
+    /**
+     * @var bool
+     */
+    private $collectMultiple;
+
+    public function __construct(bool $collectMultiple = false)
     {
         $this->client = new Client();
+        $this->collectMultiple = $collectMultiple;
     }
 
-    public function scrapeSite(string $url): Result
+    public function scrapeSite(string $url): array
     {
         $crawler = $this->client->request('GET', $url);
         $crawler = $crawler->filter('.calendar-table table');
 
-        $result = Result::createNotFound();
+        $results = [];
 
         foreach ($crawler as $element) {
-            $result = $this->processMonth($element);
+            $results = array_merge($results, $this->processMonth($element));
 
-            if ($result->isFound()) {
+            if (!empty($results) && !$this->collectMultiple) {
                 break;
             }
         }
 
-        return $result;
+        return $results;
     }
 
-    private function processMonth(DOMNode $element): Result
+    private function processMonth(DOMNode $element): array
     {
         $crawler = new Crawler($element);
         $monthStr = trim($crawler->filter('.month')->text());
         $crawler = $crawler->filter('tr td');
+
+        $results = [];
 
         /** @var DOMElement $node */
         foreach ($crawler as $node) {
             $class = $node->getAttribute('class');
             $classes = explode(' ', $class);
 
-            if (in_array('buchbar', $classes)) {
-                $date = sprintf('%s %s', $node->textContent, $this->monthConvert($monthStr));
+            if (in_array(self::CLASS_AVAILABLE, $classes)) {
 
-                return Result::createFound(new DateTime($date, new DateTimeZone('Europe/Berlin')));
+                $dateTime = $this->createDateTime($node->textContent, $this->monthConvert($monthStr));
+
+                if (isset($dateTime)) {
+                    $results[] = Result::createFound($dateTime);
+
+                    if (!$this->collectMultiple) {
+                        break;
+                    }
+                }
             }
         }
 
-        return Result::createNotFound();
+        return $results;
+    }
+
+    private function createDateTime(string $day, string $month): ?DateTime
+    {
+        $dateTime = null;
+
+        if (empty($day) || empty($month)) {
+            return $dateTime;
+        }
+
+        try {
+            $dateTime = new DateTime(sprintf('%s %s', $day, $month), new DateTimeZone('Europe/Berlin'));
+        } finally {
+            return $dateTime;
+        }
     }
 
     private function monthConvert(string $monthStr): string
@@ -84,5 +118,4 @@ class Scraper
 
         return $monthStr;
     }
-
 }

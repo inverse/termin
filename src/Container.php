@@ -15,6 +15,8 @@ use TelegramBot\Api\BotApi;
 
 class Container extends Pimple
 {
+    private const ROOT_DIR = __DIR__ . '/../';
+
     public function __construct()
     {
         parent::__construct();
@@ -34,7 +36,7 @@ class Container extends Pimple
             $this[TelegramNotifier::class] = function () use ($telegramApiKey, $telegramChatId) {
                 $botApi = new BotApi($telegramApiKey);
 
-                return new TelegramNotifier($botApi, (int) $telegramChatId);
+                return new TelegramNotifier($botApi, (int)$telegramChatId);
             };
         }
 
@@ -54,13 +56,15 @@ class Container extends Pimple
 
         $this[LoggerInterface::class] = function () {
             $logger = new Logger('name');
-            $logger->pushHandler(new StreamHandler(__DIR__.'/../var/log/app.log', Logger::INFO));
+            $logger->pushHandler(new StreamHandler(self::ROOT_DIR . 'var/log/app.log', Logger::INFO));
 
             return $logger;
         };
 
-        $this[Scraper::class] = function () {
-            return new Scraper();
+        $allowMultipleNotifications = (bool)getenv('ALLOW_MULTIPLE_NOTIFICATIONS');
+
+        $this[Scraper::class] = function () use ($allowMultipleNotifications) {
+            return new Scraper($allowMultipleNotifications);
         };
 
         $this[SiteParser::class] = function () {
