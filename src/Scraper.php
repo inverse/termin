@@ -6,12 +6,16 @@ use DateTime;
 use DateTimeZone;
 use DOMElement;
 use DOMNode;
-use Exception;
 use Goutte\Client;
 use Symfony\Component\DomCrawler\Crawler;
 
 class Scraper
 {
+    /**
+     * Needed to by pass restrictions with setting class attributes for availability.
+     */
+    private const USER_AGENT = 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36';
+
     private const CLASS_AVAILABLE = 'buchbar';
     private const CLASS_UNAVAILABLE = 'nichtbuchbar';
 
@@ -28,6 +32,7 @@ class Scraper
     public function __construct(bool $collectMultiple = false)
     {
         $this->client = new Client();
+        $this->client->setHeader('User-Agent', self::USER_AGENT);
         $this->collectMultiple = $collectMultiple;
     }
 
@@ -62,7 +67,7 @@ class Scraper
             $class = $node->getAttribute('class');
             $classes = explode(' ', $class);
 
-            if (in_array(self::CLASS_AVAILABLE, $classes)) {
+            if (in_array(self::CLASS_UNAVAILABLE, $classes)) {
 
                 $dateTime = $this->createDateTime($node->textContent, $this->monthConvert($monthStr));
 
