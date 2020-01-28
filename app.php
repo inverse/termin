@@ -18,15 +18,16 @@ $logger = $container->getLogger();
 $notifier = $container->getNotifier();
 
 foreach ($sites as $name => $url) {
-    $result = $scraper->scrapeSite($url);
+    $results = $scraper->scrapeSite($url);
 
-    if ($result->isFound()) {
-        $logger->info(
-            sprintf('Found availability for %s @ %s', $name, $result->getDate()->format('c'))
-        );
+    foreach ($results as $result) {
+        if ($result->isFound()) {
+            $logger->info(
+                sprintf('Found availability for %s @ %s', $name, $result->getDate()->format('c'))
+            );
 
-        $notifier->notify($name, $url, $result->getDate());
-        continue;
+            $notifier->notify($name, $url, $result->getDate());
+        }
     }
 
     $logger->info('No availability found for: '.$name);

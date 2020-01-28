@@ -1,5 +1,8 @@
 /vendor/
 /.env
 /.idea/
-/var/log/*.log
+/var/log/
+!/var/log/.gitkeep
+/var/cache/
+!/var/cache/.gitkeep
 /composer.lock
