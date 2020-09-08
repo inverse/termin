@@ -8,6 +8,7 @@ use DOMElement;
 use DOMNode;
 use Goutte\Client;
 use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\HttpClient\HttpClient;
 
 class Scraper
 {
@@ -31,8 +32,11 @@ class Scraper
 
     public function __construct(bool $collectMultiple = false)
     {
-        $this->client = new Client();
-        $this->client->setHeader('User-Agent', self::USER_AGENT);
+        $this->client = new Client(HttpClient::create([
+            'headers' => [
+                'User-Agent' => self::USER_AGENT,
+            ]
+        ]));
         $this->collectMultiple = $collectMultiple;
     }
 
