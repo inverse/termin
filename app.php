@@ -4,7 +4,7 @@ use Inverse\Termin\Container;
 
 require __DIR__.'/vendor/autoload.php';
 
-$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__);
 $dotenv->load();
 
 $container = new Container();

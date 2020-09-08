@@ -6,21 +6,26 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['7.3', '7.2']
+        php-version: ['7.4', '7.3']
     steps:
     - uses: actions/checkout@v1
     - name: Install PHP
       uses: shivammathur/setup-php@master
       with:
-        php-version: ${{ matrix.php-versions }}
+        php-version: ${{ matrix.php-version }}
     - name: Install dependencies
       run: composer install
-    - name: Run unit tests
-      run: ./vendor/bin/phpunit
+    - name: Run tests
+      run: |
+        ./vendor/bin/phpunit --coverage-clover coverage.xml
+    - uses: codecov/codecov-action@v1
+      if: matrix.php-version == '7.4'
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
   phpstan:
     runs-on: ubuntu-latest
     container:
-      image: jakzal/phpqa:php7.2
+      image: jakzal/phpqa:php7.4
     steps:
       - uses: actions/checkout@v1
       - name: Install dependencies

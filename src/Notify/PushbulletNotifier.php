@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Inverse\Termin\Notify;
 
 use DateTime;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Inverse\Termin;
 
 use InvalidArgumentException;
@@ -10,7 +12,7 @@ class SiteParser
     {
         $decoded = json_decode($payload, true);
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
+        if (JSON_ERROR_NONE !== json_last_error()) {
             throw new InvalidArgumentException('Invalid JSON given for sites');
         }
 

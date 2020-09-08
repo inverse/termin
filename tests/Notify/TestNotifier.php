@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Inverse\Termin\Notify;
 
 use DateTime;
@@ -16,7 +18,7 @@ class TestNotifier implements NotifyInterface
     {
         $this->notifications[] = [
             'name' => $name,
-            'url'  => $url,
+            'url' => $url,
             'date' => $date,
         ];
     }
