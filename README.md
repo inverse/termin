@@ -4,6 +4,7 @@ A simple PHP script for notifying for a free slot for any appointment listed on 
 
 [![Actions Status](https://github.com/inverse/termin/workflows/CI/badge.svg)](https://github.com/inverse/termin/actions)
 
+![](https://i.imgur.com/8vxmVo2.png)
 
 ## Notifications
 
