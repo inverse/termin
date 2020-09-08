@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['7.3', '7.2']
+        php-versions: ['7.4', '7.4']
     steps:
     - uses: actions/checkout@v1
     - name: Install PHP
