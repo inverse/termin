@@ -15,8 +15,12 @@ jobs:
         php-version: ${{ matrix.php-versions }}
     - name: Install dependencies
       run: composer install
-    - name: Run unit tests
-      run: ./vendor/bin/phpunit
+    - name: Run tests
+      run: |
+        ./bin/phpunit --coverage-clover coverage.xml
+    - uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
   phpstan:
     runs-on: ubuntu-latest
     container:

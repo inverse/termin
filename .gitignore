@@ -6,3 +6,4 @@
 /var/cache/
 !/var/cache/.gitkeep
 /composer.lock
+/.phpunit.result.cache
