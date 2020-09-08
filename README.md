@@ -3,6 +3,8 @@
 A simple PHP script for notifying for a free slot for any appointment listed on the [Berlin appointments website][0].
 
 [![Actions Status](https://github.com/inverse/termin/workflows/CI/badge.svg)](https://github.com/inverse/termin/actions)
+[![codecov](https://codecov.io/gh/inverse/termin/branch/master/graph/badge.svg)](https://codecov.io/gh/inverse/termin)
+
 
 ![](https://i.imgur.com/8vxmVo2.png)
 
