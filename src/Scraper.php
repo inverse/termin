@@ -37,7 +37,7 @@ class Scraper
         $this->client = new Client(HttpClient::create([
             'headers' => [
                 'User-Agent' => self::USER_AGENT,
-            ]
+            ],
         ]));
         $this->collectMultiple = $collectMultiple;
     }
@@ -74,7 +74,6 @@ class Scraper
             $classes = explode(' ', $class);
 
             if (in_array(self::CLASS_AVAILABLE, $classes)) {
-
                 $dateTime = $this->createDateTime($node->textContent, $this->monthConvert($monthStr));
 
                 if (isset($dateTime)) {
@@ -118,11 +117,11 @@ class Scraper
             'September' => 'September',
             'Oktober' => 'October',
             'November' => 'November',
-            'Dezember' => 'December'
+            'Dezember' => 'December',
         ];
 
         foreach ($mapper as $month => $replace) {
-            if (strpos($monthStr, $month) !== false) {
+            if (false !== strpos($monthStr, $month)) {
                 return str_replace($month, $replace, $monthStr);
             }
         }

@@ -18,7 +18,7 @@ class TestNotifier implements NotifyInterface
     {
         $this->notifications[] = [
             'name' => $name,
-            'url'  => $url,
+            'url' => $url,
             'date' => $date,
         ];
     }
