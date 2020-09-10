@@ -35,6 +35,8 @@ class ScraperTest extends TestCase
         if (false === $contents) {
             throw new Exception(sprintf('Unable to load fixture: %s', $fixturePath));
         }
+
+        return $contents;
     }
 }
 
