@@ -8,15 +8,10 @@ use DOMElement;
 use DOMNode;
 use Goutte\Client;
 use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class Scraper
 {
-    /**
-     * Needed to by pass restrictions with setting class attributes for availability.
-     */
-    private const USER_AGENT = 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36';
-
     private const CLASS_AVAILABLE = 'buchbar';
     private const CLASS_UNAVAILABLE = 'nichtbuchbar';
 
@@ -30,16 +25,15 @@ class Scraper
      */
     private $collectMultiple;
 
-    public function __construct(bool $collectMultiple = false)
+    public function __construct(HttpClientInterface $httpClient, bool $collectMultiple = false)
     {
-        $this->client = new Client(HttpClient::create([
-            'headers' => [
-                'User-Agent' => self::USER_AGENT,
-            ],
-        ]));
+        $this->client = new Client($httpClient);
         $this->collectMultiple = $collectMultiple;
     }
 
+    /**
+     * @return Result[]
+     */
     public function scrapeSite(string $url): array
     {
         $crawler = $this->client->request('GET', $url);
