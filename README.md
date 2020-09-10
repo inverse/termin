@@ -52,7 +52,7 @@ _Note: Don't set the frequency to high to not overload their website_
 
 Wait for a notification!
 
-## Licence 
+## Licence
 
 MIT
 
