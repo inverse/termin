@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Inverse\Termin;
 
+use DateTimeInterface;
 use Exception;
 use Inverse\Termin\HttpClient\HttpClientFactoryInterface;
 use Inverse\Termin\Scraper;
@@ -25,6 +26,20 @@ class ScraperTest extends TestCase
         $scraper = new Scraper($mockHttpClientFactory->create());
 
         self::assertEmpty($scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/'));
+    }
+
+    public function testScrapeSiteOneAppointment(): void
+    {
+        $mockHttpClientFactory = new MockHttpClientFactory(
+            [
+                new MockResponse($this->loadFixture('mock_response_one_termin.html')),
+            ]
+        );
+
+        $scraper = new Scraper($mockHttpClientFactory->create());
+
+        $results = $scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/');
+        self::assertEquals('2020-09-15T00:00:00+02:00', $results[0]->getDate()->format(DateTimeInterface::ATOM));
     }
 
     private function loadFixture(string $name): string

@@ -31,6 +31,9 @@ class Scraper
         $this->collectMultiple = $collectMultiple;
     }
 
+    /**
+     * @return Result[]
+     */
     public function scrapeSite(string $url): array
     {
         $crawler = $this->client->request('GET', $url);
