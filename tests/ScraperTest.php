@@ -11,9 +11,20 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class ScraperTest extends TestCase
 {
-    public function testScrapeSite()
+    public function testScrapeSiteNoAppointments()
     {
-        $scraper = new Scraper(new )
+        $mockHttpClientFactory = new MockHttpClientFactory([
+            new MockResponse($this->loadFixture('mock_response_no_termin.html'))
+        ]);
+
+        $scraper = new Scraper($mockHttpClientFactory->create());
+
+        self::assertEmpty($scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/'));
+    }
+
+    private function loadFixture(string $name): string
+    {
+        return file_get_contents(__DIR__.'/Fixtures/'.$name);
     }
 }
 
