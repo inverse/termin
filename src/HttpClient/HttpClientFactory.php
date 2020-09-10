@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Inverse\Termin\HttpClient;
 
-use Inverse\Termin\HttpClient\HttpClientFactoryInterface;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
