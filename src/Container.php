@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Inverse\Termin;
 
+use Inverse\Termin\HttpClient\HttpClientFactory;
 use Inverse\Termin\Notify\MultiNotifier;
 use Inverse\Termin\Notify\NotifyInterface;
 use Inverse\Termin\Notify\PushbulletNotifier;
@@ -57,8 +58,9 @@ class Container extends Pimple
         };
 
         $this[LoggerInterface::class] = function () {
-            $logger = new Logger('name');
+            $logger = new Logger('termin');
             $logger->pushHandler(new StreamHandler(self::ROOT_DIR.'var/log/app.log', Logger::INFO));
+            $logger->pushHandler(new StreamHandler('php://stdout', Logger::INFO));
 
             return $logger;
         };
@@ -66,7 +68,9 @@ class Container extends Pimple
         $allowMultipleNotifications = (bool) getenv('ALLOW_MULTIPLE_NOTIFICATIONS');
 
         $this[Scraper::class] = function () use ($allowMultipleNotifications) {
-            return new Scraper($allowMultipleNotifications);
+            $httpClientFactory = new HttpClientFactory();
+
+            return new Scraper($httpClientFactory->create(), $allowMultipleNotifications);
         };
 
         $this[SiteParser::class] = function () {
