@@ -22,15 +22,33 @@ Currently supports notifications via:
 
 ## Setup
 
-Install PHP dependencies by running `composer install`.
+Clone the repo
+
+```basg
+git clone https://github.com/inverse/termin.git
+```
+
+### Dependencies
+
+Install dependencies
+ 
+ ```bash
+ composer install
+```
+
+### Configuration
 
 Configure `.env` based on the `.env.dist` with JSON encoded site information and notifier settings.
 
-Setup CRON job to call `app.php` on desired run interval e.g.
+### Run
+
+Setup a cron job to call `app.php` on desired run interval e.g. every hour
 
  ```bash
-*/30 * * * *  php ~/path/to/termin/app.php
+0 * * * *  php ~/path/to/termin/app.php
 ```
+
+_Note: Don't set the frequency to high to not overload their website_
 
 Wait for a notification!
 
