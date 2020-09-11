@@ -38,7 +38,9 @@ Install dependencies
 
 ### Configuration
 
-Configure `.env` based on the `.env.dist` with JSON encoded site information and notifier settings.
+Configure `.env` file based on the `.env.example` with JSON encoded site information and notifier settings.
+
+If you provide more than one notifier configuration it will notify to both.
 
 ### Run
 
