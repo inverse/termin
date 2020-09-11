@@ -76,6 +76,14 @@ class Container extends Pimple
         $this[SiteParser::class] = function () {
             return new SiteParser();
         };
+
+        $this[Termin::class] = function (self $container) {
+            return new Termin(
+                $container[Scraper::class],
+                $container[LoggerInterface::class],
+                $container[NotifyInterface::class]
+            );
+        };
     }
 
     public function getScraper(): Scraper
@@ -96,5 +104,10 @@ class Container extends Pimple
     public function getNotifier(): NotifyInterface
     {
         return $this[NotifyInterface::class];
+    }
+
+    public function getTermin(): Termin
+    {
+        return $this[Termin::class];
     }
 }
