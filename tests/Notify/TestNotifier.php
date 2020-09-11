@@ -14,6 +14,11 @@ class TestNotifier implements NotifyInterface
      */
     private $notifications;
 
+    public function __construct()
+    {
+        $this->notifications = [];
+    }
+
     public function notify(string $name, string $url, DateTime $date): void
     {
         $this->notifications[] = [
