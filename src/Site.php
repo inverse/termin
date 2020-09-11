@@ -6,7 +6,14 @@ namespace Inverse\Termin;
 
 class Site
 {
+    /**
+     * @var string
+     */
     private $label;
+
+    /**
+     * @var string
+     */
     private $url;
 
     public function __construct(string $label, string $url)
