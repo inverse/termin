@@ -36,6 +36,12 @@ class Termin
         foreach ($sites as $site) {
             $results = $this->scraper->scrapeSite($site->getUrl());
 
+            if (empty($results)) {
+                $this->logger->info('No availability found for: '.$site->getLabel());
+
+                continue;
+            }
+
             foreach ($results as $result) {
                 $this->logger->info(
                     sprintf('Found availability for %s @ %s', $site->getLabel(), $result->getDate()->format('c'))
@@ -43,8 +49,6 @@ class Termin
 
                 $this->notifier->notify($site->getLabel(), $site->getUrl(), $result->getDate());
             }
-
-            $this->logger->info('No availability found for: '.$site->getLabel());
         }
     }
 }

@@ -9,8 +9,8 @@ use Inverse\Termin\Result;
 use Inverse\Termin\Scraper;
 use Inverse\Termin\Site;
 use Inverse\Termin\Termin;
-use Monolog\Logger;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\Test\TestLogger;
 use Tests\Inverse\Termin\Notify\TestNotifier;
 
 class TerminTest extends TestCase
@@ -20,18 +20,18 @@ class TerminTest extends TestCase
         $mockScraper = $this->createMock(Scraper::class);
 
         $mockScraper->method('scrapeSite')
-            ->willReturn([Result::createFound(new DateTime())])
+            ->willReturn([Result::createFound(new DateTime('2020-01-01 00:00:00'))])
         ;
 
-        $mockLogger = $this->createMock(Logger::class);
-
+        $testLogger = new TestLogger();
         $testNotifier = new TestNotifier();
 
-        $termin = new Termin($mockScraper, $mockLogger, $testNotifier);
+        $termin = new Termin($mockScraper, $testLogger, $testNotifier);
 
         $termin->run([new Site('hello', 'https://hello.com')]);
 
         self::assertNotEmpty($testNotifier->getNotifications());
+        self::assertTrue($testLogger->hasInfoThatContains('Found availability for hello @ 2020-01-01T00:00:00+00:00'));
     }
 
     public function testMatchNotFound(): void
@@ -42,14 +42,14 @@ class TerminTest extends TestCase
             ->willReturn([])
         ;
 
-        $mockLogger = $this->createMock(Logger::class);
-
         $testNotifier = new TestNotifier();
+        $testLogger = new TestLogger();
 
-        $termin = new Termin($mockScraper, $mockLogger, $testNotifier);
+        $termin = new Termin($mockScraper, $testLogger, $testNotifier);
 
         $termin->run([new Site('hello', 'https://hello.com')]);
 
         self::assertEmpty($testNotifier->getNotifications());
+        self::assertTrue($testLogger->hasInfoThatContains('No availability found for: hello'));
     }
 }
