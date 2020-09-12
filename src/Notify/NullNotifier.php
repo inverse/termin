@@ -8,7 +8,7 @@ use DateTime;
 
 class NullNotifier implements NotifyInterface
 {
-    public function notify(string $name, string $url, DateTime $date): void
+    public function notify(string $label, string $url, DateTime $date): void
     {
         // Do nothing
     }
