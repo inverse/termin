@@ -1,8 +1,4 @@
 codecov:
   require_ci_to_pass: no
 
-ignore:
-  - "*.md"
-  - "*.dist"
-
 comment: false
