@@ -20,7 +20,6 @@
         }
     },
     "require-dev": {
-        "roave/security-advisories": "dev-master",
         "phpunit/phpunit": "^9.3.8"
     },
     "autoload-dev": {
