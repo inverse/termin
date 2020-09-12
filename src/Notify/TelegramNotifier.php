@@ -25,9 +25,9 @@ class TelegramNotifier implements NotifyInterface
         $this->chatId = $chatId;
     }
 
-    public function notify(string $name, string $url, DateTime $date): void
+    public function notify(string $label, string $url, DateTime $date): void
     {
-        $body = sprintf('%s appointment [found for %s](%s)', $name, $date->format('jS M Y'), $url);
+        $body = sprintf('%s appointment found for [%s](%s)', $label, $date->format('jS M Y'), $url);
         $this->botApi->sendMessage($this->chatId, $body, 'markdown');
     }
 }

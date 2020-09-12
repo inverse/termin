@@ -19,10 +19,10 @@ class TestNotifier implements NotifyInterface
         $this->notifications = [];
     }
 
-    public function notify(string $name, string $url, DateTime $date): void
+    public function notify(string $label, string $url, DateTime $date): void
     {
         $this->notifications[] = [
-            'name' => $name,
+            'name' => $label,
             'url' => $url,
             'date' => $date,
         ];

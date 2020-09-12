@@ -19,10 +19,10 @@ class PushbulletNotifier implements NotifyInterface
         $this->pushbullet = $pushbullet;
     }
 
-    public function notify(string $name, string $url, DateTime $date): void
+    public function notify(string $label, string $url, DateTime $date): void
     {
         $title = 'Appointment Found';
-        $body = sprintf('%s appointment found for %s', $name, $date->format('jS M Y'));
+        $body = sprintf('%s appointment found for %s', $label, $date->format('jS M Y'));
         $this->pushbullet->allDevices()->pushLink($title, $url, $body);
     }
 }
