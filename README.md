@@ -64,7 +64,6 @@ e.g. `[{"label": "friendly label", "url": "the url to scrape"}]`
 
 ![](https://i.imgur.com/k704vdW.png)
 
-
 _note: make sure to escape it so it can be encoded within the `.env` file._
 
 ### Run
