@@ -38,9 +38,33 @@ Install dependencies
 
 ### Configuration
 
-Configure `.env` file based on the `.env.example` with JSON encoded site information and notifier settings.
+Configure an `.env` file based on the `.env.example` with JSON encoded site information and notifier settings.
+
+#### Push bullet (Easiest)
+
+Set `PUSHBULLET_API_TOKEN` with an API token from your account. Follow their [quick start guide][3] on how to get this.
+
+Make sure you install their application or browser extension 
 
 If you provide more than one notifier configuration it will notify to both.
+
+#### Telegram
+
+TBD
+
+#### Site configuration
+
+`SITES` contains a JSON escaped list of site mapping information
+
+e.g. `[{"label": "friendly label", "url": "the url to scrape"}]`
+
+
+`label` - the friendly label that will be displayed in the notification
+`url` - the service URL you want to book. e.g. the URL behind the "Book an Appointment button".
+
+![](https://i.imgur.com/k704vdW.png)
+
+_note: make sure to escape it so it can be encoded within the `.env` file._
 
 ### Run
 
@@ -61,3 +85,4 @@ MIT
 [0]: https://service.berlin.de/terminvereinbarung/
 [1]: https://www.pushbullet.com/
 [2]: https://telegram.org/
+[3]: https://docs.pushbullet.com/#api-quick-start
