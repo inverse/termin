@@ -59,8 +59,8 @@ TBD
 e.g. `[{"label": "friendly label", "url": "the url to scrape"}]`
 
 
-`label` - the friendly label that will be displayed in the notification
-`url` - the service URL you want to book. e.g. the URL behind the "Book an Appointment button".
+- `label` - the friendly label that will be displayed in the notification
+- `url` - the service URL you want to book. e.g. the URL behind the "Book an Appointment button".
 
 ![](https://i.imgur.com/k704vdW.png)
 
