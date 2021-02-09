@@ -78,6 +78,25 @@ _Note: Don't set the frequency to high to not overload their website_
 
 Wait for a notification!
 
+### Run (docker)
+
+Configure the application following the above steps and then build the docker image.
+
+```bash
+docker build -t termin:local .
+```
+
+Once built you can execute the script.
+
+```bash
+docker run -it termin:local
+```
+
+Configure this to run on a regular schedule using something that your OS provides.
+
+_Note: Don't set the schedule frequency to high to not overload their website_
+
+
 ## Licence
 
 MIT
