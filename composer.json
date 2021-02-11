@@ -3,10 +3,9 @@
     "description": "Simple PHP tool for finding a termin in Berlin",
     "license": "MIT",
     "require": {
-        "php": "^7.3",
+        "php": ">=7.3",
         "ext-curl": "*",
         "ext-dom": "*",
-        "ext-json": "*",
         "fabpot/goutte": "^4.0.0",
         "ivkos/pushbullet": "^3.3",
         "monolog/monolog": "^2.1.1",
