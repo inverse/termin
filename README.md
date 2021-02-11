@@ -42,15 +42,13 @@ Configure an `.env` file based on the `.env.example` with JSON encoded site info
 
 #### Notifications
 
-Termin supports various notifiers, it will send messages to each one you configure.
+Termin supports various notifiers, it will send notifications to each one you configure.
 
 ##### Push bullet (Easiest)
 
 Set `PUSHBULLET_API_TOKEN` with an API token from your account. Follow their [quick start guide][3] on how to get this.
 
-Make sure you install their application or browser extension 
-
-If you provide more than one notifier configuration it will notify to both.
+Make sure you install their application or browser extension.
 
 ##### Telegram
 
@@ -62,7 +60,7 @@ Next add your bot to a group chat chat with yourself.
 
 Find the chat ID for your that group and set the value in `TELEGRAM_CHAT_ID`
 
-#### Site configuration
+##### Site configuration
 
 `SITES` contains a JSON escaped list of site mapping information
 
