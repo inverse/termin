@@ -40,19 +40,27 @@ Install dependencies
 
 Configure an `.env` file based on the `.env.example` with JSON encoded site information and notifier settings.
 
-#### Push bullet (Easiest)
+#### Notifications
+
+Termin supports various notifiers, it will send notifications to each one you configure.
+
+##### Push bullet (Easiest)
 
 Set `PUSHBULLET_API_TOKEN` with an API token from your account. Follow their [quick start guide][3] on how to get this.
 
-Make sure you install their application or browser extension 
+Make sure you install their application or browser extension.
 
-If you provide more than one notifier configuration it will notify to both.
+##### Telegram
 
-#### Telegram
+Follow the [official documentation][4] on setting up a bot.
 
-TBD
+Set `TELEGRAM_API_KEY` with the API key provided from this process.
 
-#### Site configuration
+Next add your bot to a group chat chat with yourself. 
+
+Find the chat ID for your that group and set the value in `TELEGRAM_CHAT_ID`
+
+##### Site configuration
 
 `SITES` contains a JSON escaped list of site mapping information
 
@@ -105,3 +113,4 @@ MIT
 [1]: https://www.pushbullet.com/
 [2]: https://telegram.org/
 [3]: https://docs.pushbullet.com/#api-quick-start
+[4]: https://core.telegram.org/bots#3-how-do-i-create-a-bot
