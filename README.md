@@ -91,13 +91,7 @@ Wait for a notification!
 Configure the application following the above steps and then build the docker image.
 
 ```bash
-docker build -t termin:local .
-```
-
-Once built you can execute the script.
-
-```bash
-docker run -it termin:local
+docker run -it -v $(pwd).env:/app/.env inversechi/termin:latest
 ```
 
 Configure this to run on a regular schedule using something that your OS provides.
