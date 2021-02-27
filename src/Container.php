@@ -24,7 +24,7 @@ class Container extends Pimple
     {
         parent::__construct();
 
-        $pushBulletApiToken = getenv('PUSHBULLET_API_TOKEN');
+        $pushBulletApiToken = $this->getEnv('PUSHBULLET_API_TOKEN');
         if (!empty($pushBulletApiToken) && is_string($pushBulletApiToken)) {
             $this[PushbulletNotifier::class] = function () use ($pushBulletApiToken) {
                 $pushBullet = new Pushbullet($pushBulletApiToken);
@@ -33,8 +33,8 @@ class Container extends Pimple
             };
         }
 
-        $telegramApiKey = getenv('TELEGRAM_API_KEY');
-        $telegramChatId = getenv('TELEGRAM_CHAT_ID');
+        $telegramApiKey = $this->getEnv('TELEGRAM_API_KEY');
+        $telegramChatId = $this->getEnv('TELEGRAM_CHAT_ID');
         if (!empty($telegramApiKey) && !empty($telegramChatId)) {
             $this[TelegramNotifier::class] = function () use ($telegramApiKey, $telegramChatId) {
                 $botApi = new BotApi($telegramApiKey);
@@ -65,7 +65,7 @@ class Container extends Pimple
             return $logger;
         };
 
-        $allowMultipleNotifications = (bool) getenv('ALLOW_MULTIPLE_NOTIFICATIONS');
+        $allowMultipleNotifications = (bool) $this->getEnv('ALLOW_MULTIPLE_NOTIFICATIONS');
 
         $this[Scraper::class] = function () use ($allowMultipleNotifications) {
             $httpClientFactory = new HttpClientFactory();
@@ -109,5 +109,14 @@ class Container extends Pimple
     public function getTermin(): Termin
     {
         return $this[Termin::class];
+    }
+
+    private function getEnv(string $key, string $default = ''): string
+    {
+        if (array_key_exists($key, $_ENV)) {
+            return $_ENV[$key];
+        }
+
+        return $default;
     }
 }
