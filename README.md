@@ -88,7 +88,7 @@ Wait for a notification!
 
 ### Run (docker)
 
-Configure the application following the above steps and then build the docker image.
+Configure the application following the above steps and then run the prebuilt docker image.
 
 ```bash
 docker run -it -v $(pwd)/.env:/app/.env inversechi/termin:latest
