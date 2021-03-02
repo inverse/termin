@@ -3,7 +3,7 @@
     "description": "Simple PHP tool for finding a termin in Berlin",
     "license": "MIT",
     "require": {
-        "php": ">=7.3",
+        "php": "=>7.3",
         "ext-curl": "*",
         "ext-dom": "*",
         "fabpot/goutte": "^4.0.0",
