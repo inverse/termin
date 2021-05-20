@@ -1669,16 +1669,16 @@
         },
         {
             "name": "telegram-bot/api",
-            "version": "v2.3.21",
+            "version": "v2.3.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TelegramBot/Api.git",
-                "reference": "dafad7c9d5468c07f9bbb06c3f358b4b4d842848"
+                "reference": "9a69f82121a5ef0e396c0c3a8be86caefd1376a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TelegramBot/Api/zipball/dafad7c9d5468c07f9bbb06c3f358b4b4d842848",
-                "reference": "dafad7c9d5468c07f9bbb06c3f358b4b4d842848",
+                "url": "https://api.github.com/repos/TelegramBot/Api/zipball/9a69f82121a5ef0e396c0c3a8be86caefd1376a8",
+                "reference": "9a69f82121a5ef0e396c0c3a8be86caefd1376a8",
                 "shasum": ""
             },
             "require": {
@@ -1723,9 +1723,9 @@
             ],
             "support": {
                 "issues": "https://github.com/TelegramBot/Api/issues",
-                "source": "https://github.com/TelegramBot/Api/tree/v2.3.21"
+                "source": "https://github.com/TelegramBot/Api/tree/v2.3.22"
             },
-            "time": "2021-01-23T16:46:24+00:00"
+            "time": "2021-03-09T07:49:55+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
