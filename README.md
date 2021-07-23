@@ -2,6 +2,7 @@
 
 A simple PHP script for notifying for a free slot for any appointment listed on the [Berlin services website][0].
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/764fcbdbe9dd4383ad808cb4f83159af)](https://app.codacy.com/gh/inverse/termin?utm_source=github.com&utm_medium=referral&utm_content=inverse/termin&utm_campaign=Badge_Grade_Settings)
 [![Actions Status](https://github.com/inverse/termin/workflows/CI/badge.svg)](https://github.com/inverse/termin/actions)
 [![codecov](https://codecov.io/gh/inverse/termin/branch/master/graph/badge.svg)](https://codecov.io/gh/inverse/termin)
 
