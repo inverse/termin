@@ -17,7 +17,7 @@ Currently supports notifications via:
 
 # Requirements
 
-- PHP 7.3+
+- PHP 7.4+
 - composer
 
 ## Setup
@@ -38,7 +38,7 @@ Install dependencies
 
 ### Configuration
 
-Configure an `.env` file based on the `.env.example` with JSON encoded site information and notifier settings.
+Configure an `config.yml` file based on the `config.yml.example` file located in the root of the repostiory.
 
 #### Notifications
 
@@ -46,7 +46,7 @@ Termin supports various notifiers, it will send notifications to each one you co
 
 ##### Push bullet (Easiest)
 
-Set `PUSHBULLET_API_TOKEN` with an API token from your account. Follow their [quick start guide][3] on how to get this.
+Set `pushbullet.api_token` within `config.yml` with an API token from your account. Follow their [quick start guide][3] on how to get this.
 
 Make sure you install their application or browser extension.
 
@@ -54,25 +54,28 @@ Make sure you install their application or browser extension.
 
 Follow the [official documentation][4] on setting up a bot.
 
-Set `TELEGRAM_API_KEY` with the API key provided from this process.
+Within `config.yml` Set `telegram.api_key` with the API key provided from this process.
 
-Next add your bot to a group chat chat with yourself. 
+Next add your bot to a group chat with yourself. 
 
-Find the chat ID for your that group and set the value in `TELEGRAM_CHAT_ID`
+Find the chat ID for your that group and set the value in `telegram.chat_id`.
 
 ##### Site configuration
 
-`SITES` contains a JSON escaped list of site mapping information
-
-e.g. `[{"label": "friendly label", "url": "the url to scrape"}]`
-
+```yaml
+sites:
+  -
+    label: Vaterschaftsanerkennung
+    url: https://service.berlin.de/terminvereinbarung/termin/tag.php?termin=1&dienstleister=122900&anliegen[]=318991&herkunft=1
+  -
+    label: Geburtsurkunde
+    url: https://service.berlin.de/terminvereinbarung/termin/tag.php?termin=1&dienstleister=122900&anliegen[]=318957&herkunft=1
+```
 
 - `label` - the friendly label that will be displayed in the notification
 - `url` - the service URL you want to book. e.g. the URL behind the "Book an Appointment button".
 
 ![](https://i.imgur.com/zqSScD5.png)
-
-_note: make sure to escape it so it can be encoded within the `.env` file._
 
 ### Run
 
@@ -91,7 +94,7 @@ Wait for a notification!
 Configure the application following the above steps and then run the prebuilt docker image.
 
 ```bash
-docker run -it -v $(pwd)/.env:/app/.env inversechi/termin:latest
+docker run -it -v $(pwd)/config.yml:/app/config.yml inversechi/termin:latest
 ```
 
 Configure this to run on a regular schedule using something that your OS provides.

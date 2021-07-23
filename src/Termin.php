@@ -4,25 +4,17 @@ declare(strict_types=1);
 
 namespace Inverse\Termin;
 
+use Inverse\Termin\Config\Site;
 use Inverse\Termin\Notify\NotifyInterface;
 use Psr\Log\LoggerInterface;
 
 class Termin
 {
-    /**
-     * @var Scraper
-     */
-    private $scraper;
+    private Scraper $scraper;
 
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
+    private LoggerInterface $logger;
 
-    /**
-     * @var NotifyInterface
-     */
-    private $notifier;
+    private NotifyInterface $notifier;
 
     public function __construct(Scraper $scraper, LoggerInterface $logger, NotifyInterface $notifier)
     {
@@ -31,6 +23,9 @@ class Termin
         $this->notifier = $notifier;
     }
 
+    /**
+     * @param Site[] $sites
+     */
     public function run(array $sites): void
     {
         foreach ($sites as $site) {

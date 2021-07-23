@@ -1,0 +1,20 @@
+# Modify for your needs, should be a array of objects with a friendly label of whats notified and the URL to scrape
+sites:
+  -
+    label: Vaterschaftsanerkennung
+    url: https://service.berlin.de/terminvereinbarung/termin/tag.php?termin=1&dienstleister=122900&anliegen[]=318991&herkunft=1
+  -
+    label: Geburtsurkunde
+    url: https://service.berlin.de/terminvereinbarung/termin/tag.php?termin=1&dienstleister=122900&anliegen[]=318957&herkunft=1
+
+  # Set true to allow multiple notifications for the same appointment instead of just the first.
+allow_multiple_notifications: false
+
+# Configure for pushbullet support
+pushbullet:
+  api_token: ~
+
+# Configure for telegram support
+telegram:
+  api_key: ~
+  chat_id: ~

@@ -15,15 +15,9 @@ class Scraper
     private const CLASS_AVAILABLE = 'buchbar';
     private const CLASS_UNAVAILABLE = 'nichtbuchbar';
 
-    /**
-     * @var Client
-     */
-    private $client;
+    private Client $client;
 
-    /**
-     * @var bool
-     */
-    private $collectMultiple;
+    private bool $collectMultiple;
 
     public function __construct(HttpClientInterface $httpClient, bool $collectMultiple = false)
     {

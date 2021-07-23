@@ -8,10 +8,7 @@ use DateTime;
 
 class Result
 {
-    /**
-     * @var DateTime
-     */
-    private $date;
+    private ?DateTime $date;
 
     private function __construct(?DateTime $dateTime)
     {

@@ -2,19 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Inverse\Termin;
+namespace Inverse\Termin\Config;
 
 class Site
 {
-    /**
-     * @var string
-     */
-    private $label;
+    private string $label;
 
-    /**
-     * @var string
-     */
-    private $url;
+    private string $url;
 
     public function __construct(string $label, string $url)
     {
