@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Tests\Inverse\Termin;
 
 use DateTime;
+use Inverse\Termin\Config\Site;
 use Inverse\Termin\Result;
 use Inverse\Termin\Scraper;
-use Inverse\Termin\Site;
 use Inverse\Termin\Termin;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\Test\TestLogger;
