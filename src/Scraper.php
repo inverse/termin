@@ -59,7 +59,7 @@ class Scraper
             $class = $node->getAttribute('class');
             $classes = explode(' ', $class);
 
-            if (in_array(self::CLASS_AVAILABLE, $classes)) {
+            if (in_array(self::CLASS_AVAILABLE, $classes, true)) {
                 $dateTime = DateHelper::createDateTime($node->textContent, DateHelper::monthConvert($monthStr));
 
                 if (isset($dateTime)) {
