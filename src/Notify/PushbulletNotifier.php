@@ -9,10 +9,7 @@ use Pushbullet\Pushbullet;
 
 class PushbulletNotifier implements NotifyInterface
 {
-    /**
-     * @var Pushbullet
-     */
-    private $pushbullet;
+    private Pushbullet $pushbullet;
 
     public function __construct(Pushbullet $pushbullet)
     {

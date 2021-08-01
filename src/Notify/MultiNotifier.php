@@ -11,7 +11,7 @@ class MultiNotifier implements NotifyInterface
     /**
      * @var NotifyInterface[]
      */
-    private $notifiers;
+    private array $notifiers;
 
     public function __construct()
     {
