@@ -9,15 +9,9 @@ use TelegramBot\Api\BotApi;
 
 class TelegramNotifier implements NotifyInterface
 {
-    /**
-     * @var BotApi
-     */
-    private $botApi;
+    private BotApi $botApi;
 
-    /**
-     * @var int
-     */
-    private $chatId;
+    private int $chatId;
 
     public function __construct(BotApi $botApi, int $chatId)
     {

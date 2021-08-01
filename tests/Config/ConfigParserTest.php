@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Inverse\Termin\Config;
 
 use InvalidArgumentException;
@@ -105,11 +107,11 @@ class ConfigParserTest extends TestCase
     public function testParseTelegramEmptyValue(): void
     {
         $config = $this->configParser->parse($this->getBasicConfig() + [
-                'telegram' => [
-                    'api_key' => null,
-                    'chat_id' => 1,
-                ],
-            ]);
+            'telegram' => [
+                'api_key' => null,
+                'chat_id' => 1,
+            ],
+        ]);
 
         self::assertNull($config->getTelegram());
     }
@@ -140,10 +142,10 @@ class ConfigParserTest extends TestCase
     public function testParsePushbulletEmptyValue(): void
     {
         $config = $this->configParser->parse($this->getBasicConfig() + [
-                'pushbullet' => [
-                    'api_token' => null,
-                ],
-            ]);
+            'pushbullet' => [
+                'api_token' => null,
+            ],
+        ]);
 
         self::assertNull($config->getPushbullet());
     }
