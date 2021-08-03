@@ -5,30 +5,32 @@ declare(strict_types=1);
 namespace Inverse\Termin\Notifier;
 
 use Inverse\Termin\Config\Config;
-use Inverse\Termin\Notify\MultiNotifier;
-use Inverse\Termin\Notify\NotifyInterface;
-use Inverse\Termin\Notify\PushbulletNotifier;
-use Inverse\Termin\Notify\TelegramNotifier;
 use Pushbullet\Pushbullet;
 use TelegramBot\Api\BotApi;
 
 class NotifierFactory
 {
-    public static function create(Config $config): NotifyInterface
+    private MultiNotifier $notifier;
+
+    public function __construct(MultiNotifier $notifier)
     {
-        $multiNotifier = new MultiNotifier();
+        $this->notifier = $notifier;
+    }
+
+    public function create(Config $config): NotifierInterface
+    {
         if (null !== $config->getPushbullet()) {
             $pushbullet = new Pushbullet($config->getPushbullet()->getApiToken());
             $pushBulletNotifier = new PushbulletNotifier($pushbullet);
-            $multiNotifier->addNotifier($pushBulletNotifier);
+            $this->notifier->addNotifier($pushBulletNotifier);
         }
 
         if (null !== $config->getTelegram()) {
             $botApi = new BotApi($config->getTelegram()->getApiKey());
             $telegramNotifier = new TelegramNotifier($botApi, $config->getTelegram()->getChatId());
-            $multiNotifier->addNotifier($telegramNotifier);
+            $this->notifier->addNotifier($telegramNotifier);
         }
 
-        return $multiNotifier;
+        return $this->notifier;
     }
 }

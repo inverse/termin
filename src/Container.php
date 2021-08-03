@@ -6,6 +6,7 @@ namespace Inverse\Termin;
 
 use Inverse\Termin\Config\Config;
 use Inverse\Termin\HttpClient\HttpClientFactory;
+use Inverse\Termin\Notifier\MultiNotifier;
 use Inverse\Termin\Notifier\NotifierFactory;
 use Inverse\Termin\Notifier\NotifierInterface;
 use Monolog\Handler\StreamHandler;
@@ -22,7 +23,9 @@ class Container extends Pimple
         parent::__construct();
 
         $this[NotifierInterface::class] = function () use ($config) {
-            return NotifierFactory::create($config);
+            $notifierFactory = new NotifierFactory(new MultiNotifier());
+
+            return $notifierFactory->create($config);
         };
 
         $this[LoggerInterface::class] = function () {

@@ -9,10 +9,7 @@ use Inverse\Termin\Notifier\NotifierInterface;
 
 class TestNotifier implements NotifierInterface
 {
-    /**
-     * @var array
-     */
-    private $notifications;
+    private array $notifications;
 
     public function __construct()
     {
