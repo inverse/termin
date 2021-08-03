@@ -7,16 +7,11 @@ namespace Inverse\Termin;
 use Inverse\Termin\Config\Config;
 use Inverse\Termin\HttpClient\HttpClientFactory;
 use Inverse\Termin\Notifier\NotifierFactory;
-use Inverse\Termin\Notify\MultiNotifier;
-use Inverse\Termin\Notify\NotifyInterface;
-use Inverse\Termin\Notify\PushbulletNotifier;
-use Inverse\Termin\Notify\TelegramNotifier;
+use Inverse\Termin\Notifier\NotifierInterface;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Pimple\Container as Pimple;
 use Psr\Log\LoggerInterface;
-use Pushbullet\Pushbullet;
-use TelegramBot\Api\BotApi;
 
 class Container extends Pimple
 {
@@ -26,10 +21,8 @@ class Container extends Pimple
     {
         parent::__construct();
 
-         $this[NotifyInterface::class] = function () use ($config) {
-            $multiNotifier = NotifierFactory::create($config);
-
-            return $multiNotifier;
+        $this[NotifierInterface::class] = function () use ($config) {
+            return NotifierFactory::create($config);
         };
 
         $this[LoggerInterface::class] = function () {
