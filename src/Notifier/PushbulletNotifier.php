@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Inverse\Termin\Notify;
+namespace Inverse\Termin\Notifier;
 
 use DateTime;
 use Pushbullet\Pushbullet;

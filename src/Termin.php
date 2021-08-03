@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Inverse\Termin;
 
 use Inverse\Termin\Config\Site;
-use Inverse\Termin\Notify\NotifyInterface;
+use Inverse\Termin\Notifier\NotifyInterface;
 use Psr\Log\LoggerInterface;
 
 class Termin

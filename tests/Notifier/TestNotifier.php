@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Inverse\Termin\Notify;
+namespace Tests\Inverse\Termin\Notifier;
 
 use DateTime;
-use Inverse\Termin\Notify\NotifyInterface;
+use Inverse\Termin\Notifier\NotifyInterface;
 
 class TestNotifier implements NotifyInterface
 {
