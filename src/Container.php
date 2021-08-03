@@ -46,7 +46,7 @@ class Container extends Pimple
             return new Termin(
                 $container[Scraper::class],
                 $container[LoggerInterface::class],
-                $container[NotifyInterface::class]
+                $container[NotifierInterface::class]
             );
         };
     }
