@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Tests\Inverse\Termin\Notifier;
 
 use DateTime;
-use Inverse\Termin\Notifier\NotifyInterface;
+use Inverse\Termin\Notifier\NotifierInterface;
 
-class TestNotifier implements NotifyInterface
+class TestNotifier implements NotifierInterface
 {
     /**
      * @var array

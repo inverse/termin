@@ -7,7 +7,7 @@ namespace Inverse\Termin\Notifier;
 use DateTime;
 use Pushbullet\Pushbullet;
 
-class PushbulletNotifier implements NotifyInterface
+class PushbulletNotifier implements NotifierInterface
 {
     private Pushbullet $pushbullet;
 

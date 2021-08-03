@@ -6,7 +6,7 @@ namespace Inverse\Termin\Notifier;
 
 use DateTime;
 
-interface NotifyInterface
+interface NotifierInterface
 {
     public function notify(string $label, string $url, DateTime $date): void;
 }

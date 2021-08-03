@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Inverse\Termin;
 
 use Inverse\Termin\Config\Site;
-use Inverse\Termin\Notifier\NotifyInterface;
+use Inverse\Termin\Notifier\NotifierInterface;
 use Psr\Log\LoggerInterface;
 
 class Termin
@@ -14,9 +14,9 @@ class Termin
 
     private LoggerInterface $logger;
 
-    private NotifyInterface $notifier;
+    private NotifierInterface $notifier;
 
-    public function __construct(Scraper $scraper, LoggerInterface $logger, NotifyInterface $notifier)
+    public function __construct(Scraper $scraper, LoggerInterface $logger, NotifierInterface $notifier)
     {
         $this->scraper = $scraper;
         $this->logger = $logger;

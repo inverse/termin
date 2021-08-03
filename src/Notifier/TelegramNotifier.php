@@ -7,7 +7,7 @@ namespace Inverse\Termin\Notifier;
 use DateTime;
 use TelegramBot\Api\BotApi;
 
-class TelegramNotifier implements NotifyInterface
+class TelegramNotifier implements NotifierInterface
 {
     private BotApi $botApi;
 
