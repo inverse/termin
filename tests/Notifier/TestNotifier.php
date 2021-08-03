@@ -2,17 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Tests\Inverse\Termin\Notify;
+namespace Tests\Inverse\Termin\Notifier;
 
 use DateTime;
-use Inverse\Termin\Notify\NotifyInterface;
+use Inverse\Termin\Notifier\NotifierInterface;
 
-class TestNotifier implements NotifyInterface
+class TestNotifier implements NotifierInterface
 {
-    /**
-     * @var array
-     */
-    private $notifications;
+    private array $notifications;
 
     public function __construct()
     {

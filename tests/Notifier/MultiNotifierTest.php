@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Inverse\Termin\Notify;
+namespace Tests\Inverse\Termin\Notifier;
 
 use DateTime;
-use Inverse\Termin\Notify\MultiNotifier;
-use Inverse\Termin\Notify\NotifierException;
+use Inverse\Termin\Notifier\MultiNotifier;
+use Inverse\Termin\Notifier\NotifierException;
 use PHPUnit\Framework\TestCase;
 
 class MultiNotifierTest extends TestCase
@@ -15,7 +15,7 @@ class MultiNotifierTest extends TestCase
     {
         $this->expectException(NotifierException::class);
         $multiNotifier = new MultiNotifier();
-        $multiNotifier->notify('hello', 'http://example.com', new DateTime());
+        $multiNotifier->notify('hello', 'https://example.com', new DateTime());
     }
 
     public function testNotifySingle(): void
@@ -25,7 +25,7 @@ class MultiNotifierTest extends TestCase
         $multiNotifier = new MultiNotifier();
         $multiNotifier->addNotifier($testNotifier);
 
-        $multiNotifier->notify('hello', 'http://example.com', new DateTime());
+        $multiNotifier->notify('hello', 'https://example.com', new DateTime());
 
         $this->assertCount(1, $testNotifier->getNotifications());
     }
@@ -37,9 +37,9 @@ class MultiNotifierTest extends TestCase
         $multiNotifier = new MultiNotifier();
         $multiNotifier->addNotifier($testNotifier);
 
-        $multiNotifier->notify('hello', 'http://example.com', new DateTime());
-        $multiNotifier->notify('hello', 'http://example.com', new DateTime());
-        $multiNotifier->notify('hello', 'http://example.com', new DateTime());
+        $multiNotifier->notify('hello', 'https://example.com', new DateTime());
+        $multiNotifier->notify('hello', 'https://example.com', new DateTime());
+        $multiNotifier->notify('hello', 'https://example.com', new DateTime());
 
         $this->assertCount(3, $testNotifier->getNotifications());
     }
@@ -53,9 +53,9 @@ class MultiNotifierTest extends TestCase
         $multiNotifier->addNotifier($testNotifier1);
         $multiNotifier->addNotifier($testNotifier2);
 
-        $multiNotifier->notify('hello', 'http://example.com', new DateTime());
-        $multiNotifier->notify('hello', 'http://example.com', new DateTime());
-        $multiNotifier->notify('hello', 'http://example.com', new DateTime());
+        $multiNotifier->notify('hello', 'https://example.com', new DateTime());
+        $multiNotifier->notify('hello', 'https://example.com', new DateTime());
+        $multiNotifier->notify('hello', 'https://example.com', new DateTime());
 
         $this->assertCount(3, $testNotifier1->getNotifications());
         $this->assertCount(3, $testNotifier2->getNotifications());

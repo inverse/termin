@@ -11,7 +11,7 @@ use Inverse\Termin\Scraper;
 use Inverse\Termin\Termin;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\Test\TestLogger;
-use Tests\Inverse\Termin\Notify\TestNotifier;
+use Tests\Inverse\Termin\Notifier\TestNotifier;
 
 class TerminTest extends TestCase
 {

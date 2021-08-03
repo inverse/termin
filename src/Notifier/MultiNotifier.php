@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Inverse\Termin\Notify;
+namespace Inverse\Termin\Notifier;
 
 use DateTime;
 
-class MultiNotifier implements NotifyInterface
+class MultiNotifier implements NotifierInterface
 {
     /**
-     * @var NotifyInterface[]
+     * @var NotifierInterface[]
      */
     private array $notifiers;
 
@@ -18,7 +18,7 @@ class MultiNotifier implements NotifyInterface
         $this->notifiers = [];
     }
 
-    public function addNotifier(NotifyInterface $notify): void
+    public function addNotifier(NotifierInterface $notify): void
     {
         $this->notifiers[] = $notify;
     }

@@ -6,16 +6,13 @@ namespace Inverse\Termin;
 
 use Inverse\Termin\Config\Config;
 use Inverse\Termin\HttpClient\HttpClientFactory;
-use Inverse\Termin\Notify\MultiNotifier;
-use Inverse\Termin\Notify\NotifyInterface;
-use Inverse\Termin\Notify\PushbulletNotifier;
-use Inverse\Termin\Notify\TelegramNotifier;
+use Inverse\Termin\Notifier\MultiNotifier;
+use Inverse\Termin\Notifier\NotifierFactory;
+use Inverse\Termin\Notifier\NotifierInterface;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Pimple\Container as Pimple;
 use Psr\Log\LoggerInterface;
-use Pushbullet\Pushbullet;
-use TelegramBot\Api\BotApi;
 
 class Container extends Pimple
 {
@@ -25,34 +22,10 @@ class Container extends Pimple
     {
         parent::__construct();
 
-        if (null !== $config->getPushbullet()) {
-            $this[PushbulletNotifier::class] = function () use ($config) {
-                $pushBullet = new Pushbullet($config->getPushbullet()->getApiToken());
+        $this[NotifierInterface::class] = function () use ($config) {
+            $notifierFactory = new NotifierFactory(new MultiNotifier());
 
-                return new PushbulletNotifier($pushBullet);
-            };
-        }
-
-        if (null !== $config->getTelegram()) {
-            $this[TelegramNotifier::class] = function () use ($config) {
-                $botApi = new BotApi($config->getTelegram()->getApiKey());
-
-                return new TelegramNotifier($botApi, $config->getTelegram()->getChatId());
-            };
-        }
-
-        $this[NotifyInterface::class] = function (self $container) {
-            $notifyService = new MultiNotifier();
-
-            if (isset($container[TelegramNotifier::class])) {
-                $notifyService->addNotifier($container[TelegramNotifier::class]);
-            }
-
-            if (isset($container[PushbulletNotifier::class])) {
-                $notifyService->addNotifier($container[PushbulletNotifier::class]);
-            }
-
-            return $notifyService;
+            return $notifierFactory->create($config);
         };
 
         $this[LoggerInterface::class] = function () {
@@ -73,7 +46,7 @@ class Container extends Pimple
             return new Termin(
                 $container[Scraper::class],
                 $container[LoggerInterface::class],
-                $container[NotifyInterface::class]
+                $container[NotifierInterface::class]
             );
         };
     }

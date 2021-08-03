@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Inverse\Termin\Notify;
+namespace Inverse\Termin\Notifier;
 
 use DateTime;
 
-class NullNotifier implements NotifyInterface
+class NullNotifier implements NotifierInterface
 {
     public function notify(string $label, string $url, DateTime $date): void
     {
