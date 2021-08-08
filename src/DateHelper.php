@@ -6,21 +6,20 @@ namespace Inverse\Termin;
 
 use DateTime;
 use DateTimeZone;
+use Throwable;
 
 class DateHelper
 {
     public static function createDateTime(string $day, string $month): ?DateTime
     {
-        $dateTime = null;
-
         if (empty($day) || empty($month)) {
-            return $dateTime;
+            return null;
         }
 
         try {
-            $dateTime = new DateTime(sprintf('%s %s', $day, $month), new DateTimeZone('Europe/Berlin'));
-        } finally {
-            return $dateTime;
+            return new DateTime(sprintf('%s %s', $day, $month), new DateTimeZone('Europe/Berlin'));
+        } catch (Throwable $exception) {
+            return null;
         }
     }
 
