@@ -22,6 +22,11 @@ class DateHelperTest extends TestCase
         self::assertEquals('01-01', $datetime->format('m-d'));
     }
 
+    public function testCreateDateTimeInvalid(): void
+    {
+        self::assertNull(DateHelper::createDateTime('01', 'Maruary'));
+    }
+
     public function testMonthConvertValid(): void
     {
         self::assertEquals('January', DateHelper::monthConvert('Januar'));
