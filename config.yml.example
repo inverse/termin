@@ -7,7 +7,7 @@ sites:
     label: Geburtsurkunde
     url: https://service.berlin.de/terminvereinbarung/termin/tag.php?termin=1&dienstleister=122900&anliegen[]=318957&herkunft=1
 
-  # Set true to allow multiple notifications for the same appointment instead of just the first.
+# Set true to allow multiple notifications for the same appointment instead of just the first
 allow_multiple_notifications: false
 
 # Configure for pushbullet support
