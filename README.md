@@ -39,7 +39,7 @@ Install dependencies
 
 ### Configuration
 
-Configure an `config.yml` file based on the `config.yml.example` file located in the root of the repostiory.
+Configure an `config.yml` file based on the `example.config.yml` file located in the root of the repository.
 
 #### Notifications
 
