@@ -11,9 +11,9 @@ class TelegramNotifier implements NotifierInterface
 {
     private BotApi $botApi;
 
-    private int $chatId;
+    private string $chatId;
 
-    public function __construct(BotApi $botApi, int $chatId)
+    public function __construct(BotApi $botApi, string $chatId)
     {
         $this->botApi = $botApi;
         $this->chatId = $chatId;

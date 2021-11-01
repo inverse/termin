@@ -59,7 +59,7 @@ class ConfigParser
             return null;
         }
 
-        return new Telegram($telegramConfig['api_key'], (int) $telegramConfig['chat_id']);
+        return new Telegram($telegramConfig['api_key'], $telegramConfig['chat_id']);
     }
 
     private function getPushBullet(array $config): ?Pushbullet

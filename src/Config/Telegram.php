@@ -8,9 +8,9 @@ class Telegram
 {
     private string $apiKey;
 
-    private int $chatId;
+    private string $chatId;
 
-    public function __construct(string $apiKey, int $chatId)
+    public function __construct(string $apiKey, string $chatId)
     {
         $this->apiKey = $apiKey;
         $this->chatId = $chatId;
@@ -21,7 +21,7 @@ class Telegram
         return $this->apiKey;
     }
 
-    public function getChatId(): int
+    public function getChatId(): string
     {
         return $this->chatId;
     }
