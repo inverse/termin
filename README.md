@@ -57,9 +57,19 @@ Follow the [official documentation][4] on setting up a bot.
 
 Within `config.yml` Set `telegram.api_key` with the API key provided from this process.
 
-Next add your bot to a group chat with yourself. 
+You will first need to make communication with the bot to enable it to send messages to you. 
 
-Find the chat ID for your that group and set the value in `telegram.chat_id`.
+Once you have done that find your chat ID. You can get this by interacting with `@raw_data_bot` bot.
+
+Set the value in `telegram.chat_id`.
+
+###### Groups
+
+If you are adding the bot to a group you must add your bot to your group.
+
+Then find the chat ID for the group by adding `@raw_data_bot` and it will detail this.
+
+Take care when copying the leading `-` as this is required for group chat IDs.
 
 ##### Site configuration
 
@@ -80,7 +90,21 @@ sites:
 
 ### Run
 
-Setup a cron job to call `app.php` on desired run interval e.g. every hour
+You can execute the script manually to test if everything is working correctly.
+
+```bash
+php app.php
+```
+
+If you see no errors and output similar to:
+
+```
+[2021-11-01T19:43:14.687782+00:00] termin.INFO: No availability found for: Anmeldung einer Wohnung [] []
+```
+
+You can then configure this to run on a regular schedule using something that your OS provides.
+
+For example with cron, setup a job to call `app.php` on desired run interval e.g. every hour
 
  ```bash
 0 * * * *  php ~/path/to/termin/app.php
@@ -101,7 +125,6 @@ docker run -it -v $(pwd)/config.yml:/app/config.yml inversechi/termin:latest
 Configure this to run on a regular schedule using something that your OS provides.
 
 _Note: Don't set the schedule frequency to high to not overload their website_
-
 
 ## Licence
 

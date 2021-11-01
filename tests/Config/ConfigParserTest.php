@@ -88,7 +88,7 @@ class ConfigParserTest extends TestCase
         self::expectExceptionMessage('config.telegram missing api_key field');
         $this->configParser->parse($this->getBasicConfig() + [
             'telegram' => [
-                'chat_id' => 1,
+                'chat_id' => '1',
             ],
         ]);
     }
@@ -109,7 +109,7 @@ class ConfigParserTest extends TestCase
         $config = $this->configParser->parse($this->getBasicConfig() + [
             'telegram' => [
                 'api_key' => null,
-                'chat_id' => 1,
+                'chat_id' => '1',
             ],
         ]);
 
@@ -121,7 +121,7 @@ class ConfigParserTest extends TestCase
         $config = $this->configParser->parse($this->getBasicConfig() + [
             'telegram' => [
                 'api_key' => 'api',
-                'chat_id' => 1,
+                'chat_id' => '1',
             ],
         ]);
 
