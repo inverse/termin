@@ -1,13 +1,17 @@
-
 <?php
+
+declare(strict_types=1);
 
 $finder = PhpCsFixer\Finder::create()
     ->in(['src', 'tests'])
 ;
 
-return PhpCsFixer\Config::create()
+$config = new PhpCsFixer\Config();
+
+$config
     ->setRiskyAllowed(true)
     ->setRules([
+        '@PSR2' => true,
         '@PSR12' => true,
         '@PhpCsFixer' => true,
         'php_unit_test_class_requires_covers' => false,
@@ -15,4 +19,6 @@ return PhpCsFixer\Config::create()
         'declare_strict_types' => true,
     ])
     ->setFinder($finder)
-    ;
+;
+
+return $config;
