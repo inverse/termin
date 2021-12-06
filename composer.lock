@@ -1616,16 +1616,16 @@
         },
         {
             "name": "telegram-bot/api",
-            "version": "v2.3.23",
+            "version": "v2.3.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TelegramBot/Api.git",
-                "reference": "4565a9f1339d9f584bc9d9073feab1bfe6b0f7ea"
+                "reference": "579f64d0ffe7f21d1f61cb8734e297686b286bf7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TelegramBot/Api/zipball/4565a9f1339d9f584bc9d9073feab1bfe6b0f7ea",
-                "reference": "4565a9f1339d9f584bc9d9073feab1bfe6b0f7ea",
+                "url": "https://api.github.com/repos/TelegramBot/Api/zipball/579f64d0ffe7f21d1f61cb8734e297686b286bf7",
+                "reference": "579f64d0ffe7f21d1f61cb8734e297686b286bf7",
                 "shasum": ""
             },
             "require": {
@@ -1670,9 +1670,9 @@
             ],
             "support": {
                 "issues": "https://github.com/TelegramBot/Api/issues",
-                "source": "https://github.com/TelegramBot/Api/tree/v2.3.23"
+                "source": "https://github.com/TelegramBot/Api/tree/v2.3.24"
             },
-            "time": "2021-11-05T10:46:23+00:00"
+            "time": "2021-12-06T13:05:34+00:00"
         }
     ],
     "packages-dev": [
