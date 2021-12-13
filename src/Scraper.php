@@ -13,7 +13,6 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class Scraper
 {
     private const CLASS_AVAILABLE = 'buchbar';
-    private const CLASS_UNAVAILABLE = 'nichtbuchbar';
 
     private Client $client;
 
@@ -36,7 +35,7 @@ class Scraper
         $results = [];
 
         foreach ($crawler as $element) {
-            $results = array_merge($results, $this->processMonth($element));
+            $results = array_merge($results, $this->processMonth($element, $url));
 
             if (!empty($results) && !$this->collectMultiple) {
                 break;
@@ -46,10 +45,11 @@ class Scraper
         return $results;
     }
 
-    private function processMonth(DOMNode $element): array
+    private function processMonth(DOMNode $element, string $url): array
     {
-        $crawler = new Crawler($element);
+        $crawler = new Crawler($element, $url);
         $monthStr = trim($crawler->filter('.month')->text());
+        $nextUrl = $this->extractNextUrl($crawler);
         $crawler = $crawler->filter('tr td');
 
         $results = [];
@@ -72,6 +72,21 @@ class Scraper
             }
         }
 
+        if (null !== $nextUrl) {
+            $results = array_merge($results, $this->scrapeSite($nextUrl));
+        }
+
         return $results;
+    }
+
+    private function extractNextUrl(Crawler $crawler): ?string
+    {
+        $anchor = $crawler->filter('th a')->getNode(0);
+
+        if (!$anchor) {
+            return null;
+        }
+
+        return $crawler->filter('th a')->first()->link()->getUri();
     }
 }

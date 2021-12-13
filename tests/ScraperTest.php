@@ -20,12 +20,29 @@ class ScraperTest extends TestCase
         $mockHttpClientFactory = new MockHttpClientFactory(
             [
                 new MockResponse($this->loadFixture('mock_response_no_termin.html')),
+                new MockResponse($this->loadFixture('mock_response_next_no_termin.html')),
             ]
         );
 
         $scraper = new Scraper($mockHttpClientFactory->create());
 
         self::assertEmpty($scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/'));
+    }
+
+    public function testScrapeSiteNextAppointment(): void
+    {
+        $mockHttpClientFactory = new MockHttpClientFactory(
+            [
+                new MockResponse($this->loadFixture('mock_response_no_termin.html')),
+                new MockResponse($this->loadFixture('mock_response_next_termin.html')),
+            ]
+        );
+
+        $scraper = new Scraper($mockHttpClientFactory->create());
+
+        $results = $scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/');
+        self::assertNotEmpty($results);
+        self::assertEquals('2020-11-15T00:00:00+01:00', $results[0]->getDate()->format(DateTimeInterface::ATOM));
     }
 
     public function testScrapeSiteOneAppointment(): void
@@ -62,6 +79,7 @@ class ScraperTest extends TestCase
         $mockHttpClientFactory = new MockHttpClientFactory(
             [
                 new MockResponse($this->loadFixture('mock_response_multi_termin.html')),
+                new MockResponse($this->loadFixture('mock_response_next_no_termin.html')),
             ]
         );
 
