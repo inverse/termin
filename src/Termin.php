@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Inverse\Termin;
 
 use Inverse\Termin\Config\Site;
+use Inverse\Termin\Notifier\MultiNotifier;
 use Inverse\Termin\Notifier\NotifierInterface;
 use Psr\Log\LoggerInterface;
 
@@ -14,9 +15,9 @@ class Termin
 
     private LoggerInterface $logger;
 
-    private NotifierInterface $notifier;
+    private MultiNotifier $notifier;
 
-    public function __construct(Scraper $scraper, LoggerInterface $logger, NotifierInterface $notifier)
+    public function __construct(Scraper $scraper, LoggerInterface $logger, MultiNotifier $notifier)
     {
         $this->scraper = $scraper;
         $this->logger = $logger;
@@ -28,6 +29,8 @@ class Termin
      */
     public function run(array $sites): void
     {
+        $this->logger->info(sprintf('Starting to run [sites: %d, notifiers: %d]', count($sites), $this->notifier->registeredNotifierCount()));
+
         foreach ($sites as $site) {
             $results = $this->scraper->scrapeSite($site->getUrl());
 

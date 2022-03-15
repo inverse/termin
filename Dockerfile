@@ -1,15 +1,17 @@
 FROM composer:latest AS composer
 
-FROM php:7.4-alpine
-
-COPY --from=composer /usr/bin/composer /usr/bin/composer
-
-RUN apk add --no-cache unzip
-
-WORKDIR /app
-
-COPY . /app
+COPY composer.json /app
 
 RUN composer install
 
-CMD [ "php", "app.php"]
+FROM php:8.1-alpine
+
+RUN apk add --no-cache unzip
+
+COPY --from=composer /app/vendor /app/vendor
+
+COPY . /app
+
+WORKDIR /app
+
+CMD [ "php", "app.php" ]

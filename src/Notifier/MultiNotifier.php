@@ -33,4 +33,9 @@ class MultiNotifier implements NotifierInterface
             $notify->notify($label, $url, $date);
         }
     }
+
+    public function registeredNotifierCount(): int
+    {
+        return count($this->notifiers);
+    }
 }
