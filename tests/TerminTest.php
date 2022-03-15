@@ -6,6 +6,7 @@ namespace Tests\Inverse\Termin;
 
 use DateTime;
 use Inverse\Termin\Config\Site;
+use Inverse\Termin\Notifier\MultiNotifier;
 use Inverse\Termin\Result;
 use Inverse\Termin\Scraper;
 use Inverse\Termin\Termin;
@@ -25,8 +26,10 @@ class TerminTest extends TestCase
 
         $testLogger = new TestLogger();
         $testNotifier = new TestNotifier();
+        $multiNotifier = new MultiNotifier();
+        $multiNotifier->addNotifier($testNotifier);
 
-        $termin = new Termin($mockScraper, $testLogger, $testNotifier);
+        $termin = new Termin($mockScraper, $testLogger, $multiNotifier);
 
         $termin->run([new Site('hello', 'https://hello.com')]);
 
@@ -44,8 +47,10 @@ class TerminTest extends TestCase
 
         $testNotifier = new TestNotifier();
         $testLogger = new TestLogger();
+        $multiNotifier = new MultiNotifier();
+        $multiNotifier->addNotifier($testNotifier);
 
-        $termin = new Termin($mockScraper, $testLogger, $testNotifier);
+        $termin = new Termin($mockScraper, $testLogger, $multiNotifier);
 
         $termin->run([new Site('hello', 'https://hello.com')]);
 
