@@ -6,7 +6,6 @@ namespace Inverse\Termin;
 
 use Inverse\Termin\Config\Site;
 use Inverse\Termin\Notifier\MultiNotifier;
-use Inverse\Termin\Notifier\NotifierInterface;
 use Psr\Log\LoggerInterface;
 
 class Termin
