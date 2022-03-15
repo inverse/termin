@@ -25,11 +25,20 @@ jobs:
   phpstan:
     runs-on: ubuntu-latest
     container:
-      image: jakzal/phpqa:php7.4
+      image: jakzal/phpqa:php8.1
     steps:
       - uses: actions/checkout@v1
       - name: Install dependencies
         run: composer install
       - name: PHPStan
         run: phpstan analyse
-
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+    container:
+      image: jakzal/phpqa:php8.1
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: composer install
+      - name: PHP-CS-Fixer
+        run: php-cs-fixer fix
