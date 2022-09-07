@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Inverse\Termin\Config;
 
 use InvalidArgumentException;
+use Inverse\Termin\Config\Rules\AfterRule;
 
 class ConfigParser
 {
@@ -37,9 +38,44 @@ class ConfigParser
 
         $pushbullet = $this->getPushBullet($config);
 
-        $rules = [];
+        $rules = $this->getRules($config);
 
         return new Config($sites, $rules, $allowMultipleNotifications, $pushbullet, $telegram);
+    }
+
+    private function getRules(array $config): array
+    {
+        $rules = [];
+
+        if (!array_key_exists('rules', $config)) {
+            return $rules;
+        }
+
+        if (!is_array($config['rules'])) {
+            throw new InvalidArgumentException('rules must be an array');
+        }
+
+        foreach ($config['rules'] as $rule) {
+            if (!is_array($rule)) {
+                throw new InvalidArgumentException('rule must be an array');
+            }
+
+            $type = $rule['type'];
+
+            $params = $rule['param'];
+
+            switch ($type) {
+                case 'after':
+                    $rules[] = new AfterRule($params);
+
+                    break;
+
+                default:
+                    throw new InvalidArgumentException(sprintf('%s is an invalid rule type', $type));
+            }
+        }
+
+        return $rules;
     }
 
     private function getTelegram(array $config): ?Telegram
