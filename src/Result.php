@@ -8,14 +8,14 @@ use DateTime;
 
 class Result
 {
-    private ?DateTime $date;
+    private DateTime $date;
 
-    private function __construct(?DateTime $dateTime)
+    private function __construct(DateTime $dateTime)
     {
         $this->date = $dateTime;
     }
 
-    public function getDate(): ?DateTime
+    public function getDate(): DateTime
     {
         return $this->date;
     }

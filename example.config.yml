@@ -18,3 +18,8 @@ pushbullet:
 telegram:
   api_key: ~
   chat_id: ~
+
+rules:
+  -
+    type: after
+    param: PT24H

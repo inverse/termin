@@ -42,11 +42,16 @@ class Container extends Pimple
             return new Scraper($httpClientFactory->create(), $config->isAllowMultipleNotifications());
         };
 
+        $this[Filter::class] = function () use ($config) {
+            return new Filter($config->getRules());
+        };
+
         $this[Termin::class] = function (self $container) {
             return new Termin(
                 $container[Scraper::class],
                 $container[LoggerInterface::class],
-                $container[NotifierInterface::class]
+                $container[NotifierInterface::class],
+                $container[Filter::class]
             );
         };
     }

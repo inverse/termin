@@ -37,7 +37,9 @@ class ConfigParser
 
         $pushbullet = $this->getPushBullet($config);
 
-        return new Config($sites, $allowMultipleNotifications, $pushbullet, $telegram);
+        $rules = [];
+
+        return new Config($sites, $rules, $allowMultipleNotifications, $pushbullet, $telegram);
     }
 
     private function getTelegram(array $config): ?Telegram
