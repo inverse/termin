@@ -9,7 +9,7 @@ A simple PHP script for notifying for a free slot for any appointment listed on 
 
 ![](https://i.imgur.com/8vxmVo2.png)
 
-## Notifications
+# Notifications
 
 Currently supports notifications via:
 
@@ -21,7 +21,7 @@ Currently supports notifications via:
 - PHP 7.4+
 - composer
 
-## Setup
+# Setup
 
 Clone the repo
 
@@ -29,7 +29,7 @@ Clone the repo
 git clone https://github.com/inverse/termin.git
 ```
 
-### Dependencies
+## Dependencies
 
 Install dependencies
  
@@ -37,21 +37,21 @@ Install dependencies
  composer install
 ```
 
-### Configuration
+## Configuration
 
 Configure an `config.yml` file based on the `example.config.yml` file located in the root of the repository.
 
-#### Notifications
+### Notifications
 
 Termin supports various notifiers, it will send notifications to each one you configure.
 
-##### Push bullet (Easiest)
+#### Push bullet (Easiest)
 
 Set `pushbullet.api_token` within `config.yml` with an API token from your account. Follow their [quick start guide][3] on how to get this.
 
 Make sure you install their application or browser extension.
 
-##### Telegram
+#### Telegram
 
 Follow the [official documentation][4] on setting up a bot.
 
@@ -63,7 +63,7 @@ Once you have done that find your chat ID. You can get this by interacting with 
 
 Set the value in `telegram.chat_id`.
 
-###### Groups
+##### Groups
 
 If you are adding the bot to a group you must add your bot to your group.
 
@@ -71,7 +71,7 @@ Then find the chat ID for the group by adding `@raw_data_bot` and it will detail
 
 Take care when copying the leading `-` as this is required for group chat IDs.
 
-##### Site configuration
+### Site configuration
 
 ```yaml
 sites:
@@ -88,7 +88,24 @@ sites:
 
 ![](https://i.imgur.com/zqSScD5.png)
 
-### Run
+### Rules
+
+Recently introduced is a rule engine that can be used for only notifying when certain conditions are met.
+
+#### after
+
+Only notify when found appointments happen after some condition.
+
+```yaml
+rules:
+  -
+    type: after
+    param: PT24H # Notify when the appointment is greater than 24h in the future
+```
+
+Uses the PHP [DateInterval][5] construct.
+
+## Run
 
 You can execute the script manually to test if everything is working correctly.
 
@@ -114,7 +131,7 @@ _Note: Don't set the frequency to high to not overload their website_
 
 Wait for a notification!
 
-### Run (docker)
+## Run (docker)
 
 Configure the application following the above steps and then run the prebuilt docker image.
 
@@ -126,7 +143,7 @@ Configure this to run on a regular schedule using something that your OS provide
 
 _Note: Don't set the schedule frequency to high to not overload their website_
 
-## Licence
+# Licence
 
 MIT
 
@@ -135,3 +152,4 @@ MIT
 [2]: https://telegram.org/
 [3]: https://docs.pushbullet.com/#api-quick-start
 [4]: https://core.telegram.org/bots#3-how-do-i-create-a-bot
+[5]: https://www.php.net/manual/en/dateinterval.construct.php
