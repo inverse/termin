@@ -14,6 +14,7 @@ $config
         '@PSR2' => true,
         '@PSR12' => true,
         '@PhpCsFixer' => true,
+        '@PHP74Migration:risky' => true,
         'php_unit_test_class_requires_covers' => false,
         'php_unit_internal_class' => false,
         'declare_strict_types' => true,
