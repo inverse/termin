@@ -177,6 +177,20 @@ class ConfigParserTest extends TestCase
         self::assertEquals(new AfterRule('PT24H'), $config->getRules()[0]);
     }
 
+    public function testParseRulesInvalidRuleType(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessage('foo is an invalid rule type');
+         $this->configParser->parse($this->getBasicConfig() + [
+                'rules' => [
+                    [
+                        'type' => 'foo',
+                        'param' => 'PT24H',
+                    ],
+                ],
+            ]);
+    }
+
     private function getBasicConfig(): array
     {
         return [
