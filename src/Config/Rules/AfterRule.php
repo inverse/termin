@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Inverse\Termin\Config\Rules;
 
+use DateInterval;
+use DateTime;
 use Inverse\Termin\Result;
 
 class AfterRule implements RuleInterface
@@ -15,9 +17,8 @@ class AfterRule implements RuleInterface
         $this->value = $value;
     }
 
-
     public function passes(Result $result): bool
     {
-        $result->getDate()
+        return $result->getDate() > (new DateTime())->add(new DateInterval($this->value));
     }
 }
