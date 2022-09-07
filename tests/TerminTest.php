@@ -22,7 +22,7 @@ class TerminTest extends TestCase
         $mockScraper = $this->createMock(Scraper::class);
 
         $mockScraper->method('scrapeSite')
-            ->willReturn([Result::createFound(new DateTime('2020-01-01 00:00:00'))])
+            ->willReturn([new Result(new DateTime('2020-01-01 00:00:00'))])
         ;
 
         $testLogger = new TestLogger();

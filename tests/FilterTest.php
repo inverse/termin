@@ -22,7 +22,7 @@ class FilterTest extends TestCase
     {
         $filter = new Filter([]);
 
-        $results = [Result::createFound(new DateTime())];
+        $results = [new Result(new DateTime())];
         self::assertEquals($results, $filter->applyRules($results));
     }
 
@@ -33,7 +33,7 @@ class FilterTest extends TestCase
 
         $filter = new Filter([$mockRule]);
 
-        $results = [Result::createFound(new DateTime())];
+        $results = [new Result(new DateTime())];
         self::assertEquals($results, $filter->applyRules($results));
     }
 
@@ -44,7 +44,7 @@ class FilterTest extends TestCase
 
         $filter = new Filter([$mockRule]);
 
-        $results = [Result::createFound(new DateTime())];
+        $results = [new Result(new DateTime())];
         self::assertEmpty($filter->applyRules($results));
     }
 }

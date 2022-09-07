@@ -10,7 +10,7 @@ class Result
 {
     private DateTime $date;
 
-    private function __construct(DateTime $dateTime)
+    public function __construct(DateTime $dateTime)
     {
         $this->date = $dateTime;
     }
