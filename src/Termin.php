@@ -16,11 +16,14 @@ class Termin
 
     private MultiNotifier $notifier;
 
-    public function __construct(Scraper $scraper, LoggerInterface $logger, MultiNotifier $notifier)
+    private Filter $filter;
+
+    public function __construct(Scraper $scraper, LoggerInterface $logger, MultiNotifier $notifier, Filter $filter)
     {
         $this->scraper = $scraper;
         $this->logger = $logger;
         $this->notifier = $notifier;
+        $this->filter = $filter;
     }
 
     /**
@@ -38,6 +41,8 @@ class Termin
 
                 continue;
             }
+
+            $results = $this->filter->applyRules($results);
 
             foreach ($results as $result) {
                 $this->logger->info(

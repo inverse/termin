@@ -63,7 +63,7 @@ class Scraper
                 $dateTime = DateHelper::createDateTime($node->textContent, DateHelper::monthConvert($monthStr));
 
                 if (isset($dateTime)) {
-                    $results[] = Result::createFound($dateTime);
+                    $results[] = new Result($dateTime);
 
                     if (!$this->collectMultiple) {
                         break;

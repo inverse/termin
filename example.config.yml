@@ -18,3 +18,9 @@ pushbullet:
 telegram:
   api_key: ~
   chat_id: ~
+
+# Configure rules
+rules:
+  -
+    type: after
+    param: PT24H # Uses PHP DateInterval construct. See: https://www.php.net/manual/en/dateinterval.construct.php

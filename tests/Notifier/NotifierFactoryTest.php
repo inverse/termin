@@ -15,7 +15,7 @@ class NotifierFactoryTest extends TestCase
 {
     public function testEmpty(): void
     {
-        $config = new Config([], true, null, null);
+        $config = new Config([], [], true, null, null);
         $mockMultiNotifier = self::createMock(MultiNotifier::class);
         $mockMultiNotifier->expects($this->never())->method('addNotifier');
         $notifierFactory = new NotifierFactory($mockMultiNotifier);
@@ -25,7 +25,7 @@ class NotifierFactoryTest extends TestCase
 
     public function testPushbullet(): void
     {
-        $config = new Config([], true, new Pushbullet('api'), null);
+        $config = new Config([], [], true, new Pushbullet('api'), null);
 
         $mockMultiNotifier = self::createMock(MultiNotifier::class);
         $mockMultiNotifier->expects($this->once())->method('addNotifier');
@@ -36,7 +36,7 @@ class NotifierFactoryTest extends TestCase
 
     public function testTelegram(): void
     {
-        $config = new Config([], true, null, new Telegram('api', '0'));
+        $config = new Config([], [], true, null, new Telegram('api', '0'));
 
         $mockMultiNotifier = self::createMock(MultiNotifier::class);
         $mockMultiNotifier->expects($this->once())->method('addNotifier');
@@ -47,7 +47,7 @@ class NotifierFactoryTest extends TestCase
 
     public function testBoth(): void
     {
-        $config = new Config([], true, new Pushbullet('yolo'), new Telegram('api', '0'));
+        $config = new Config([], [], true, new Pushbullet('yolo'), new Telegram('api', '0'));
 
         $mockMultiNotifier = self::createMock(MultiNotifier::class);
         $mockMultiNotifier->expects($this->exactly(2))->method('addNotifier');

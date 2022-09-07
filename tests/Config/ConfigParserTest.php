@@ -6,6 +6,7 @@ namespace Tests\Inverse\Termin\Config;
 
 use InvalidArgumentException;
 use Inverse\Termin\Config\ConfigParser;
+use Inverse\Termin\Config\Rules\AfterRule;
 use PHPUnit\Framework\TestCase;
 
 class ConfigParserTest extends TestCase
@@ -159,6 +160,35 @@ class ConfigParserTest extends TestCase
         ]);
 
         self::assertEquals($config->getPushbullet()->getApiToken(), 'token');
+    }
+
+    public function testParseRules(): void
+    {
+        $config = $this->configParser->parse($this->getBasicConfig() + [
+            'rules' => [
+                [
+                    'type' => 'after',
+                    'param' => 'PT24H',
+                ],
+            ],
+        ]);
+
+        self::assertNotEmpty($config->getRules());
+        self::assertEquals(new AfterRule('PT24H'), $config->getRules()[0]);
+    }
+
+    public function testParseRulesInvalidRuleType(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessage('foo is an invalid rule type');
+         $this->configParser->parse($this->getBasicConfig() + [
+                'rules' => [
+                    [
+                        'type' => 'foo',
+                        'param' => 'PT24H',
+                    ],
+                ],
+            ]);
     }
 
     private function getBasicConfig(): array

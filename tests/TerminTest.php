@@ -6,6 +6,7 @@ namespace Tests\Inverse\Termin;
 
 use DateTime;
 use Inverse\Termin\Config\Site;
+use Inverse\Termin\Filter;
 use Inverse\Termin\Notifier\MultiNotifier;
 use Inverse\Termin\Result;
 use Inverse\Termin\Scraper;
@@ -21,7 +22,7 @@ class TerminTest extends TestCase
         $mockScraper = $this->createMock(Scraper::class);
 
         $mockScraper->method('scrapeSite')
-            ->willReturn([Result::createFound(new DateTime('2020-01-01 00:00:00'))])
+            ->willReturn([new Result(new DateTime('2020-01-01 00:00:00'))])
         ;
 
         $testLogger = new TestLogger();
@@ -29,7 +30,9 @@ class TerminTest extends TestCase
         $multiNotifier = new MultiNotifier();
         $multiNotifier->addNotifier($testNotifier);
 
-        $termin = new Termin($mockScraper, $testLogger, $multiNotifier);
+        $filter = new Filter([]);
+
+        $termin = new Termin($mockScraper, $testLogger, $multiNotifier, $filter);
 
         $termin->run([new Site('hello', 'https://hello.com')]);
 
@@ -50,7 +53,9 @@ class TerminTest extends TestCase
         $multiNotifier = new MultiNotifier();
         $multiNotifier->addNotifier($testNotifier);
 
-        $termin = new Termin($mockScraper, $testLogger, $multiNotifier);
+        $filter = new Filter([]);
+
+        $termin = new Termin($mockScraper, $testLogger, $multiNotifier, $filter);
 
         $termin->run([new Site('hello', 'https://hello.com')]);
 
