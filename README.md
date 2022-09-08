@@ -117,19 +117,6 @@ rules:
 
 Uses the PHP [DateInterval][5] construct.
 
-#### between
-
-Only notify when found appointments happen between bounds.
-
-```yaml
-rules:
-  -
-    type: between
-    start: 2021-01-01T00:00:00
-    end: 2021-01-02T00:00:00 
-```
-
-
 ## Run
 
 You can execute the script manually to test if everything is working correctly.
