@@ -17,6 +17,7 @@ class AfterRuleTest extends TestCase
     {
         self::expectException(InvalidArgumentException::class);
         new AfterRule('HelloWorld');
+        self::assertStringStartsWith('Failed to parse after',self::getExpectedExceptionMessage());
     }
 
     public function testPassesValid(): void

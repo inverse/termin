@@ -10,19 +10,19 @@ use Exception;
 use InvalidArgumentException;
 use Inverse\Termin\Result;
 
-class AfterRule implements RuleInterface
+class BeforeRule implements RuleInterface
 {
     use DateIntervalRuleTrait;
 
     private DateInterval $dateInterval;
 
-    public function __construct(string $after)
+    public function __construct(string $before)
     {
-       $this->dateInterval = $this->parseDateInterval($after, 'after');
+        $this->dateInterval = $this->parseDateInterval($before, 'before');
     }
 
     public function passes(Result $result): bool
     {
-        return $result->getDate() > (new DateTime())->add($this->dateInterval);
+        return $result->getDate() < (new DateTime())->add($this->dateInterval);
     }
 }
