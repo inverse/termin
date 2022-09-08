@@ -7,7 +7,6 @@ namespace Inverse\Termin\Config;
 use InvalidArgumentException;
 use Inverse\Termin\Config\Rules\AfterRule;
 use Inverse\Termin\Config\Rules\BeforeRule;
-use Inverse\Termin\Config\Rules\BetweenRule;
 
 class ConfigParser
 {
@@ -72,11 +71,6 @@ class ConfigParser
 
                 case 'before':
                     $rules[] = new BeforeRule($rule['param']);
-
-                    break;
-
-                case 'between':
-                    $rules[] = new BetweenRule($rule['before'], $rule['before']);
 
                     break;
 
