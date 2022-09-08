@@ -90,17 +90,29 @@ sites:
 
 ### Rules
 
-Recently introduced is a rule engine that can be used for only notifying when certain conditions are met.
+Recently introduced is a rule engine that can be used for only notifying when certain conditions are met. Uses
+the PHP [DateInterval][5] construct for expressing date differences.
 
 #### after
 
-Only notify when found appointments happen after some condition.
+Only notify when found appointments happen after condition.
 
 ```yaml
 rules:
   -
     type: after
     param: PT24H # Notify when the appointment is greater than 24h in the future
+```
+
+#### before
+
+Only notify when found appointments happen before condition.
+
+```yaml
+rules:
+  -
+    type: before
+    param: PT24H # Notify when the appointment is less than 24h in the future
 ```
 
 Uses the PHP [DateInterval][5] construct.

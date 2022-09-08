@@ -6,6 +6,7 @@ namespace Inverse\Termin\Config;
 
 use InvalidArgumentException;
 use Inverse\Termin\Config\Rules\AfterRule;
+use Inverse\Termin\Config\Rules\BeforeRule;
 
 class ConfigParser
 {
@@ -62,11 +63,14 @@ class ConfigParser
 
             $type = $rule['type'];
 
-            $params = $rule['param'];
-
             switch ($type) {
                 case 'after':
-                    $rules[] = new AfterRule($params);
+                    $rules[] = new AfterRule($rule['param']);
+
+                    break;
+
+                case 'before':
+                    $rules[] = new BeforeRule($rule['param']);
 
                     break;
 
