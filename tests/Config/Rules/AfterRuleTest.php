@@ -6,12 +6,19 @@ namespace Tests\Inverse\Termin\Config\Rules;
 
 use DateInterval;
 use DateTime;
+use InvalidArgumentException;
 use Inverse\Termin\Config\Rules\AfterRule;
 use Inverse\Termin\Result;
 use PHPUnit\Framework\TestCase;
 
 class AfterRuleTest extends TestCase
 {
+    public function testInvalidInput(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        new AfterRule('HelloWorld');
+    }
+
     public function testPassesValid(): void
     {
         $rule = new AfterRule('PT24H');
