@@ -16,7 +16,6 @@ class AfterRuleTest extends TestCase
     public function testInvalidInput(): void
     {
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage('Failed to parse input: Exception: Unknown or bad format (HelloWorld)'); 
         new AfterRule('HelloWorld');
     }
 
