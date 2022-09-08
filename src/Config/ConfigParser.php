@@ -69,6 +69,7 @@ class ConfigParser
                     $rules[] = new AfterRule($rule['param']);
 
                     break;
+
                 case 'before':
                     $rules[] = new BeforeRule($rule['param']);
 

@@ -7,7 +7,6 @@ namespace Tests\Inverse\Termin\Config\Rules;
 use DateInterval;
 use DateTime;
 use InvalidArgumentException;
-use Inverse\Termin\Config\Rules\AfterRule;
 use Inverse\Termin\Config\Rules\BeforeRule;
 use Inverse\Termin\Result;
 use PHPUnit\Framework\TestCase;
@@ -18,7 +17,7 @@ class BeforeRuleTest extends TestCase
     {
         self::expectException(InvalidArgumentException::class);
         new BeforeRule('HelloWorld');
-        self::assertStringStartsWith('Failed to parse before',self::getExpectedExceptionMessage());
+        self::assertStringStartsWith('Failed to parse before', self::getExpectedExceptionMessage());
     }
 
     public function testPassesValid(): void

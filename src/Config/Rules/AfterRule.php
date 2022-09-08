@@ -6,23 +6,21 @@ namespace Inverse\Termin\Config\Rules;
 
 use DateInterval;
 use DateTime;
-use Exception;
-use InvalidArgumentException;
 use Inverse\Termin\Result;
 
 class AfterRule implements RuleInterface
 {
     use DateIntervalRuleTrait;
 
-    private DateInterval $dateInterval;
+    private DateInterval $after;
 
     public function __construct(string $after)
     {
-       $this->dateInterval = $this->parseDateInterval($after, 'after');
+        $this->after = $this->parseDateInterval($after, 'after');
     }
 
     public function passes(Result $result): bool
     {
-        return $result->getDate() > (new DateTime())->add($this->dateInterval);
+        return $result->getDate() > (new DateTime())->add($this->after);
     }
 }

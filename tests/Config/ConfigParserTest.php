@@ -181,14 +181,14 @@ class ConfigParserTest extends TestCase
     {
         self::expectException(InvalidArgumentException::class);
         self::expectExceptionMessage('foo is an invalid rule type');
-         $this->configParser->parse($this->getBasicConfig() + [
-                'rules' => [
-                    [
-                        'type' => 'foo',
-                        'param' => 'PT24H',
-                    ],
+        $this->configParser->parse($this->getBasicConfig() + [
+            'rules' => [
+                [
+                    'type' => 'foo',
+                    'param' => 'PT24H',
                 ],
-            ]);
+            ],
+        ]);
     }
 
     private function getBasicConfig(): array

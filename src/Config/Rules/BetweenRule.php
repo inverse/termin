@@ -4,29 +4,26 @@ declare(strict_types=1);
 
 namespace Inverse\Termin\Config\Rules;
 
-use DateInterval;
 use DateTime;
-use Exception;
-use InvalidArgumentException;
 use Inverse\Termin\Result;
 
 class BetweenRule implements RuleInterface
 {
     use DateIntervalRuleTrait;
 
-    private DateInterval $before;
-    private DateInterval $after;
+    private DateTime $start;
+    private DateTime $end;
 
-    public function __construct(string $before, string $after)
+    public function __construct(string $start, string $end)
     {
-        $this->before = $this->parseDateInterval($before, 'before');
-        $this->after = $this->parseDateInterval($after, 'after');
+        $this->start = $this->parseDateTime($start, 'start');
+        $this->end = $this->parseDateTime($end, 'end');
     }
 
     public function passes(Result $result): bool
     {
-        $now = new DateTime();
-
-        return $result->getDate() > $now->add($this->dateInterval);
+        return
+            ($result->getDate() > $this->start)
+            && ($result->getDate() < $this->end);
     }
 }

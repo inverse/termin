@@ -8,7 +8,6 @@ use DateInterval;
 use DateTime;
 use Exception;
 use InvalidArgumentException;
-use Inverse\Termin\Result;
 
 trait DateIntervalRuleTrait
 {
@@ -17,7 +16,16 @@ trait DateIntervalRuleTrait
         try {
             return new DateInterval($value);
         } catch (Exception $e) {
-            throw new InvalidArgumentException(sprintf('Failed to parse %s: %s', $name, $e));
+            throw new InvalidArgumentException(sprintf('Failed to parse %s to DateInterval: %s', $name, $e));
+        }
+    }
+
+    private function parseDateTime(string $value, string $name): DateTime
+    {
+        try {
+            return new DateTime($value);
+        } catch (Exception $e) {
+            throw new InvalidArgumentException(sprintf('Failed to parse %s to DateTime: %s', $name, $e));
         }
     }
 }

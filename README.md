@@ -90,7 +90,8 @@ sites:
 
 ### Rules
 
-Recently introduced is a rule engine that can be used for only notifying when certain conditions are met.
+Recently introduced is a rule engine that can be used for only notifying when certain conditions are met. Uses
+the PHP [DateInterval][5] construct for expressing date differences.
 
 #### after
 
@@ -115,6 +116,19 @@ rules:
 ```
 
 Uses the PHP [DateInterval][5] construct.
+
+#### between
+
+Only notify when found appointments happen between bounds.
+
+```yaml
+rules:
+  -
+    type: between
+    start: 2021-01-01T00:00:00
+    end: 2021-01-02T00:00:00 
+```
+
 
 ## Run
 
