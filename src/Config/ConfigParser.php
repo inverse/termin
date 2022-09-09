@@ -53,7 +53,7 @@ class ConfigParser
     {
         $logger = $config['logger'] ?? [];
 
-        $level =  $logger['level'] ?? self::DEFAULT_LOG_LEVEL;
+        $level = $logger['level'] ?? self::DEFAULT_LOG_LEVEL;
 
         return Logger::toMonologLevel($level);
     }

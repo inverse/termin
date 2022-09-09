@@ -27,8 +27,7 @@ class Scraper
         HttpClientInterface $httpClient,
         LoggerInterface $logger,
         bool $collectMultiple = false
-    )
-    {
+    ) {
         $this->client = new Client($httpClient);
         $this->collectMultiple = $collectMultiple;
         $this->logger = $logger;
