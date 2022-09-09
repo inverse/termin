@@ -18,10 +18,15 @@ class Scraper
 
     private bool $collectMultiple;
 
-    public function __construct(HttpClientInterface $httpClient, bool $collectMultiple = false)
-    {
+    private array $visited;
+
+    public function __construct(
+        HttpClientInterface $httpClient,
+        bool $collectMultiple = false
+    ) {
         $this->client = new Client($httpClient);
         $this->collectMultiple = $collectMultiple;
+        $this->visited = [];
     }
 
     /**
@@ -30,7 +35,7 @@ class Scraper
     public function scrapeSite(string $url): array
     {
         $crawler = $this->client->request('GET', $url);
-        $crawler = $crawler->filter('.calendar-table table');
+            $crawler = $crawler->filter('.calendar-table table');
 
         $results = [];
 
@@ -53,6 +58,12 @@ class Scraper
         $crawler = $crawler->filter('tr td');
 
         $results = [];
+
+        if (in_array($nextUrl, $this->visited)) {
+            return $results;
+        }
+
+        $this->visited[] = $nextUrl;
 
         /** @var DOMElement $node */
         foreach ($crawler as $node) {
