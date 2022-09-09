@@ -7,6 +7,7 @@ namespace Inverse\Termin;
 use DOMElement;
 use DOMNode;
 use Goutte\Client;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -18,14 +19,19 @@ class Scraper
 
     private bool $collectMultiple;
 
+    private LoggerInterface $logger;
+
     private array $visited;
 
     public function __construct(
         HttpClientInterface $httpClient,
+        LoggerInterface $logger,
         bool $collectMultiple = false
-    ) {
+    )
+    {
         $this->client = new Client($httpClient);
         $this->collectMultiple = $collectMultiple;
+        $this->logger = $logger;
         $this->visited = [];
     }
 
@@ -34,6 +40,8 @@ class Scraper
      */
     public function scrapeSite(string $url): array
     {
+        $this->logger->debug(sprintf('GET %s', $url));
+
         $crawler = $this->client->request('GET', $url);
 
         $contentHash = sha1($crawler->html());

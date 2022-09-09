@@ -7,9 +7,12 @@ namespace Inverse\Termin\Config;
 use InvalidArgumentException;
 use Inverse\Termin\Config\Rules\AfterRule;
 use Inverse\Termin\Config\Rules\BeforeRule;
+use Monolog\Logger;
 
 class ConfigParser
 {
+    private const DEFAULT_LOG_LEVEL = 'info';
+
     public function parse(array $config): Config
     {
         if (!array_key_exists('sites', $config)) {
@@ -41,7 +44,18 @@ class ConfigParser
 
         $rules = $this->getRules($config);
 
-        return new Config($sites, $rules, $allowMultipleNotifications, $pushbullet, $telegram);
+        $logLevel = $this->getLogLevel($config);
+
+        return new Config($sites, $rules, $logLevel, $allowMultipleNotifications, $pushbullet, $telegram);
+    }
+
+    private function getLogLevel(array $config): int
+    {
+        $logger = $config['logger'] ?? [];
+
+        $level =  $logger['level'] ?? self::DEFAULT_LOG_LEVEL;
+
+        return Logger::toMonologLevel($level);
     }
 
     private function getRules(array $config): array
