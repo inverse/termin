@@ -38,6 +38,8 @@ class Scraper
             return [];
         }
 
+        $this->visited[] = $url;
+
         $crawler = $this->client->request('GET', $url);
         $crawler = $crawler->filter('.calendar-table table');
 
@@ -50,8 +52,6 @@ class Scraper
                 break;
             }
         }
-
-        $this->visited[] = $url;
 
         return $results;
     }
