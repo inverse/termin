@@ -34,8 +34,12 @@ class Scraper
      */
     public function scrapeSite(string $url): array
     {
+        if (in_array($url, $this->visited)) {
+            return [];
+        }
+
         $crawler = $this->client->request('GET', $url);
-            $crawler = $crawler->filter('.calendar-table table');
+        $crawler = $crawler->filter('.calendar-table table');
 
         $results = [];
 
@@ -47,6 +51,8 @@ class Scraper
             }
         }
 
+        $this->visited[] = $url;
+
         return $results;
     }
 
@@ -56,14 +62,7 @@ class Scraper
         $monthStr = trim($crawler->filter('.month')->text());
         $nextUrl = $this->extractNextUrl($crawler);
         $crawler = $crawler->filter('tr td');
-
         $results = [];
-
-        if (in_array($nextUrl, $this->visited)) {
-            return $results;
-        }
-
-        $this->visited[] = $nextUrl;
 
         /** @var DOMElement $node */
         foreach ($crawler as $node) {
