@@ -181,13 +181,13 @@ class ConfigParserTest extends TestCase
     public function testParseRuleBefore(): void
     {
         $config = $this->configParser->parse($this->getBasicConfig() + [
-                'rules' => [
-                    [
-                        'type' => 'before',
-                        'param' => 'PT24H',
-                    ],
+            'rules' => [
+                [
+                    'type' => 'before',
+                    'param' => 'PT24H',
                 ],
-            ]);
+            ],
+        ]);
 
         self::assertNotEmpty($config->getRules());
         self::assertEquals(new BeforeRule('PT24H'), $config->getRules()[0]);
