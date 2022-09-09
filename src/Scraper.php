@@ -46,6 +46,8 @@ class Scraper
 
         $contentHash = sha1($crawler->html());
         if (array_key_exists($contentHash, $this->visited)) {
+            $this->logger->debug(sprintf('Already visited, skipping url:%s', $url));
+
             return [];
         }
 
