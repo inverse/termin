@@ -164,6 +164,28 @@ class ConfigParserTest extends TestCase
         self::assertEquals($config->getPushbullet()->getApiToken(), 'token');
     }
 
+    public function testParseRulesNotArray(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessage('rules must be an array');
+        $this->configParser->parse($this->getBasicConfig() + [
+                'rules' => 'foo'
+            ]);
+
+    }
+
+    public function testParseRulesRuleNotArray(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessage('rule must be an array');
+        $this->configParser->parse($this->getBasicConfig() + [
+                'rules' => [
+                    'random'
+                ]
+            ]);
+
+    }
+
     public function testParseRuleAfter(): void
     {
         $config = $this->configParser->parse($this->getBasicConfig() + [
