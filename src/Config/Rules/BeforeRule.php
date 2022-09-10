@@ -21,6 +21,6 @@ class BeforeRule implements RuleInterface
 
     public function passes(Result $result): bool
     {
-        return $result->getDate() < (new DateTime())->add($this->before);
+        return $result->getDateTime() < (new DateTime())->add($this->before);
     }
 }

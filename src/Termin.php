@@ -48,10 +48,10 @@ class Termin
 
             foreach ($results as $result) {
                 $this->logger->info(
-                    sprintf('Found availability for %s @ %s', $site->getLabel(), $result->getDate()->format('c'))
+                    sprintf('Found availability for %s @ %s', $site->getLabel(), $result->getDateTime()->format('c'))
                 );
 
-                $this->notifier->notify($site->getLabel(), $site->getUrl(), $result->getDate());
+                $this->notifier->notify($site->getLabel(), $site->getUrl(), $result->getDateTime());
             }
         }
     }
