@@ -5,23 +5,24 @@ declare(strict_types=1);
 namespace Inverse\Termin;
 
 use DateTime;
+use DateTimeInterface;
 
 class Result
 {
-    private DateTime $date;
+    private DateTime $dateTime;
 
     public function __construct(DateTime $dateTime)
     {
-        $this->date = $dateTime;
+        $this->dateTime = $dateTime;
     }
 
-    public function getDate(): DateTime
+    public function getDateTime(): DateTime
     {
-        return $this->date;
+        return $this->dateTime;
     }
 
-    public static function createFound(DateTime $dateTime): self
+    public function __toString()
     {
-        return new self($dateTime);
+        return $this->dateTime->format(DateTimeInterface::ATOM);
     }
 }

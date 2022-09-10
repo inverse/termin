@@ -42,14 +42,15 @@ class Termin
                 continue;
             }
 
+            $results = array_unique($results);
             $results = $this->filter->applyRules($results);
 
             foreach ($results as $result) {
                 $this->logger->info(
-                    sprintf('Found availability for %s @ %s', $site->getLabel(), $result->getDate()->format('c'))
+                    sprintf('Found availability for %s @ %s', $site->getLabel(), $result->getDateTime()->format('c'))
                 );
 
-                $this->notifier->notify($site->getLabel(), $site->getUrl(), $result->getDate());
+                $this->notifier->notify($site->getLabel(), $site->getUrl(), $result->getDateTime());
             }
         }
     }

@@ -34,13 +34,14 @@ class Scraper
      */
     public function scrapeSite(string $url): array
     {
-        if (in_array($url, $this->visited)) {
+        $crawler = $this->client->request('GET', $url);
+
+        $contentHash = sha1($crawler->html());
+        if (array_key_exists($contentHash, $this->visited)) {
             return [];
         }
 
-        $this->visited[] = $url;
-
-        $crawler = $this->client->request('GET', $url);
+        $this->visited[$contentHash] = $url;
         $crawler = $crawler->filter('.calendar-table table');
 
         $results = [];
