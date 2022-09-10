@@ -28,18 +28,22 @@ class Container extends Pimple
             return $notifierFactory->create($config);
         };
 
-        $this[LoggerInterface::class] = function () {
+        $this[LoggerInterface::class] = function () use ($config) {
             $logger = new Logger('termin');
-            $logger->pushHandler(new StreamHandler(self::ROOT_DIR.'var/log/app.log', Logger::INFO));
-            $logger->pushHandler(new StreamHandler('php://stdout', Logger::INFO));
+            $logger->pushHandler(new StreamHandler(self::ROOT_DIR.'var/log/app.log', $config->getLogLevel()));
+            $logger->pushHandler(new StreamHandler('php://stdout', $config->getLogLevel()));
 
             return $logger;
         };
 
-        $this[Scraper::class] = function () use ($config) {
+        $this[Scraper::class] = function (self $container) use ($config) {
             $httpClientFactory = new HttpClientFactory();
 
-            return new Scraper($httpClientFactory->create(), $config->isAllowMultipleNotifications());
+            return new Scraper(
+                $httpClientFactory->create(),
+                $container[LoggerInterface::class],
+                $config->isAllowMultipleNotifications()
+            );
         };
 
         $this[Filter::class] = fn () => new Filter($config->getRules());

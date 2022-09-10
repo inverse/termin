@@ -18,6 +18,8 @@ class Config
      */
     private array $rules;
 
+    private int $logLevel;
+
     private bool $allowMultipleNotifications;
 
     private ?Telegram $telegram;
@@ -33,12 +35,14 @@ class Config
     public function __construct(
         array $sites,
         array $rules,
+        int $logLevel,
         bool $allowMultipleNotifications,
         ?Pushbullet $pushbullet,
         ?Telegram $telegram
     ) {
         $this->sites = $sites;
         $this->rules = $rules;
+        $this->logLevel = $logLevel;
         $this->allowMultipleNotifications = $allowMultipleNotifications;
         $this->pushbullet = $pushbullet;
         $this->telegram = $telegram;
@@ -55,6 +59,11 @@ class Config
     public function getRules(): array
     {
         return $this->rules;
+    }
+
+    public function getLogLevel(): int
+    {
+        return $this->logLevel;
     }
 
     public function isAllowMultipleNotifications(): bool

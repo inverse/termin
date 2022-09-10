@@ -19,6 +19,10 @@ telegram:
   api_key: ~
   chat_id: ~
 
+# Logger configuration
+logger:
+  level: info
+
 # Configure rules
 rules:
   -

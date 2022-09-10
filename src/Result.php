@@ -16,13 +16,13 @@ class Result
         $this->dateTime = $dateTime;
     }
 
-    public function getDateTime(): DateTime
-    {
-        return $this->dateTime;
-    }
-
     public function __toString()
     {
         return $this->dateTime->format(DateTimeInterface::ATOM);
+    }
+
+    public function getDateTime(): DateTime
+    {
+        return $this->dateTime;
     }
 }

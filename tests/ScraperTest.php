@@ -9,6 +9,7 @@ use Exception;
 use Inverse\Termin\HttpClient\HttpClientFactoryInterface;
 use Inverse\Termin\Scraper;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -24,7 +25,7 @@ class ScraperTest extends TestCase
             ]
         );
 
-        $scraper = new Scraper($mockHttpClientFactory->create());
+        $scraper = new Scraper($mockHttpClientFactory->create(), new NullLogger());
 
         self::assertEmpty($scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/'));
     }
@@ -38,7 +39,7 @@ class ScraperTest extends TestCase
             ]
         );
 
-        $scraper = new Scraper($mockHttpClientFactory->create());
+        $scraper = new Scraper($mockHttpClientFactory->create(), new NullLogger());
 
         $results = $scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/');
         self::assertNotEmpty($results);
@@ -54,7 +55,7 @@ class ScraperTest extends TestCase
             ]
         );
 
-        $scraper = new Scraper($mockHttpClientFactory->create());
+        $scraper = new Scraper($mockHttpClientFactory->create(), new NullLogger());
 
         $results = $scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/');
         self::assertNotEmpty($results);
@@ -70,7 +71,7 @@ class ScraperTest extends TestCase
             ]
         );
 
-        $scraper = new Scraper($mockHttpClientFactory->create());
+        $scraper = new Scraper($mockHttpClientFactory->create(), new NullLogger());
 
         $results = $scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/');
         self::assertCount(1, $results);
@@ -85,7 +86,7 @@ class ScraperTest extends TestCase
             ]
         );
 
-        $scraper = new Scraper($mockHttpClientFactory->create(), true);
+        $scraper = new Scraper($mockHttpClientFactory->create(), new NullLogger(), true);
 
         $results = $scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/');
         self::assertCount(4, $results);
