@@ -8,6 +8,7 @@ use InvalidArgumentException;
 use Inverse\Termin\Config\ConfigParser;
 use Inverse\Termin\Config\Rules\AfterRule;
 use Inverse\Termin\Config\Rules\BeforeRule;
+use Monolog\Logger;
 use PHPUnit\Framework\TestCase;
 
 class ConfigParserTest extends TestCase
@@ -203,6 +204,32 @@ class ConfigParserTest extends TestCase
                     'type' => 'foo',
                     'param' => 'PT24H',
                 ],
+            ],
+        ]);
+    }
+
+    public function testParseLogLevelDefault(): void
+    {
+        $config = $this->configParser->parse($this->getBasicConfig());
+        self::assertEquals(Logger::INFO, $config->getLogLevel());
+    }
+
+    public function testParseLogLevelOverride(): void
+    {
+        $config = $this->configParser->parse($this->getBasicConfig() + [
+            'logger' => [
+                'level' => 'debug',
+            ],
+        ]);
+        self::assertEquals(Logger::DEBUG, $config->getLogLevel());
+    }
+
+    public function testParseLogLevelInvalid(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        $this->configParser->parse($this->getBasicConfig() + [
+            'logger' => [
+                'level' => 'foobar',
             ],
         ]);
     }
