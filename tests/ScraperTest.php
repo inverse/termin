@@ -50,6 +50,7 @@ class ScraperTest extends TestCase
         $mockHttpClientFactory = new MockHttpClientFactory(
             [
                 new MockResponse($this->loadFixture('mock_response_one_termin.html')),
+                new MockResponse($this->loadFixture('mock_response_next_no_termin.html')),
             ]
         );
 
@@ -65,6 +66,7 @@ class ScraperTest extends TestCase
         $mockHttpClientFactory = new MockHttpClientFactory(
             [
                 new MockResponse($this->loadFixture('mock_response_multi_termin.html')),
+                new MockResponse($this->loadFixture('mock_response_next_no_termin.html')),
             ]
         );
 

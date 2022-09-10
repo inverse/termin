@@ -43,7 +43,6 @@ class Termin
             }
 
             $results = array_unique($results);
-
             $results = $this->filter->applyRules($results);
 
             foreach ($results as $result) {

@@ -37,13 +37,11 @@ class Scraper
         $crawler = $this->client->request('GET', $url);
 
         $contentHash = sha1($crawler->html());
-
         if (array_key_exists($contentHash, $this->visited)) {
             return [];
         }
 
         $this->visited[$contentHash] = $url;
-        $crawler = $this->client->request('GET', $url);
         $crawler = $crawler->filter('.calendar-table table');
 
         $results = [];
