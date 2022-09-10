@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Inverse\Termin;
 
 use DateTime;
+use Inverse\Termin\Config\Config;
 use Inverse\Termin\Config\Site;
 use Inverse\Termin\Filter;
 use Inverse\Termin\Notifier\MultiNotifier;
@@ -25,6 +26,11 @@ class TerminTest extends TestCase
             ->willReturn([new Result(new DateTime('2020-01-01 00:00:00'))])
         ;
 
+        $mockConfig = $this->createMock(Config::class);
+        $mockConfig->method('isAllowMultipleNotifications')
+            ->willReturn(true)
+        ;
+
         $testLogger = new TestLogger();
         $testNotifier = new TestNotifier();
         $multiNotifier = new MultiNotifier();
@@ -32,7 +38,7 @@ class TerminTest extends TestCase
 
         $filter = new Filter([]);
 
-        $termin = new Termin($mockScraper, $testLogger, $multiNotifier, $filter);
+        $termin = new Termin($mockScraper, $testLogger, $multiNotifier, $filter, $mockConfig);
 
         $termin->run([new Site('hello', 'https://hello.com')]);
 
@@ -48,6 +54,11 @@ class TerminTest extends TestCase
             ->willReturn([])
         ;
 
+        $mockConfig = $this->createMock(Config::class);
+        $mockConfig->method('isAllowMultipleNotifications')
+            ->willReturn(true)
+        ;
+
         $testNotifier = new TestNotifier();
         $testLogger = new TestLogger();
         $multiNotifier = new MultiNotifier();
@@ -55,7 +66,7 @@ class TerminTest extends TestCase
 
         $filter = new Filter([]);
 
-        $termin = new Termin($mockScraper, $testLogger, $multiNotifier, $filter);
+        $termin = new Termin($mockScraper, $testLogger, $multiNotifier, $filter, $mockConfig);
 
         $termin->run([new Site('hello', 'https://hello.com')]);
 

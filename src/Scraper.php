@@ -17,19 +17,15 @@ class Scraper
 
     private Client $client;
 
-    private bool $collectMultiple;
-
     private LoggerInterface $logger;
 
     private array $visited;
 
     public function __construct(
         HttpClientInterface $httpClient,
-        LoggerInterface $logger,
-        bool $collectMultiple = false
+        LoggerInterface $logger
     ) {
         $this->client = new Client($httpClient);
-        $this->collectMultiple = $collectMultiple;
         $this->logger = $logger;
         $this->visited = [];
     }
@@ -57,10 +53,6 @@ class Scraper
 
         foreach ($crawler as $element) {
             $results = array_merge($results, $this->processMonth($element, $url));
-
-            if (!empty($results) && !$this->collectMultiple) {
-                break;
-            }
         }
 
         return $results;
@@ -84,10 +76,6 @@ class Scraper
 
                 if (isset($dateTime)) {
                     $results[] = new Result($dateTime);
-
-                    if (!$this->collectMultiple) {
-                        break;
-                    }
                 }
             }
         }

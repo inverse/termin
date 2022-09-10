@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Inverse\Termin;
 
+use Inverse\Termin\Config\Config;
 use Inverse\Termin\Config\Site;
 use Inverse\Termin\Notifier\MultiNotifier;
 use Psr\Log\LoggerInterface;
@@ -18,12 +19,20 @@ class Termin
 
     private Filter $filter;
 
-    public function __construct(Scraper $scraper, LoggerInterface $logger, MultiNotifier $notifier, Filter $filter)
-    {
+    private Config $config;
+
+    public function __construct(
+        Scraper $scraper,
+        LoggerInterface $logger,
+        MultiNotifier $notifier,
+        Filter $filter,
+        Config $config
+    ) {
         $this->scraper = $scraper;
         $this->logger = $logger;
         $this->notifier = $notifier;
         $this->filter = $filter;
+        $this->config = $config;
     }
 
     /**
@@ -51,6 +60,10 @@ class Termin
                 );
 
                 $this->notifier->notify($site->getLabel(), $site->getUrl(), $result->getDateTime());
+
+                if (!$this->config->isAllowMultipleNotifications()) {
+                    break;
+                }
             }
         }
     }

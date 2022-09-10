@@ -36,24 +36,24 @@ class Container extends Pimple
             return $logger;
         };
 
-        $this[Scraper::class] = function (self $container) use ($config) {
+        $this[Scraper::class] = function (self $container) {
             $httpClientFactory = new HttpClientFactory();
 
             return new Scraper(
                 $httpClientFactory->create(),
-                $container[LoggerInterface::class],
-                $config->isAllowMultipleNotifications()
+                $container[LoggerInterface::class]
             );
         };
 
         $this[Filter::class] = fn () => new Filter($config->getRules());
 
-        $this[Termin::class] = function (self $container) {
+        $this[Termin::class] = function (self $container) use ($config) {
             return new Termin(
                 $container[Scraper::class],
                 $container[LoggerInterface::class],
                 $container[NotifierInterface::class],
-                $container[Filter::class]
+                $container[Filter::class],
+                $config
             );
         };
     }
