@@ -62,7 +62,7 @@ class ScraperTest extends TestCase
         self::assertEquals('2020-09-15T00:00:00+02:00', $results[0]->getDateTime()->format(DateTimeInterface::ATOM));
     }
 
-    public function testScrapeSiteMultiAppointmentOff(): void
+    public function testScrapeSiteMultiAppointment(): void
     {
         $mockHttpClientFactory = new MockHttpClientFactory(
             [
@@ -72,21 +72,6 @@ class ScraperTest extends TestCase
         );
 
         $scraper = new Scraper($mockHttpClientFactory->create(), new NullLogger());
-
-        $results = $scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/');
-        self::assertCount(1, $results);
-    }
-
-    public function testScrapeSiteMultiAppointmentOn(): void
-    {
-        $mockHttpClientFactory = new MockHttpClientFactory(
-            [
-                new MockResponse($this->loadFixture('mock_response_multi_termin.html')),
-                new MockResponse($this->loadFixture('mock_response_next_no_termin.html')),
-            ]
-        );
-
-        $scraper = new Scraper($mockHttpClientFactory->create(), new NullLogger(), true);
 
         $results = $scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/');
         self::assertCount(4, $results);
