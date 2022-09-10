@@ -23,7 +23,7 @@ class Scraper
 
     public function __construct(
         HttpClientInterface $httpClient,
-        LoggerInterface $logger,
+        LoggerInterface $logger
     ) {
         $this->client = new Client($httpClient);
         $this->logger = $logger;

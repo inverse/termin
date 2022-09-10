@@ -61,7 +61,7 @@ class Termin
 
                 $this->notifier->notify($site->getLabel(), $site->getUrl(), $result->getDateTime());
 
-                if (count($results) > 1 && !$this->config->isAllowMultipleNotifications()) {
+                if (!$this->config->isAllowMultipleNotifications()) {
                     break;
                 }
             }
