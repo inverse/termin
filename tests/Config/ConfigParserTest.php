@@ -169,9 +169,8 @@ class ConfigParserTest extends TestCase
         self::expectException(InvalidArgumentException::class);
         self::expectExceptionMessage('rules must be an array');
         $this->configParser->parse($this->getBasicConfig() + [
-                'rules' => 'foo'
-            ]);
-
+            'rules' => 'foo',
+        ]);
     }
 
     public function testParseRulesRuleNotArray(): void
@@ -179,11 +178,10 @@ class ConfigParserTest extends TestCase
         self::expectException(InvalidArgumentException::class);
         self::expectExceptionMessage('rule must be an array');
         $this->configParser->parse($this->getBasicConfig() + [
-                'rules' => [
-                    'random'
-                ]
-            ]);
-
+            'rules' => [
+                'random',
+            ],
+        ]);
     }
 
     public function testParseRuleAfter(): void
