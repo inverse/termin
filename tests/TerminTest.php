@@ -46,6 +46,38 @@ class TerminTest extends TestCase
         self::assertTrue($testLogger->hasInfoThatContains('Found availability for hello @ 2020-01-01T00:00:00+00:00'));
     }
 
+    public function testMatchMultipleFound(): void
+    {
+        $mockScraper = $this->createMock(Scraper::class);
+
+        $mockScraper->method('scrapeSite')
+            ->willReturn([
+                new Result(new DateTime('2020-01-01 00:00:00')),
+                new Result(new DateTime('2020-01-02 00:00:00')),
+            ])
+        ;
+
+        $mockConfig = $this->createMock(Config::class);
+        $mockConfig->method('isAllowMultipleNotifications')
+            ->willReturn(false)
+        ;
+
+        $testLogger = new TestLogger();
+        $testNotifier = new TestNotifier();
+        $multiNotifier = new MultiNotifier();
+        $multiNotifier->addNotifier($testNotifier);
+
+        $filter = new Filter([]);
+
+        $termin = new Termin($mockScraper, $testLogger, $multiNotifier, $filter, $mockConfig);
+
+        $termin->run([new Site('hello', 'https://hello.com')]);
+
+        self::assertNotEmpty($testNotifier->getNotifications());
+        self::assertTrue($testLogger->hasInfoThatContains('Found availability for hello @ 2020-01-01T00:00:00+00:00'));
+        self::assertTrue($testLogger->hasDebugThatContains('2 results found, skipping due to allow_multiple_notifications being false'));
+    }
+
     public function testMatchNotFound(): void
     {
         $mockScraper = $this->createMock(Scraper::class);

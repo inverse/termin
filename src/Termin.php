@@ -61,7 +61,11 @@ class Termin
 
                 $this->notifier->notify($site->getLabel(), $site->getUrl(), $result->getDateTime());
 
-                if (!$this->config->isAllowMultipleNotifications()) {
+                if (count($results) > 1 && !$this->config->isAllowMultipleNotifications()) {
+                    $this->logger->debug(
+                        sprintf('%s results found, skipping due to allow_multiple_notifications being false', count($results))
+                    );
+
                     break;
                 }
             }
