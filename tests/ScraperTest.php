@@ -95,7 +95,7 @@ class MockHttpClientFactory implements HttpClientFactoryInterface
     /**
      * @var MockResponse[]
      */
-    private $responses;
+    private array $responses;
 
     public function __construct(array $responses)
     {
