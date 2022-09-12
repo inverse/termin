@@ -19,15 +19,12 @@ class Scraper
 
     private LoggerInterface $logger;
 
-    private array $visited;
-
     public function __construct(
         HttpClientInterface $httpClient,
         LoggerInterface $logger
     ) {
         $this->client = new Client($httpClient);
         $this->logger = $logger;
-        $this->visited = [];
     }
 
     /**
@@ -39,14 +36,6 @@ class Scraper
 
         $crawler = $this->client->request('GET', $url);
 
-        $contentHash = sha1($crawler->html());
-        if (array_key_exists($contentHash, $this->visited)) {
-            $this->logger->debug(sprintf('Already visited, skipping url:%s', $url));
-
-            return [];
-        }
-
-        $this->visited[$contentHash] = $url;
         $crawler = $crawler->filter('.calendar-table table');
 
         $results = [];
@@ -89,7 +78,7 @@ class Scraper
 
     private function extractNextUrl(Crawler $crawler): ?string
     {
-        $anchor = $crawler->filter('th a')->getNode(0);
+        $anchor = $crawler->filter('th.next a')->getNode(0);
 
         if (!$anchor) {
             return null;
