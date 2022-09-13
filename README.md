@@ -104,6 +104,8 @@ rules:
     param: PT24H # Notify when the appointment is greater than 24h in the future
 ```
 
+Uses the PHP [DateInterval][5] construct.
+
 #### before
 
 Only notify when found appointments happen before condition.
@@ -116,6 +118,28 @@ rules:
 ```
 
 Uses the PHP [DateInterval][5] construct.
+
+#### after
+
+Only notify when found appointments happen after date condition.
+
+```yaml
+rules:
+  -
+    type: after_date
+    param: '2022-01-01 00:00:00'
+```
+
+#### before_date
+
+Only notify when found appointments happen before date condition.
+
+```yaml
+rules:
+  -
+    type: before_date
+    param: '2022-01-01 00:00:00' 
+```
 
 ## Run
 
