@@ -6,7 +6,9 @@ namespace Tests\Inverse\Termin\Config;
 
 use InvalidArgumentException;
 use Inverse\Termin\Config\ConfigParser;
+use Inverse\Termin\Config\Rules\AfterDateRule;
 use Inverse\Termin\Config\Rules\AfterRule;
+use Inverse\Termin\Config\Rules\BeforeDateRule;
 use Inverse\Termin\Config\Rules\BeforeRule;
 use Monolog\Logger;
 use PHPUnit\Framework\TestCase;
@@ -212,6 +214,36 @@ class ConfigParserTest extends TestCase
 
         self::assertNotEmpty($config->getRules());
         self::assertEquals(new BeforeRule('PT24H'), $config->getRules()[0]);
+    }
+
+    public function testParseRuleAfterDate(): void
+    {
+        $config = $this->configParser->parse($this->getBasicConfig() + [
+            'rules' => [
+                [
+                    'type' => 'after_date',
+                    'param' => '2022-01-01 00:00:00',
+                ],
+            ],
+        ]);
+
+        self::assertNotEmpty($config->getRules());
+        self::assertEquals(new AfterDateRule('2022-01-01 00:00:00'), $config->getRules()[0]);
+    }
+
+    public function testParseRuleBeforeDate(): void
+    {
+        $config = $this->configParser->parse($this->getBasicConfig() + [
+            'rules' => [
+                [
+                    'type' => 'before_date',
+                    'param' => '2022-01-01 00:00:00',
+                ],
+            ],
+        ]);
+
+        self::assertNotEmpty($config->getRules());
+        self::assertEquals(new BeforeDateRule('2022-01-01 00:00:00'), $config->getRules()[0]);
     }
 
     public function testParseRulesInvalidRuleType(): void
