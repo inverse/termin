@@ -119,7 +119,7 @@ rules:
 
 Uses the PHP [DateInterval][5] construct.
 
-#### after
+#### after_date
 
 Only notify when found appointments happen after date condition.
 
