@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Inverse\Termin\Config;
 
 use InvalidArgumentException;
+use Inverse\Termin\Config\Rules\AfterDateRule;
 use Inverse\Termin\Config\Rules\AfterRule;
+use Inverse\Termin\Config\Rules\BeforeDateRule;
 use Inverse\Termin\Config\Rules\BeforeRule;
 use Monolog\Logger;
 
@@ -78,13 +80,23 @@ class ConfigParser
             $type = $rule['type'];
 
             switch ($type) {
+                case 'before':
+                    $rules[] = new BeforeRule($rule['param']);
+
+                    break;
+
                 case 'after':
                     $rules[] = new AfterRule($rule['param']);
 
                     break;
 
-                case 'before':
-                    $rules[] = new BeforeRule($rule['param']);
+                case 'before_date':
+                    $rules[] = new BeforeDateRule($rule['param']);
+
+                    break;
+
+                case 'after_date':
+                    $rules[] = new AfterDateRule($rule['param']);
 
                     break;
 
