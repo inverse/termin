@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tests\Inverse\Termin\Notifier;
 
 use Inverse\Termin\Config\Config;
-use Inverse\Termin\Config\Pushbullet;
-use Inverse\Termin\Config\Telegram;
+use Inverse\Termin\Config\Notifier\Pushbullet;
+use Inverse\Termin\Config\Notifier\Telegram;
 use Inverse\Termin\Notifier\MultiNotifier;
 use Inverse\Termin\Notifier\NotifierFactory;
 use Monolog\Logger;
