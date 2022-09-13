@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Inverse\Termin\Config;
+namespace Inverse\Termin\Config\Notifier;
 
 class Pushbullet
 {

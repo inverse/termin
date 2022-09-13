@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Inverse\Termin\Config;
 
+use Inverse\Termin\Config\Notifier\Pushbullet;
+use Inverse\Termin\Config\Notifier\Telegram;
 use Inverse\Termin\Config\Rules\RuleInterface;
 
 class Config

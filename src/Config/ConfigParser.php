@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Inverse\Termin\Config;
 
 use InvalidArgumentException;
+use Inverse\Termin\Config\Notifier\Pushbullet;
+use Inverse\Termin\Config\Notifier\Telegram;
 use Inverse\Termin\Config\Rules\AfterDateRule;
 use Inverse\Termin\Config\Rules\AfterRule;
 use Inverse\Termin\Config\Rules\BeforeDateRule;
