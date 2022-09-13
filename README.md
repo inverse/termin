@@ -90,8 +90,7 @@ sites:
 
 ### Rules
 
-Recently introduced is a rule engine that can be used for only notifying when certain conditions are met. Uses
-the PHP [DateInterval][5] construct for expressing date differences.
+Termin also has a simple rule engine that can be used for only notifying when certain conditions are met. Below listed are the currenly supported rules that can be used to control the triggering of notifications.
 
 #### after
 
