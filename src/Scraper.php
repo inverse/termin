@@ -39,12 +39,11 @@ class Scraper
         $crawler = $crawler->filter('.calendar-table table');
 
         $results = [];
-
         foreach ($crawler as $element) {
-            $results = array_merge($results, $this->processMonth($element, $url));
+            $results[] = $this->processMonth($element, $url);
         }
 
-        return $results;
+        return array_merge([], ...$results);
     }
 
     private function processMonth(DOMNode $element, string $url): array
@@ -60,7 +59,7 @@ class Scraper
             $class = $node->getAttribute('class');
             $classes = explode(' ', $class);
 
-            if (in_array(self::CLASS_AVAILABLE, $classes)) {
+            if (in_array(self::CLASS_AVAILABLE, $classes, true)) {
                 $dateTime = DateHelper::createDateTime($node->textContent, DateHelper::monthConvert($monthStr));
 
                 if (isset($dateTime)) {

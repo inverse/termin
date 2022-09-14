@@ -22,13 +22,9 @@ class Container extends Pimple
     {
         parent::__construct();
 
-        $this[NotifierInterface::class] = function () use ($config) {
-            $notifierFactory = new NotifierFactory(new MultiNotifier());
+        $this[NotifierInterface::class] = static fn () => (new NotifierFactory(new MultiNotifier()))->create($config);
 
-            return $notifierFactory->create($config);
-        };
-
-        $this[LoggerInterface::class] = function () use ($config) {
+        $this[LoggerInterface::class] = static function () use ($config) {
             $logger = new Logger('termin');
             $logger->pushHandler(new StreamHandler(self::ROOT_DIR.'var/log/app.log', $config->getLogLevel()));
             $logger->pushHandler(new StreamHandler('php://stdout', $config->getLogLevel()));
@@ -36,7 +32,7 @@ class Container extends Pimple
             return $logger;
         };
 
-        $this[Scraper::class] = function (self $container) {
+        $this[Scraper::class] = static function (self $container) {
             $httpClientFactory = new HttpClientFactory();
 
             return new Scraper(
@@ -45,9 +41,9 @@ class Container extends Pimple
             );
         };
 
-        $this[Filter::class] = fn () => new Filter($config->getRules());
+        $this[Filter::class] = static fn () => new Filter($config->getRules());
 
-        $this[Termin::class] = function (self $container) use ($config) {
+        $this[Termin::class] = static function (self $container) use ($config) {
             return new Termin(
                 $container[Scraper::class],
                 $container[LoggerInterface::class],
