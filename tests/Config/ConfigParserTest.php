@@ -121,6 +121,18 @@ class ConfigParserTest extends TestCase
         self::assertNull($config->getTelegram());
     }
 
+    public function testParseTelegramNull(): void
+    {
+        $config = $this->configParser->parse($this->getBasicConfig() + [
+            'telegram' => [
+                'api_key' => null,
+                'chat_id' => null,
+            ],
+        ]);
+
+        self::assertNull($config->getTelegram());
+    }
+
     public function testParseTelegramValid(): void
     {
         $config = $this->configParser->parse($this->getBasicConfig() + [

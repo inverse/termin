@@ -125,7 +125,7 @@ class ConfigParser
             throw new InvalidArgumentException('config.telegram missing chat_id field');
         }
 
-        if (empty($telegramConfig['api_key'] || empty($telegramConfig['chat_id']))) {
+        if (empty($telegramConfig['api_key']) || empty($telegramConfig['chat_id'])) {
             return null;
         }
 
