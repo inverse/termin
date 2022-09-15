@@ -8,7 +8,7 @@
         "ext-dom": "*",
         "fabpot/goutte": "^4.0.0",
         "ivkos/pushbullet": "^3.3",
-        "monolog/monolog": "^3.2",
+        "monolog/monolog": "^2 | ^3",
         "pimple/pimple": "^3.2",
         "psr/log": "^3",
         "symfony/yaml": "^6",
