@@ -10,7 +10,7 @@ use Inverse\Termin\Config\Rules\AfterDateRule;
 use Inverse\Termin\Config\Rules\AfterRule;
 use Inverse\Termin\Config\Rules\BeforeDateRule;
 use Inverse\Termin\Config\Rules\BeforeRule;
-use Monolog\Logger;
+use Monolog\Level;
 use PHPUnit\Framework\TestCase;
 
 class ConfigParserTest extends TestCase
@@ -275,7 +275,7 @@ class ConfigParserTest extends TestCase
     public function testParseLogLevelDefault(): void
     {
         $config = $this->configParser->parse($this->getBasicConfig());
-        self::assertEquals(Logger::INFO, $config->getLogLevel());
+        self::assertEquals(Level::Info, $config->getLogLevel());
     }
 
     public function testParseLogLevelOverride(): void
@@ -285,7 +285,7 @@ class ConfigParserTest extends TestCase
                 'level' => 'debug',
             ],
         ]);
-        self::assertEquals(Logger::DEBUG, $config->getLogLevel());
+        self::assertEquals(Level::Debug, $config->getLogLevel());
     }
 
     public function testParseLogLevelInvalid(): void

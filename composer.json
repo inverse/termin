@@ -8,10 +8,10 @@
         "ext-dom": "*",
         "fabpot/goutte": "^4.0.0",
         "ivkos/pushbullet": "^3.3",
-        "monolog/monolog": "^2.1.1",
+        "monolog/monolog": "^3.2",
         "pimple/pimple": "^3.2",
-        "psr/log": "^1.1.4",
-        "symfony/yaml": "^5.3",
+        "psr/log": "^3",
+        "symfony/yaml": "^6",
         "telegram-bot/api": "^2.3"
     },
     "autoload": {
@@ -20,6 +20,7 @@
         }
     },
     "require-dev": {
+        "colinodell/psr-testlogger": "^1.1",
         "phpunit/phpunit": "^9.3.8"
     },
     "autoload-dev": {

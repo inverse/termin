@@ -9,14 +9,14 @@ use Inverse\Termin\Config\Notifier\Pushbullet;
 use Inverse\Termin\Config\Notifier\Telegram;
 use Inverse\Termin\Notifier\MultiNotifier;
 use Inverse\Termin\Notifier\NotifierFactory;
-use Monolog\Logger;
+use Monolog\Level;
 use PHPUnit\Framework\TestCase;
 
 class NotifierFactoryTest extends TestCase
 {
     public function testEmpty(): void
     {
-        $config = new Config([], [], Logger::INFO, true, null, null);
+        $config = new Config([], [], Level::Info, true, null, null);
         $mockMultiNotifier = self::createMock(MultiNotifier::class);
         $mockMultiNotifier->expects($this->never())->method('addNotifier');
         $notifierFactory = new NotifierFactory($mockMultiNotifier);
@@ -26,7 +26,7 @@ class NotifierFactoryTest extends TestCase
 
     public function testPushbullet(): void
     {
-        $config = new Config([], [], Logger::INFO, true, new Pushbullet('api'), null);
+        $config = new Config([], [], Level::Info, true, new Pushbullet('api'), null);
 
         $mockMultiNotifier = self::createMock(MultiNotifier::class);
         $mockMultiNotifier->expects($this->once())->method('addNotifier');
@@ -37,7 +37,7 @@ class NotifierFactoryTest extends TestCase
 
     public function testTelegram(): void
     {
-        $config = new Config([], [], Logger::INFO, true, null, new Telegram('api', '0'));
+        $config = new Config([], [], Level::Info, true, null, new Telegram('api', '0'));
 
         $mockMultiNotifier = self::createMock(MultiNotifier::class);
         $mockMultiNotifier->expects($this->once())->method('addNotifier');
@@ -48,7 +48,7 @@ class NotifierFactoryTest extends TestCase
 
     public function testBoth(): void
     {
-        $config = new Config([], [], Logger::INFO, true, new Pushbullet('yolo'), new Telegram('api', '0'));
+        $config = new Config([], [], Level::Info, true, new Pushbullet('yolo'), new Telegram('api', '0'));
 
         $mockMultiNotifier = self::createMock(MultiNotifier::class);
         $mockMultiNotifier->expects($this->exactly(2))->method('addNotifier');
