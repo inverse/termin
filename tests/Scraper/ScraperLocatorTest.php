@@ -11,11 +11,19 @@ use PHPUnit\Framework\TestCase;
 
 class ScraperLocatorTest extends TestCase
 {
+    public function testLocateEmpty(): void
+    {
+        $this->expectException(TerminException::class);
+        $this->expectExceptionMessage('Unable to locate scraper for https://example.com');
+        $scraperLocator = new ScraperLocator([]);
+        $scraperLocator->locate('https://example.com');
+    }
+
     public function testLocateNoMatch(): void
     {
-        self::expectException(TerminException::class);
-        self::expectExceptionMessage('Unable to locate scraper for https://example.com');
-        $scraperLocator = new ScraperLocator([]);
+        $this->expectException(TerminException::class);
+        $this->expectExceptionMessage('Unable to locate scraper for https://example.com');
+        $scraperLocator = new ScraperLocator([new MockScraper(['https://foobar.com'])]);
         $scraperLocator->locate('https://example.com');
     }
 
@@ -37,7 +45,7 @@ class MockScraper implements ScraperInterface
 
     public function scrapeSite(string $url): array
     {
-        // Do nothing
+        return [];
     }
 
     public function supportsDomains(): array
