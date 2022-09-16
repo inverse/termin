@@ -10,7 +10,8 @@ use Inverse\Termin\Config\Site;
 use Inverse\Termin\Filter;
 use Inverse\Termin\Notifier\MultiNotifier;
 use Inverse\Termin\Result;
-use Inverse\Termin\Scraper;
+use Inverse\Termin\Scraper\BerlinServiceScraper;
+use Inverse\Termin\Scraper\ScraperLocator;
 use Inverse\Termin\Termin;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\Test\TestLogger;
@@ -20,10 +21,14 @@ class TerminTest extends TestCase
 {
     public function testMatchFound(): void
     {
-        $mockScraper = $this->createMock(Scraper::class);
+        $mockScraper = $this->createMock(BerlinServiceScraper::class);
 
         $mockScraper->method('scrapeSite')
             ->willReturn([new Result(new DateTime('2020-01-01 00:00:00'))])
+        ;
+
+        $mockScraper->method('supportsDomains')
+            ->willReturn(['https://hello.com'])
         ;
 
         $mockConfig = $this->createMock(Config::class);
@@ -38,7 +43,7 @@ class TerminTest extends TestCase
 
         $filter = new Filter([]);
 
-        $termin = new Termin($mockScraper, $testLogger, $multiNotifier, $filter, $mockConfig);
+        $termin = new Termin(new ScraperLocator([$mockScraper]), $testLogger, $multiNotifier, $filter, $mockConfig);
 
         $termin->run([new Site('hello', 'https://hello.com')]);
 
@@ -48,13 +53,17 @@ class TerminTest extends TestCase
 
     public function testMatchMultipleFound(): void
     {
-        $mockScraper = $this->createMock(Scraper::class);
+        $mockScraper = $this->createMock(BerlinServiceScraper::class);
 
         $mockScraper->method('scrapeSite')
             ->willReturn([
                 new Result(new DateTime('2020-01-01 00:00:00')),
                 new Result(new DateTime('2020-01-02 00:00:00')),
             ])
+        ;
+
+        $mockScraper->method('supportsDomains')
+            ->willReturn(['https://hello.com'])
         ;
 
         $mockConfig = $this->createMock(Config::class);
@@ -69,7 +78,7 @@ class TerminTest extends TestCase
 
         $filter = new Filter([]);
 
-        $termin = new Termin($mockScraper, $testLogger, $multiNotifier, $filter, $mockConfig);
+        $termin = new Termin(new ScraperLocator([$mockScraper]), $testLogger, $multiNotifier, $filter, $mockConfig);
 
         $termin->run([new Site('hello', 'https://hello.com')]);
 
@@ -80,10 +89,14 @@ class TerminTest extends TestCase
 
     public function testMatchNotFound(): void
     {
-        $mockScraper = $this->createMock(Scraper::class);
+        $mockScraper = $this->createMock(BerlinServiceScraper::class);
 
         $mockScraper->method('scrapeSite')
             ->willReturn([])
+        ;
+
+        $mockScraper->method('supportsDomains')
+            ->willReturn(['https://hello.com'])
         ;
 
         $mockConfig = $this->createMock(Config::class);
@@ -98,7 +111,7 @@ class TerminTest extends TestCase
 
         $filter = new Filter([]);
 
-        $termin = new Termin($mockScraper, $testLogger, $multiNotifier, $filter, $mockConfig);
+        $termin = new Termin(new ScraperLocator([$mockScraper]), $testLogger, $multiNotifier, $filter, $mockConfig);
 
         $termin->run([new Site('hello', 'https://hello.com')]);
 

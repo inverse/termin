@@ -2,30 +2,30 @@
 
 declare(strict_types=1);
 
-namespace Tests\Inverse\Termin;
+namespace Tests\Inverse\Termin\Scraper;
 
 use DateTimeInterface;
-use Exception;
 use Inverse\Termin\HttpClient\HttpClientFactoryInterface;
-use Inverse\Termin\Scraper;
+use Inverse\Termin\Scraper\BerlinServiceScraper;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Tests\Inverse\Termin\TestUtils;
 
-class ScraperTest extends TestCase
+class BerlinServiceScraperTest extends TestCase
 {
     public function testScrapeSiteNoAppointments(): void
     {
         $mockHttpClientFactory = new MockHttpClientFactory(
             [
-                new MockResponse($this->loadFixture('mock_response_no_termin.html')),
-                new MockResponse($this->loadFixture('mock_response_next_no_termin.html')),
+                new MockResponse(TestUtils::loadFixture('mock_response_no_termin.html')),
+                new MockResponse(TestUtils::loadFixture('mock_response_next_no_termin.html')),
             ]
         );
 
-        $scraper = new Scraper($mockHttpClientFactory->create(), new NullLogger());
+        $scraper = new BerlinServiceScraper($mockHttpClientFactory->create(), new NullLogger());
 
         self::assertEmpty($scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/'));
     }
@@ -34,12 +34,12 @@ class ScraperTest extends TestCase
     {
         $mockHttpClientFactory = new MockHttpClientFactory(
             [
-                new MockResponse($this->loadFixture('mock_response_no_termin.html')),
-                new MockResponse($this->loadFixture('mock_response_next_termin.html')),
+                new MockResponse(TestUtils::loadFixture('mock_response_no_termin.html')),
+                new MockResponse(TestUtils::loadFixture('mock_response_next_termin.html')),
             ]
         );
 
-        $scraper = new Scraper($mockHttpClientFactory->create(), new NullLogger());
+        $scraper = new BerlinServiceScraper($mockHttpClientFactory->create(), new NullLogger());
 
         $results = $scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/');
         self::assertNotEmpty($results);
@@ -50,12 +50,12 @@ class ScraperTest extends TestCase
     {
         $mockHttpClientFactory = new MockHttpClientFactory(
             [
-                new MockResponse($this->loadFixture('mock_response_one_termin.html')),
-                new MockResponse($this->loadFixture('mock_response_next_no_termin.html')),
+                new MockResponse(TestUtils::loadFixture('mock_response_one_termin.html')),
+                new MockResponse(TestUtils::loadFixture('mock_response_next_no_termin.html')),
             ]
         );
 
-        $scraper = new Scraper($mockHttpClientFactory->create(), new NullLogger());
+        $scraper = new BerlinServiceScraper($mockHttpClientFactory->create(), new NullLogger());
 
         $results = $scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/');
         self::assertNotEmpty($results);
@@ -66,27 +66,22 @@ class ScraperTest extends TestCase
     {
         $mockHttpClientFactory = new MockHttpClientFactory(
             [
-                new MockResponse($this->loadFixture('mock_response_multi_termin.html')),
-                new MockResponse($this->loadFixture('mock_response_next_no_termin.html')),
+                new MockResponse(TestUtils::loadFixture('mock_response_multi_termin.html')),
+                new MockResponse(TestUtils::loadFixture('mock_response_next_no_termin.html')),
             ]
         );
 
-        $scraper = new Scraper($mockHttpClientFactory->create(), new NullLogger());
+        $scraper = new BerlinServiceScraper($mockHttpClientFactory->create(), new NullLogger());
 
         $results = $scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/');
         self::assertCount(4, $results);
     }
 
-    private function loadFixture(string $name): string
+    public function testSupportedDomains(): void
     {
-        $fixturePath = __DIR__.'/Fixtures/'.$name;
-        $contents = file_get_contents($fixturePath);
-
-        if (false === $contents) {
-            throw new Exception(sprintf('Unable to load fixture: %s', $fixturePath));
-        }
-
-        return $contents;
+        self::assertEquals([
+            'https://service.berlin.de',
+        ], (new BerlinServiceScraper((new MockHttpClientFactory([]))->create(), new NullLogger()))->supportsDomains());
     }
 }
 

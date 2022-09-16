@@ -7,11 +7,12 @@ namespace Inverse\Termin;
 use Inverse\Termin\Config\Config;
 use Inverse\Termin\Config\Site;
 use Inverse\Termin\Notifier\MultiNotifier;
+use Inverse\Termin\Scraper\ScraperLocator;
 use Psr\Log\LoggerInterface;
 
 class Termin
 {
-    private Scraper $scraper;
+    private ScraperLocator $scraperLocator;
 
     private LoggerInterface $logger;
 
@@ -22,13 +23,13 @@ class Termin
     private Config $config;
 
     public function __construct(
-        Scraper $scraper,
+        ScraperLocator $scraperLocator,
         LoggerInterface $logger,
         MultiNotifier $notifier,
         Filter $filter,
         Config $config
     ) {
-        $this->scraper = $scraper;
+        $this->scraperLocator = $scraperLocator;
         $this->logger = $logger;
         $this->notifier = $notifier;
         $this->filter = $filter;
@@ -43,7 +44,8 @@ class Termin
         $this->logger->info(sprintf('Starting to run [sites: %d, notifiers: %d]', count($sites), $this->notifier->registeredNotifierCount()));
 
         foreach ($sites as $site) {
-            $results = $this->scraper->scrapeSite($site->getUrl());
+            $scraper = $this->scraperLocator->locate($site->getUrl());
+            $results = $scraper->scrapeSite($site->getUrl());
 
             if (empty($results)) {
                 $this->logger->info('No availability found for: '.$site->getLabel());

@@ -2,16 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Inverse\Termin;
+namespace Inverse\Termin\Scraper;
 
 use DOMElement;
 use DOMNode;
 use Goutte\Client;
+use Inverse\Termin\DateHelper;
+use Inverse\Termin\Result;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class Scraper
+class BerlinServiceScraper implements ScraperInterface
 {
     private const CLASS_AVAILABLE = 'buchbar';
 
@@ -44,6 +46,13 @@ class Scraper
         }
 
         return array_merge([], ...$results);
+    }
+
+    public function supportsDomains(): array
+    {
+        return [
+            'https://service.berlin.de',
+        ];
     }
 
     private function processMonth(DOMNode $element, string $url): array
