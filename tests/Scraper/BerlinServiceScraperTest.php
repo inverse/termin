@@ -6,6 +6,7 @@ namespace Tests\Inverse\Termin\Scraper;
 
 use DateTimeInterface;
 use Inverse\Termin\Config\Site;
+use Inverse\Termin\Exceptions\TerminException;
 use Inverse\Termin\HttpClient\HttpClientFactoryInterface;
 use Inverse\Termin\Scraper\BerlinServiceScraper;
 use PHPUnit\Framework\TestCase;
@@ -17,6 +18,24 @@ use Tests\Inverse\Termin\TestUtils;
 
 class BerlinServiceScraperTest extends TestCase
 {
+    public function testScrapeSiteParamsMissingUrl(): void
+    {
+        self::expectException(TerminException::class);
+        self::expectExceptionMessage("Site of type 'berlin_services' missing param with key url");
+        $mockHttpClientFactory = new MockHttpClientFactory([]);
+        $scraper = new BerlinServiceScraper($mockHttpClientFactory->create(), new NullLogger());
+
+        self::assertEmpty(
+            $scraper->scrape(
+                new Site(
+                    'Yolo',
+                    'berlin_services',
+                    []
+                )
+            )
+        );
+    }
+
     public function testScrapeSiteNoAppointments(): void
     {
         $mockHttpClientFactory = new MockHttpClientFactory(
@@ -30,14 +49,14 @@ class BerlinServiceScraperTest extends TestCase
 
         self::assertEmpty(
             $scraper->scrape(
-            new Site(
-                'Yolo',
-                'berlin_services',
-                [
-                    'url' => 'https://service.berlin.de/terminvereinbarung/termin/day/',
-                ]
+                new Site(
+                    'Yolo',
+                    'berlin_services',
+                    [
+                        'url' => 'https://service.berlin.de/terminvereinbarung/termin/day/',
+                    ]
+                )
             )
-        )
         );
     }
 
