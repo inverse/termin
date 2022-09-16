@@ -22,12 +22,12 @@ class AfterDateRuleTest extends TestCase
     public function testPassesValid(): void
     {
         $rule = new AfterDateRule('2021-01-01 00:00:00');
-        self::assertTrue($rule->passes(new Result(new DateTime('2021-01-01 00:00:01'))));
+        self::assertTrue($rule->passes(new Result('', '', new DateTime('2021-01-01 00:00:01'))));
     }
 
     public function testPassesInvalid(): void
     {
         $rule = new AfterDateRule('2021-01-01 00:00:01');
-        self::assertFalse($rule->passes(new Result(new DateTime('2021-01-01 00:00:00'))));
+        self::assertFalse($rule->passes(new Result('', '', new DateTime('2021-01-01 00:00:00'))));
     }
 }

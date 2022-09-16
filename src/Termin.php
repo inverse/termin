@@ -44,8 +44,8 @@ class Termin
         $this->logger->info(sprintf('Starting to run [sites: %d, notifiers: %d]', count($sites), $this->notifier->registeredNotifierCount()));
 
         foreach ($sites as $site) {
-            $scraper = $this->scraperLocator->locate($site->getUrl());
-            $results = $scraper->scrapeSite($site->getUrl());
+            $scraper = $this->scraperLocator->locate($site->getType());
+            $results = $scraper->scrape($site);
 
             if (empty($results)) {
                 $this->logger->info('No availability found for: '.$site->getLabel());
@@ -61,7 +61,7 @@ class Termin
                     sprintf('Found availability for %s @ %s', $site->getLabel(), $result->getDateTime()->format('c'))
                 );
 
-                $this->notifier->notify($site->getLabel(), $site->getUrl(), $result->getDateTime());
+                $this->notifier->notify($result->getLabel(), $result->getUrl(), $result->getDateTime());
 
                 if (count($results) > 1 && !$this->config->isAllowMultipleNotifications()) {
                     $this->logger->debug(

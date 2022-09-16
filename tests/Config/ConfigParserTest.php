@@ -37,10 +37,10 @@ class ConfigParserTest extends TestCase
         $this->configParser->parse(['sites' => []]);
     }
 
-    public function testParseSiteMissingUrl(): void
+    public function testParseSiteMissingType(): void
     {
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage('site missing url field');
+        self::expectExceptionMessage('site missing type field');
         $this->configParser->parse(['sites' => [
             [
                 'label' => 'Important',
@@ -59,13 +59,25 @@ class ConfigParserTest extends TestCase
         ]]);
     }
 
+    public function testParseSiteMissingParams(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessage('site missing params field');
+        $this->configParser->parse(['sites' => [
+            [
+                'label' => 'Important',
+                'type' => 'foo',
+            ],
+        ]]);
+    }
+
     public function testParseValid(): void
     {
         $config = $this->configParser->parse($this->getBasicConfig());
 
         self::assertCount(1, $config->getSites());
         self::assertEquals($config->getSites()[0]->getLabel(), 'Important');
-        self::assertEquals($config->getSites()[0]->getUrl(), 'https://important.com');
+        self::assertEquals(['param_1' => 'value_1'], $config->getSites()[0]->getParams());
         self::assertFalse($config->isAllowMultipleNotifications());
         self::assertNull($config->getTelegram());
         self::assertNull($config->getPushbullet());
@@ -304,7 +316,10 @@ class ConfigParserTest extends TestCase
             'sites' => [
                 [
                     'label' => 'Important',
-                    'url' => 'https://important.com',
+                    'type' => 'foo',
+                    'params' => [
+                        'param_1' => 'value_1',
+                    ],
                 ],
             ],
         ];

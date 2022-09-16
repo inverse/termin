@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Inverse\Termin\Scraper;
 
 use DateTimeInterface;
+use Inverse\Termin\Config\Site;
 use Inverse\Termin\HttpClient\HttpClientFactoryInterface;
 use Inverse\Termin\Scraper\BerlinServiceScraper;
 use PHPUnit\Framework\TestCase;
@@ -27,7 +28,17 @@ class BerlinServiceScraperTest extends TestCase
 
         $scraper = new BerlinServiceScraper($mockHttpClientFactory->create(), new NullLogger());
 
-        self::assertEmpty($scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/'));
+        self::assertEmpty(
+            $scraper->scrape(
+            new Site(
+                'Yolo',
+                'berlin_services',
+                [
+                    'url' => 'https://service.berlin.de/terminvereinbarung/termin/day/',
+                ]
+            )
+        )
+        );
     }
 
     public function testScrapeSiteNextAppointment(): void
@@ -41,7 +52,12 @@ class BerlinServiceScraperTest extends TestCase
 
         $scraper = new BerlinServiceScraper($mockHttpClientFactory->create(), new NullLogger());
 
-        $results = $scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/');
+        $results = $scraper->scrape(new Site(
+            'Yolo',
+            'berlin_services',
+            ['url' => 'https://service.berlin.de/terminvereinbarung/termin/day/',
+            ]
+        ));
         self::assertNotEmpty($results);
         self::assertEquals('2020-11-15T00:00:00+01:00', $results[0]->getDateTime()->format(DateTimeInterface::ATOM));
     }
@@ -57,7 +73,12 @@ class BerlinServiceScraperTest extends TestCase
 
         $scraper = new BerlinServiceScraper($mockHttpClientFactory->create(), new NullLogger());
 
-        $results = $scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/');
+        $results = $scraper->scrape(new Site(
+            'Yolo',
+            'berlin_services',
+            ['url' => 'https://service.berlin.de/terminvereinbarung/termin/day/',
+            ]
+        ));
         self::assertNotEmpty($results);
         self::assertEquals('2020-09-15T00:00:00+02:00', $results[0]->getDateTime()->format(DateTimeInterface::ATOM));
     }
@@ -73,15 +94,13 @@ class BerlinServiceScraperTest extends TestCase
 
         $scraper = new BerlinServiceScraper($mockHttpClientFactory->create(), new NullLogger());
 
-        $results = $scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/');
+        $results = $scraper->scrape(new Site(
+            'Yolo',
+            'berlin_services',
+            ['url' => 'https://service.berlin.de/terminvereinbarung/termin/day/',
+            ]
+        ));
         self::assertCount(4, $results);
-    }
-
-    public function testSupportedDomains(): void
-    {
-        self::assertEquals([
-            'https://service.berlin.de',
-        ], (new BerlinServiceScraper((new MockHttpClientFactory([]))->create(), new NullLogger()))->supportsDomains());
     }
 }
 

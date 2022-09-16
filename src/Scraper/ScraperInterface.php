@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Inverse\Termin\Scraper;
 
+use Inverse\Termin\Config\Site;
 use Inverse\Termin\Result;
 
 interface ScraperInterface
@@ -11,10 +12,5 @@ interface ScraperInterface
     /**
      * @return Result[]
      */
-    public function scrapeSite(string $url): array;
-
-    /**
-     * @return string[]
-     */
-    public function supportsDomains(): array;
+    public function scrape(Site $site): array;
 }
