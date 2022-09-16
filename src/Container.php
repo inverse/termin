@@ -9,6 +9,8 @@ use Inverse\Termin\HttpClient\HttpClientFactory;
 use Inverse\Termin\Notifier\MultiNotifier;
 use Inverse\Termin\Notifier\NotifierFactory;
 use Inverse\Termin\Notifier\NotifierInterface;
+use Inverse\Termin\Scraper\BerlinServiceScraper;
+use Inverse\Termin\Scraper\ScraperLocator;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Pimple\Container as Pimple;
@@ -32,20 +34,26 @@ class Container extends Pimple
             return $logger;
         };
 
-        $this[Scraper::class] = static function (self $container) {
+        $this[BerlinServiceScraper::class] = static function (self $container) {
             $httpClientFactory = new HttpClientFactory();
 
-            return new Scraper(
+            return new BerlinServiceScraper(
                 $httpClientFactory->create(),
                 $container[LoggerInterface::class]
             );
+        };
+
+        $this[ScraperLocator::class] = static function (self $container) {
+            return new ScraperLocator([
+                $container[BerlinServiceScraper::class],
+            ]);
         };
 
         $this[Filter::class] = static fn () => new Filter($config->getRules());
 
         $this[Termin::class] = static function (self $container) use ($config) {
             return new Termin(
-                $container[Scraper::class],
+                $container[ScraperLocator::class],
                 $container[LoggerInterface::class],
                 $container[NotifierInterface::class],
                 $container[Filter::class],
