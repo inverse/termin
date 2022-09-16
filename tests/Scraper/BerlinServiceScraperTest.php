@@ -76,6 +76,13 @@ class BerlinServiceScraperTest extends TestCase
         $results = $scraper->scrapeSite('https://service.berlin.de/terminvereinbarung/termin/day/');
         self::assertCount(4, $results);
     }
+
+    public function testSupportedDomains(): void
+    {
+        self::assertEquals([
+            'https://service.berlin.de',
+        ], (new BerlinServiceScraper((new MockHttpClientFactory([]))->create(), new NullLogger()))->supportsDomains());
+    }
 }
 
 class MockHttpClientFactory implements HttpClientFactoryInterface
