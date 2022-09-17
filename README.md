@@ -11,7 +11,7 @@ A simple PHP script for notifying for a free slot for any appointment listed on 
 
 # Notifications
 
-Currently supports notifications via:
+Supports notifications via:
 
 - [Pushbullet][1]
 - [Telegram][2]
@@ -25,7 +25,7 @@ Currently supports notifications via:
 
 Clone the repo
 
-```basg
+```bash
 git clone https://github.com/inverse/termin.git
 ```
 
@@ -77,14 +77,19 @@ Take care when copying the leading `-` as this is required for group chat IDs.
 sites:
   -
     label: Vaterschaftsanerkennung
-    url: https://service.berlin.de/terminvereinbarung/termin/tag.php?termin=1&dienstleister=122900&anliegen[]=318991&herkunft=1
+    type: berlin_services
+    params:
+      url: https://service.berlin.de/terminvereinbarung/termin/tag.php?termin=1&dienstleister=122900&anliegen[]=318991&herkunft=1
   -
     label: Geburtsurkunde
-    url: https://service.berlin.de/terminvereinbarung/termin/tag.php?termin=1&dienstleister=122900&anliegen[]=318957&herkunft=1
+    type: berlin_services
+    params:
+      url: https://service.berlin.de/terminvereinbarung/termin/tag.php?termin=1&dienstleister=122900&anliegen[]=318957&herkunft=1
 ```
 
 - `label` - the friendly label that will be displayed in the notification
-- `url` - the service URL you want to book. e.g. the URL behind the "Book an Appointment button".
+- `type` - The type of scraper to use
+- `params.url` - the service URL you want to book. e.g. the URL behind the "Book an Appointment button"
 
 ![](https://i.imgur.com/zqSScD5.png)
 

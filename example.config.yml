@@ -10,13 +10,6 @@ sites:
     type: berlin_services
     params:
       url: https://service.berlin.de/terminvereinbarung/termin/tag.php?termin=1&dienstleister=122900&anliegen[]=318957&herkunft=1
-  -
-    label: Appointment
-    type: berlin_foreigners_registration_office
-    params:
-      a: 1
-      b: 2
-      c: 3
 
 # Set true to allow multiple notifications for the same appointment instead of just the first
 allow_multiple_notifications: false
