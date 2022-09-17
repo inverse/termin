@@ -8,12 +8,15 @@ class Site
 {
     private string $label;
 
-    private string $url;
+    private string $type;
 
-    public function __construct(string $label, string $url)
+    private array $params;
+
+    public function __construct(string $label, string $type, array $params)
     {
         $this->label = $label;
-        $this->url = $url;
+        $this->type = $type;
+        $this->params = $params;
     }
 
     public function getLabel(): string
@@ -21,8 +24,13 @@ class Site
         return $this->label;
     }
 
-    public function getUrl(): string
+    public function getType(): string
     {
-        return $this->url;
+        return $this->type;
+    }
+
+    public function getParams(): array
+    {
+        return $this->params;
     }
 }

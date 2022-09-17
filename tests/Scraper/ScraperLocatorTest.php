@@ -14,42 +14,26 @@ class ScraperLocatorTest extends TestCase
     public function testLocateEmpty(): void
     {
         $this->expectException(TerminException::class);
-        $this->expectExceptionMessage('Unable to locate scraper for https://example.com');
+        $this->expectExceptionMessage("Unable to locate scraper for 'berlin_services'");
         $scraperLocator = new ScraperLocator([]);
-        $scraperLocator->locate('https://example.com');
+        $scraperLocator->locate('berlin_services');
     }
 
     public function testLocateNoMatch(): void
     {
         $this->expectException(TerminException::class);
-        $this->expectExceptionMessage('Unable to locate scraper for https://example.com');
-        $scraperLocator = new ScraperLocator([new MockScraper(['https://foobar.com'])]);
-        $scraperLocator->locate('https://example.com');
+        $this->expectExceptionMessage("Unable to locate scraper for 'berlin_services'");
+
+        $mockScraper = $this->createMock(ScraperInterface::class);
+
+        $scraperLocator = new ScraperLocator(['berlin_foreigners_registration_office' => $mockScraper]);
+        $scraperLocator->locate('berlin_services');
     }
 
     public function testLocateMatch(): void
     {
-        $scraperLocator = new ScraperLocator([new MockScraper(['https://example.com'])]);
-        self::assertInstanceOf(MockScraper::class, $scraperLocator->locate('https://example.com'));
-    }
-}
-
-class MockScraper implements ScraperInterface
-{
-    private array $supportedDomains;
-
-    public function __construct(array $supportedDomains)
-    {
-        $this->supportedDomains = $supportedDomains;
-    }
-
-    public function scrapeSite(string $url): array
-    {
-        return [];
-    }
-
-    public function supportsDomains(): array
-    {
-        return $this->supportedDomains;
+        $mockScraper = $this->createMock(ScraperInterface::class);
+        $scraperLocator = new ScraperLocator(['berlin_services' => $mockScraper]);
+        self::assertInstanceOf(ScraperInterface::class, $scraperLocator->locate('berlin_services'));
     }
 }

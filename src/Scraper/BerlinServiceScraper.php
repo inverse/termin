@@ -7,7 +7,9 @@ namespace Inverse\Termin\Scraper;
 use DOMElement;
 use DOMNode;
 use Goutte\Client;
+use Inverse\Termin\Config\Site;
 use Inverse\Termin\DateHelper;
+use Inverse\Termin\Exceptions\TerminException;
 use Inverse\Termin\Result;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DomCrawler\Crawler;
@@ -31,8 +33,19 @@ class BerlinServiceScraper implements ScraperInterface
 
     /**
      * @return Result[]
+     *
+     * @throws TerminException
      */
-    public function scrapeSite(string $url): array
+    public function scrape(Site $site): array
+    {
+        if (!array_key_exists('url', $site->getParams())) {
+            throw new TerminException(sprintf("Site of type '%s' missing param with key url", $site->getType()));
+        }
+
+        return $this->scrapeSite($site->getParams()['url'], $site);
+    }
+
+    private function scrapeSite(string $url, Site $site): array
     {
         $this->logger->debug(sprintf('GET %s', $url));
 
@@ -42,20 +55,13 @@ class BerlinServiceScraper implements ScraperInterface
 
         $results = [];
         foreach ($crawler as $element) {
-            $results[] = $this->processMonth($element, $url);
+            $results[] = $this->processMonth($element, $url, $site);
         }
 
         return array_merge([], ...$results);
     }
 
-    public function supportsDomains(): array
-    {
-        return [
-            'https://service.berlin.de',
-        ];
-    }
-
-    private function processMonth(DOMNode $element, string $url): array
+    private function processMonth(DOMNode $element, string $url, Site $site): array
     {
         $crawler = new Crawler($element, $url);
         $monthStr = trim($crawler->filter('.month')->text());
@@ -72,13 +78,13 @@ class BerlinServiceScraper implements ScraperInterface
                 $dateTime = DateHelper::createDateTime($node->textContent, DateHelper::monthConvert($monthStr));
 
                 if (isset($dateTime)) {
-                    $results[] = new Result($dateTime);
+                    $results[] = new Result($site->getParams()['url'], $site->getLabel(), $dateTime);
                 }
             }
         }
 
         if (null !== $nextUrl) {
-            $results = array_merge($results, $this->scrapeSite($nextUrl));
+            $results = array_merge($results, $this->scrapeSite($nextUrl, $site));
         }
 
         return $results;

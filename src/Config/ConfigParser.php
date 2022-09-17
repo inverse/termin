@@ -33,11 +33,19 @@ class ConfigParser
                 throw new InvalidArgumentException('site missing label field');
             }
 
-            if (!array_key_exists('url', $site)) {
-                throw new InvalidArgumentException('site missing url field');
+            if (!array_key_exists('type', $site)) {
+                throw new InvalidArgumentException('site missing type field');
             }
 
-            $sites[] = new Site($site['label'], $site['url']);
+            if (!array_key_exists('params', $site)) {
+                throw new InvalidArgumentException('site missing params field');
+            }
+
+            if (!is_array($site['params'])) {
+                throw new InvalidArgumentException('site.params field must be array');
+            }
+
+            $sites[] = new Site($site['label'], $site['type'], $site['params']);
         }
 
         $allowMultipleNotifications = $config['allow_multiple_notifications'] ?? false;

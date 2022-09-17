@@ -25,22 +25,22 @@ class ConfigParserTest extends TestCase
 
     public function testParseEmpty(): void
     {
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage('config missing sites key');
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('config missing sites key');
         $this->configParser->parse([]);
     }
 
     public function testParseEmptySites(): void
     {
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage('config has no sites defined');
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('config has no sites defined');
         $this->configParser->parse(['sites' => []]);
     }
 
-    public function testParseSiteMissingUrl(): void
+    public function testParseSiteMissingType(): void
     {
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage('site missing url field');
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('site missing type field');
         $this->configParser->parse(['sites' => [
             [
                 'label' => 'Important',
@@ -50,11 +50,36 @@ class ConfigParserTest extends TestCase
 
     public function testParseSiteMissingLabel(): void
     {
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage('site missing label field');
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('site missing label field');
         $this->configParser->parse(['sites' => [
             [
                 'url' => 'https://important.com',
+            ],
+        ]]);
+    }
+
+    public function testParseSiteMissingParams(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('site missing params field');
+        $this->configParser->parse(['sites' => [
+            [
+                'label' => 'Important',
+                'type' => 'foo',
+            ],
+        ]]);
+    }
+
+    public function testParseSiteParamsNotArray(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('site.params field must be array');
+        $this->configParser->parse(['sites' => [
+            [
+                'label' => 'Important',
+                'type' => 'foo',
+                'params' => 'bar',
             ],
         ]]);
     }
@@ -65,7 +90,7 @@ class ConfigParserTest extends TestCase
 
         self::assertCount(1, $config->getSites());
         self::assertEquals($config->getSites()[0]->getLabel(), 'Important');
-        self::assertEquals($config->getSites()[0]->getUrl(), 'https://important.com');
+        self::assertEquals(['param_1' => 'value_1'], $config->getSites()[0]->getParams());
         self::assertFalse($config->isAllowMultipleNotifications());
         self::assertNull($config->getTelegram());
         self::assertNull($config->getPushbullet());
@@ -79,8 +104,8 @@ class ConfigParserTest extends TestCase
 
     public function testParseTelegramEmpty(): void
     {
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage('config.telegram missing api_key field');
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('config.telegram missing api_key field');
         $this->configParser->parse($this->getBasicConfig() + [
             'telegram' => [
             ],
@@ -89,8 +114,8 @@ class ConfigParserTest extends TestCase
 
     public function testParseTelegramMissingApiKey(): void
     {
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage('config.telegram missing api_key field');
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('config.telegram missing api_key field');
         $this->configParser->parse($this->getBasicConfig() + [
             'telegram' => [
                 'chat_id' => '1',
@@ -100,8 +125,8 @@ class ConfigParserTest extends TestCase
 
     public function testParseTelegramMissingChatId(): void
     {
-        self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage('config.telegram missing chat_id field');
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('config.telegram missing chat_id field');
         $this->configParser->parse($this->getBasicConfig() + [
             'telegram' => [
                 'api_key' => 'api',
@@ -304,7 +329,10 @@ class ConfigParserTest extends TestCase
             'sites' => [
                 [
                     'label' => 'Important',
-                    'url' => 'https://important.com',
+                    'type' => 'foo',
+                    'params' => [
+                        'param_1' => 'value_1',
+                    ],
                 ],
             ],
         ];

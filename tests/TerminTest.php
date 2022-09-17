@@ -23,12 +23,8 @@ class TerminTest extends TestCase
     {
         $mockScraper = $this->createMock(BerlinServiceScraper::class);
 
-        $mockScraper->method('scrapeSite')
-            ->willReturn([new Result(new DateTime('2020-01-01 00:00:00'))])
-        ;
-
-        $mockScraper->method('supportsDomains')
-            ->willReturn(['https://hello.com'])
+        $mockScraper->method('scrape')
+            ->willReturn([new Result('https://example.com', 'Hello', new DateTime('2020-01-01 00:00:00'))])
         ;
 
         $mockConfig = $this->createMock(Config::class);
@@ -43,9 +39,9 @@ class TerminTest extends TestCase
 
         $filter = new Filter([]);
 
-        $termin = new Termin(new ScraperLocator([$mockScraper]), $testLogger, $multiNotifier, $filter, $mockConfig);
+        $termin = new Termin(new ScraperLocator(['berlin_services' => $mockScraper]), $testLogger, $multiNotifier, $filter, $mockConfig);
 
-        $termin->run([new Site('hello', 'https://hello.com')]);
+        $termin->run([new Site('hello', 'berlin_services', ['url' => 'https://hello.com'])]);
 
         self::assertNotEmpty($testNotifier->getNotifications());
         self::assertTrue($testLogger->hasInfoThatContains('Found availability for hello @ 2020-01-01T00:00:00+00:00'));
@@ -55,15 +51,11 @@ class TerminTest extends TestCase
     {
         $mockScraper = $this->createMock(BerlinServiceScraper::class);
 
-        $mockScraper->method('scrapeSite')
+        $mockScraper->method('scrape')
             ->willReturn([
-                new Result(new DateTime('2020-01-01 00:00:00')),
-                new Result(new DateTime('2020-01-02 00:00:00')),
+                new Result('https://example.com', 'Hello', new DateTime('2020-01-01 00:00:00')),
+                new Result('https://example.com', 'Hello', new DateTime('2020-01-02 00:00:00')),
             ])
-        ;
-
-        $mockScraper->method('supportsDomains')
-            ->willReturn(['https://hello.com'])
         ;
 
         $mockConfig = $this->createMock(Config::class);
@@ -78,9 +70,9 @@ class TerminTest extends TestCase
 
         $filter = new Filter([]);
 
-        $termin = new Termin(new ScraperLocator([$mockScraper]), $testLogger, $multiNotifier, $filter, $mockConfig);
+        $termin = new Termin(new ScraperLocator(['berlin_services' => $mockScraper]), $testLogger, $multiNotifier, $filter, $mockConfig);
 
-        $termin->run([new Site('hello', 'https://hello.com')]);
+        $termin->run([new Site('hello', 'berlin_services', [])]);
 
         self::assertNotEmpty($testNotifier->getNotifications());
         self::assertTrue($testLogger->hasInfoThatContains('Found availability for hello @ 2020-01-01T00:00:00+00:00'));
@@ -91,12 +83,8 @@ class TerminTest extends TestCase
     {
         $mockScraper = $this->createMock(BerlinServiceScraper::class);
 
-        $mockScraper->method('scrapeSite')
+        $mockScraper->method('scrape')
             ->willReturn([])
-        ;
-
-        $mockScraper->method('supportsDomains')
-            ->willReturn(['https://hello.com'])
         ;
 
         $mockConfig = $this->createMock(Config::class);
@@ -111,9 +99,9 @@ class TerminTest extends TestCase
 
         $filter = new Filter([]);
 
-        $termin = new Termin(new ScraperLocator([$mockScraper]), $testLogger, $multiNotifier, $filter, $mockConfig);
+        $termin = new Termin(new ScraperLocator(['berlin_services' => $mockScraper]), $testLogger, $multiNotifier, $filter, $mockConfig);
 
-        $termin->run([new Site('hello', 'https://hello.com')]);
+        $termin->run([new Site('hello', 'berlin_services', [])]);
 
         self::assertEmpty($testNotifier->getNotifications());
         self::assertTrue($testLogger->hasInfoThatContains('No availability found for: hello'));

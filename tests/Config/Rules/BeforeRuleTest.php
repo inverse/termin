@@ -23,12 +23,12 @@ class BeforeRuleTest extends TestCase
     public function testPassesValid(): void
     {
         $rule = new BeforeRule('PT24H');
-        self::assertTrue($rule->passes(new Result((new DateTime())->add(new DateInterval('PT23H59M')))));
+        self::assertTrue($rule->passes(new Result('', '', (new DateTime())->add(new DateInterval('PT23H59M')))));
     }
 
     public function testPassesInvalid(): void
     {
         $rule = new BeforeRule('PT24H');
-        self::assertFalse($rule->passes(new Result((new DateTime())->add(new DateInterval('PT24H1M')))));
+        self::assertFalse($rule->passes(new Result('', '', (new DateTime())->add(new DateInterval('PT24H1M')))));
     }
 }

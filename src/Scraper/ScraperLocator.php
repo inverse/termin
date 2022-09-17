@@ -24,16 +24,12 @@ class ScraperLocator
     /**
      * @throws TerminException
      */
-    public function locate(string $url): ScraperInterface
+    public function locate(string $type): ScraperInterface
     {
-        foreach ($this->scrapers as $scraper) {
-            foreach ($scraper->supportsDomains() as $domain) {
-                if (0 === strpos($url, $domain)) {
-                    return $scraper;
-                }
-            }
+        if (!array_key_exists($type, $this->scrapers)) {
+            throw new TerminException(sprintf("Unable to locate scraper for '%s'", $type));
         }
 
-        throw new TerminException(sprintf('Unable to locate scraper for %s', $url));
+        return $this->scrapers[$type];
     }
 }
