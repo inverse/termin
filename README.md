@@ -77,12 +77,12 @@ Take care when copying the leading `-` as this is required for group chat IDs.
 sites:
   -
     label: Vaterschaftsanerkennung
-    type: berlin_services
+    type: berlin_service
     params:
       url: https://service.berlin.de/terminvereinbarung/termin/tag.php?termin=1&dienstleister=122900&anliegen[]=318991&herkunft=1
   -
     label: Geburtsurkunde
-    type: berlin_services
+    type: berlin_service
     params:
       url: https://service.berlin.de/terminvereinbarung/termin/tag.php?termin=1&dienstleister=122900&anliegen[]=318957&herkunft=1
 ```

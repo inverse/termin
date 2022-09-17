@@ -45,7 +45,7 @@ class Container extends Pimple
 
         $this[ScraperLocator::class] = static function (self $container) {
             return new ScraperLocator([
-                'berlin_services' => $container[BerlinServiceScraper::class],
+                'berlin_service' => $container[BerlinServiceScraper::class],
             ]);
         };
 

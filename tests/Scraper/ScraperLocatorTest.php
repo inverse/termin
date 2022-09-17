@@ -14,26 +14,26 @@ class ScraperLocatorTest extends TestCase
     public function testLocateEmpty(): void
     {
         $this->expectException(TerminException::class);
-        $this->expectExceptionMessage("Unable to locate scraper for 'berlin_services'");
+        $this->expectExceptionMessage("Unable to locate scraper for 'berlin_service'");
         $scraperLocator = new ScraperLocator([]);
-        $scraperLocator->locate('berlin_services');
+        $scraperLocator->locate('berlin_service');
     }
 
     public function testLocateNoMatch(): void
     {
         $this->expectException(TerminException::class);
-        $this->expectExceptionMessage("Unable to locate scraper for 'berlin_services'");
+        $this->expectExceptionMessage("Unable to locate scraper for 'berlin_service'");
 
         $mockScraper = $this->createMock(ScraperInterface::class);
 
         $scraperLocator = new ScraperLocator(['berlin_foreigners_registration_office' => $mockScraper]);
-        $scraperLocator->locate('berlin_services');
+        $scraperLocator->locate('berlin_service');
     }
 
     public function testLocateMatch(): void
     {
         $mockScraper = $this->createMock(ScraperInterface::class);
-        $scraperLocator = new ScraperLocator(['berlin_services' => $mockScraper]);
-        self::assertInstanceOf(ScraperInterface::class, $scraperLocator->locate('berlin_services'));
+        $scraperLocator = new ScraperLocator(['berlin_service' => $mockScraper]);
+        self::assertInstanceOf(ScraperInterface::class, $scraperLocator->locate('berlin_service'));
     }
 }

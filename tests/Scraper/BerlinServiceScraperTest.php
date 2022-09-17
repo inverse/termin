@@ -21,7 +21,7 @@ class BerlinServiceScraperTest extends TestCase
     public function testScrapeSiteParamsMissingUrl(): void
     {
         self::expectException(TerminException::class);
-        self::expectExceptionMessage("Site of type 'berlin_services' missing param with key url");
+        self::expectExceptionMessage("Site of type 'berlin_service' missing param with key url");
         $mockHttpClientFactory = new MockHttpClientFactory([]);
         $scraper = new BerlinServiceScraper($mockHttpClientFactory->create(), new NullLogger());
 
@@ -29,7 +29,7 @@ class BerlinServiceScraperTest extends TestCase
             $scraper->scrape(
                 new Site(
                     'Yolo',
-                    'berlin_services',
+                    'berlin_service',
                     []
                 )
             )
@@ -51,7 +51,7 @@ class BerlinServiceScraperTest extends TestCase
             $scraper->scrape(
                 new Site(
                     'Yolo',
-                    'berlin_services',
+                    'berlin_service',
                     [
                         'url' => 'https://service.berlin.de/terminvereinbarung/termin/day/',
                     ]
@@ -73,7 +73,7 @@ class BerlinServiceScraperTest extends TestCase
 
         $results = $scraper->scrape(new Site(
             'Yolo',
-            'berlin_services',
+            'berlin_service',
             ['url' => 'https://service.berlin.de/terminvereinbarung/termin/day/',
             ]
         ));
@@ -94,7 +94,7 @@ class BerlinServiceScraperTest extends TestCase
 
         $results = $scraper->scrape(new Site(
             'Yolo',
-            'berlin_services',
+            'berlin_service',
             ['url' => 'https://service.berlin.de/terminvereinbarung/termin/day/',
             ]
         ));
@@ -115,7 +115,7 @@ class BerlinServiceScraperTest extends TestCase
 
         $results = $scraper->scrape(new Site(
             'Yolo',
-            'berlin_services',
+            'berlin_service',
             ['url' => 'https://service.berlin.de/terminvereinbarung/termin/day/',
             ]
         ));
