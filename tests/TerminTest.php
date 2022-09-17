@@ -7,6 +7,7 @@ namespace Tests\Inverse\Termin;
 use DateTime;
 use Inverse\Termin\Config\Config;
 use Inverse\Termin\Config\Site;
+use Inverse\Termin\Exceptions\TerminException;
 use Inverse\Termin\Filter;
 use Inverse\Termin\Notifier\MultiNotifier;
 use Inverse\Termin\Result;
@@ -19,6 +20,30 @@ use Tests\Inverse\Termin\Notifier\TestNotifier;
 
 class TerminTest extends TestCase
 {
+    public function testExceptionRaised(): void
+    {
+        $mockScraper = $this->createMock(BerlinServiceScraper::class);
+
+        $mockScraper->method('scrape')
+            ->will($this->throwException(new TerminException()))
+        ;
+
+        $mockConfig = $this->createMock(Config::class);
+
+        $testLogger = new TestLogger();
+        $testNotifier = new TestNotifier();
+        $multiNotifier = new MultiNotifier();
+        $multiNotifier->addNotifier($testNotifier);
+
+        $filter = new Filter([]);
+
+        $termin = new Termin(new ScraperLocator(['berlin_services' => $mockScraper]), $testLogger, $multiNotifier, $filter, $mockConfig);
+
+        $termin->run([new Site('hello', 'berlin_services', ['url' => 'https://hello.com'])]);
+
+        self::assertTrue($testLogger->hasErrorRecords());
+    }
+
     public function testMatchFound(): void
     {
         $mockScraper = $this->createMock(BerlinServiceScraper::class);

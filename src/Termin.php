@@ -6,6 +6,7 @@ namespace Inverse\Termin;
 
 use Inverse\Termin\Config\Config;
 use Inverse\Termin\Config\Site;
+use Inverse\Termin\Exceptions\TerminException;
 use Inverse\Termin\Notifier\MultiNotifier;
 use Inverse\Termin\Scraper\ScraperLocator;
 use Psr\Log\LoggerInterface;
@@ -42,34 +43,49 @@ class Termin
     public function run(array $sites): void
     {
         $this->logger->info(sprintf('Starting to run [sites: %d, notifiers: %d]', count($sites), $this->notifier->registeredNotifierCount()));
-
         foreach ($sites as $site) {
-            $scraper = $this->scraperLocator->locate($site->getType());
-            $results = $scraper->scrape($site);
-
-            if (empty($results)) {
-                $this->logger->info('No availability found for: '.$site->getLabel());
-
-                continue;
+            try {
+                $this->processSite($site);
+            } catch (TerminException $exception) {
+                $this->logger->error(sprintf('Failed to process %s: %s', $site->getLabel(), $exception->getMessage()));
             }
+        }
+    }
 
-            $results = array_unique($results);
-            $results = $this->filter->applyRules($results);
+    /**
+     * @throws TerminException
+     */
+    private function processSite(Site $site): void
+    {
+        $scraper = $this->scraperLocator->locate($site->getType());
+        $results = $scraper->scrape($site);
 
-            foreach ($results as $result) {
-                $this->logger->info(
-                    sprintf('Found availability for %s @ %s', $site->getLabel(), $result->getDateTime()->format('c'))
+        if (empty($results)) {
+            $this->logger->info('No availability found for: '.$site->getLabel());
+
+            return;
+        }
+
+        $results = array_unique($results);
+        $results = $this->filter->applyRules($results);
+        $this->processResults($site, $results);
+    }
+
+    private function processResults(Site $site, array $results): void
+    {
+        foreach ($results as $result) {
+            $this->logger->info(
+                sprintf('Found availability for %s @ %s', $site->getLabel(), $result->getDateTime()->format('c'))
+            );
+
+            $this->notifier->notify($result->getLabel(), $result->getUrl(), $result->getDateTime());
+
+            if (count($results) > 1 && !$this->config->isAllowMultipleNotifications()) {
+                $this->logger->debug(
+                    sprintf('%s results found, skipping due to allow_multiple_notifications being false', count($results))
                 );
 
-                $this->notifier->notify($result->getLabel(), $result->getUrl(), $result->getDateTime());
-
-                if (count($results) > 1 && !$this->config->isAllowMultipleNotifications()) {
-                    $this->logger->debug(
-                        sprintf('%s results found, skipping due to allow_multiple_notifications being false', count($results))
-                    );
-
-                    break;
-                }
+                break;
             }
         }
     }
