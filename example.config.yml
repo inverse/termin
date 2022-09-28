@@ -16,7 +16,7 @@ allow_multiple_notifications: false
 
 # Configure for ntfy support
 ntfy:
-  server: ~
+  server: ~ # Leave blank to use default https://ntfy.sh
   topic: ~
 
 # Configure for pushbullet support
