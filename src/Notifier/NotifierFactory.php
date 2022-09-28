@@ -31,6 +31,10 @@ class NotifierFactory
             $this->notifier->addNotifier($telegramNotifier);
         }
 
+        if (null !== $config->getNtfy()) {
+            $this->notifier->addNotifier(new NtfyNotifier($config->getNtfy()));
+        }
+
         return $this->notifier;
     }
 }

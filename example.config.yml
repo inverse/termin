@@ -14,6 +14,11 @@ sites:
 # Set true to allow multiple notifications for the same appointment instead of just the first
 allow_multiple_notifications: false
 
+# Configure for ntfy support
+ntfy:
+  server: ~
+  topic: ~
+
 # Configure for pushbullet support
 pushbullet:
   api_token: ~

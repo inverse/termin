@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Inverse\Termin\Config;
 
+use Inverse\Termin\Config\Notifier\Ntfy;
 use Inverse\Termin\Config\Notifier\Pushbullet;
 use Inverse\Termin\Config\Notifier\Telegram;
 use Inverse\Termin\Config\Rules\RuleInterface;
@@ -28,6 +29,8 @@ class Config
 
     private ?Pushbullet $pushbullet;
 
+    private ?Ntfy $ntfy;
+
     /**
      * Config constructor.
      *
@@ -40,7 +43,8 @@ class Config
         int $logLevel,
         bool $allowMultipleNotifications,
         ?Pushbullet $pushbullet,
-        ?Telegram $telegram
+        ?Telegram $telegram,
+        ?Ntfy $ntfy
     ) {
         $this->sites = $sites;
         $this->rules = $rules;
@@ -48,6 +52,7 @@ class Config
         $this->allowMultipleNotifications = $allowMultipleNotifications;
         $this->pushbullet = $pushbullet;
         $this->telegram = $telegram;
+        $this->ntfy = $ntfy;
     }
 
     /**
@@ -81,5 +86,10 @@ class Config
     public function getPushbullet(): ?Pushbullet
     {
         return $this->pushbullet;
+    }
+
+    public function getNtfy(): ?Ntfy
+    {
+        return $this->ntfy;
     }
 }

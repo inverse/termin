@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Inverse\Termin\Config;
 
 use InvalidArgumentException;
+use Inverse\Termin\Config\Notifier\Ntfy;
 use Inverse\Termin\Config\Notifier\Pushbullet;
 use Inverse\Termin\Config\Notifier\Telegram;
 use Inverse\Termin\Config\Rules\AfterDateRule;
@@ -54,11 +55,13 @@ class ConfigParser
 
         $pushbullet = $this->getPushBullet($config);
 
+        $ntfy = $this->getNtfy($config);
+
         $rules = $this->getRules($config);
 
         $logLevel = $this->getLogLevel($config);
 
-        return new Config($sites, $rules, $logLevel, $allowMultipleNotifications, $pushbullet, $telegram);
+        return new Config($sites, $rules, $logLevel, $allowMultipleNotifications, $pushbullet, $telegram, $ntfy);
     }
 
     private function getLogLevel(array $config): int
@@ -140,11 +143,29 @@ class ConfigParser
         return new Telegram($telegramConfig['api_key'], $telegramConfig['chat_id']);
     }
 
+    private function getNtfy(array $config): ?Ntfy
+    {
+        if (!array_key_exists('ntfy', $config)) {
+            return null;
+        }
+
+        $ntfyConfig = $config['ntfy'];
+
+        if (!array_key_exists('topic', $ntfyConfig)) {
+            throw new InvalidArgumentException('config.ntfy missing topic field');
+        }
+
+        $server = $ntfyConfig['server'] ?? Ntfy::DEFAULT_SERVER;
+
+        return new Ntfy($server, $ntfyConfig['topic']);
+    }
+
     private function getPushBullet(array $config): ?Pushbullet
     {
         if (!array_key_exists('pushbullet', $config)) {
             return null;
         }
+
         $pushbulletConfig = $config['pushbullet'];
         if (!array_key_exists('api_token', $pushbulletConfig)) {
             throw new InvalidArgumentException('config.pushbullet missing api_token field');
