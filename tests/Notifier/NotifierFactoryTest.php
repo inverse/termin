@@ -10,6 +10,9 @@ use Inverse\Termin\Config\Notifier\Pushbullet;
 use Inverse\Termin\Config\Notifier\Telegram;
 use Inverse\Termin\Notifier\MultiNotifier;
 use Inverse\Termin\Notifier\NotifierFactory;
+use Inverse\Termin\Notifier\NtfyNotifier;
+use Inverse\Termin\Notifier\PushbulletNotifier;
+use Inverse\Termin\Notifier\TelegramNotifier;
 use Monolog\Logger;
 use PHPUnit\Framework\TestCase;
 
@@ -46,7 +49,10 @@ class NotifierFactoryTest extends TestCase
         );
 
         $mockMultiNotifier = self::createMock(MultiNotifier::class);
-        $mockMultiNotifier->expects($this->once())->method('addNotifier');
+        $mockMultiNotifier
+            ->expects($this->once())
+            ->method('addNotifier')
+            ->with(self::callback(static fn($value): bool => $value instanceof PushbulletNotifier));
         $notifierFactory = new NotifierFactory($mockMultiNotifier);
 
         $notifierFactory->create($config);
@@ -65,7 +71,10 @@ class NotifierFactoryTest extends TestCase
         );
 
         $mockMultiNotifier = self::createMock(MultiNotifier::class);
-        $mockMultiNotifier->expects($this->once())->method('addNotifier');
+        $mockMultiNotifier
+            ->expects($this->once())
+            ->method('addNotifier')
+            ->with(self::callback(static fn($value): bool => $value instanceof TelegramNotifier));
         $notifierFactory = new NotifierFactory($mockMultiNotifier);
 
         $notifierFactory->create($config);
@@ -84,7 +93,10 @@ class NotifierFactoryTest extends TestCase
         );
 
         $mockMultiNotifier = self::createMock(MultiNotifier::class);
-        $mockMultiNotifier->expects($this->once())->method('addNotifier');
+        $mockMultiNotifier
+            ->expects($this->once())
+            ->method('addNotifier')
+            ->with(self::callback(static fn($value): bool => $value instanceof NtfyNotifier));
         $notifierFactory = new NotifierFactory($mockMultiNotifier);
 
         $notifierFactory->create($config);
@@ -99,11 +111,11 @@ class NotifierFactoryTest extends TestCase
             true,
             new Pushbullet('yolo'),
             new Telegram('api', '0'),
-            null
+            new Ntfy(Ntfy::DEFAULT_SERVER, 'foobar')
         );
 
         $mockMultiNotifier = self::createMock(MultiNotifier::class);
-        $mockMultiNotifier->expects($this->exactly(2))->method('addNotifier');
+        $mockMultiNotifier->expects($this->exactly(3))->method('addNotifier');
         $notifierFactory = new NotifierFactory($mockMultiNotifier);
 
         $notifierFactory->create($config);
