@@ -29,7 +29,7 @@ class NotifierFactoryTest extends TestCase
             null,
             null
         );
-        $mockMultiNotifier = self::createMock(MultiNotifier::class);
+        $mockMultiNotifier = $this->createMock(MultiNotifier::class);
         $mockMultiNotifier->expects($this->never())->method('addNotifier');
         $notifierFactory = new NotifierFactory($mockMultiNotifier);
 
@@ -48,7 +48,7 @@ class NotifierFactoryTest extends TestCase
             null
         );
 
-        $mockMultiNotifier = self::createMock(MultiNotifier::class);
+        $mockMultiNotifier = $this->createMock(MultiNotifier::class);
         $mockMultiNotifier
             ->expects($this->once())
             ->method('addNotifier')
@@ -70,7 +70,7 @@ class NotifierFactoryTest extends TestCase
             null
         );
 
-        $mockMultiNotifier = self::createMock(MultiNotifier::class);
+        $mockMultiNotifier = $this->createMock(MultiNotifier::class);
         $mockMultiNotifier
             ->expects($this->once())
             ->method('addNotifier')
@@ -92,7 +92,7 @@ class NotifierFactoryTest extends TestCase
             new Ntfy(Ntfy::DEFAULT_SERVER, 'foobar')
         );
 
-        $mockMultiNotifier = self::createMock(MultiNotifier::class);
+        $mockMultiNotifier = $this->createMock(MultiNotifier::class);
         $mockMultiNotifier
             ->expects($this->once())
             ->method('addNotifier')
@@ -114,7 +114,7 @@ class NotifierFactoryTest extends TestCase
             new Ntfy(Ntfy::DEFAULT_SERVER, 'foobar')
         );
 
-        $mockMultiNotifier = self::createMock(MultiNotifier::class);
+        $mockMultiNotifier = $this->createMock(MultiNotifier::class);
         $mockMultiNotifier->expects($this->exactly(3))->method('addNotifier');
         $notifierFactory = new NotifierFactory($mockMultiNotifier);
 
