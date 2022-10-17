@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Inverse\Termin\Notifier;
 
 use Inverse\Termin\Config\Config;
-use Pushbullet\Pushbullet;
-use TelegramBot\Api\BotApi;
 use Ntfy\Client;
 use Ntfy\Server;
-
+use Pushbullet\Pushbullet;
+use TelegramBot\Api\BotApi;
 
 class NotifierFactory
 {

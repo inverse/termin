@@ -108,18 +108,18 @@ class ConfigParserTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('config.ntfy missing topic field');
         $this->configParser->parse($this->getBasicConfig() + [
-                'ntfy' => [
-                ],
-            ]);
+            'ntfy' => [
+            ],
+        ]);
     }
 
     public function testParseNtfyValidDefaultServer(): void
     {
         $config = $this->configParser->parse($this->getBasicConfig() + [
-                'ntfy' => [
-                    'topic' => 'termin_fun',
-                ],
-            ]);
+            'ntfy' => [
+                'topic' => 'termin_fun',
+            ],
+        ]);
 
         self::assertEquals($config->getNtfy()->getServer(), Ntfy::DEFAULT_SERVER);
         self::assertEquals($config->getNtfy()->getTopic(), 'termin_fun');
@@ -128,16 +128,15 @@ class ConfigParserTest extends TestCase
     public function testParseNtfyValid(): void
     {
         $config = $this->configParser->parse($this->getBasicConfig() + [
-                'ntfy' => [
-                    'server' => 'https://my-server.com',
-                    'topic' => 'termin_fun',
-                ],
-            ]);
+            'ntfy' => [
+                'server' => 'https://my-server.com',
+                'topic' => 'termin_fun',
+            ],
+        ]);
 
         self::assertEquals($config->getNtfy()->getServer(), 'https://my-server.com');
         self::assertEquals($config->getNtfy()->getTopic(), 'termin_fun');
     }
-
 
     public function testParseTelegramEmpty(): void
     {

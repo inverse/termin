@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Inverse\Termin\Notifier;
 
 use DateTime;
-use Ntfy\Message;
 use Ntfy\Client;
+use Ntfy\Message;
 
 class NtfyNotifier implements NotifierInterface
 {

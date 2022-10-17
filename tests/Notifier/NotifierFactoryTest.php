@@ -52,7 +52,8 @@ class NotifierFactoryTest extends TestCase
         $mockMultiNotifier
             ->expects($this->once())
             ->method('addNotifier')
-            ->with(self::callback(static fn($value): bool => $value instanceof PushbulletNotifier));
+            ->with(self::callback(static fn ($value): bool => $value instanceof PushbulletNotifier))
+        ;
         $notifierFactory = new NotifierFactory($mockMultiNotifier);
 
         $notifierFactory->create($config);
@@ -74,7 +75,8 @@ class NotifierFactoryTest extends TestCase
         $mockMultiNotifier
             ->expects($this->once())
             ->method('addNotifier')
-            ->with(self::callback(static fn($value): bool => $value instanceof TelegramNotifier));
+            ->with(self::callback(static fn ($value): bool => $value instanceof TelegramNotifier))
+        ;
         $notifierFactory = new NotifierFactory($mockMultiNotifier);
 
         $notifierFactory->create($config);
@@ -96,7 +98,8 @@ class NotifierFactoryTest extends TestCase
         $mockMultiNotifier
             ->expects($this->once())
             ->method('addNotifier')
-            ->with(self::callback(static fn($value): bool => $value instanceof NtfyNotifier));
+            ->with(self::callback(static fn ($value): bool => $value instanceof NtfyNotifier))
+        ;
         $notifierFactory = new NotifierFactory($mockMultiNotifier);
 
         $notifierFactory->create($config);
