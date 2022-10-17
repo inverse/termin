@@ -6,6 +6,7 @@ namespace Tests\Inverse\Termin\Config;
 
 use InvalidArgumentException;
 use Inverse\Termin\Config\ConfigParser;
+use Inverse\Termin\Config\Notifier\Ntfy;
 use Inverse\Termin\Config\Rules\AfterDateRule;
 use Inverse\Termin\Config\Rules\AfterRule;
 use Inverse\Termin\Config\Rules\BeforeDateRule;
@@ -100,6 +101,41 @@ class ConfigParserTest extends TestCase
     {
         $config = $this->configParser->parse($this->getBasicConfig() + ['allow_multiple_notifications' => true]);
         self::assertTrue($config->isAllowMultipleNotifications());
+    }
+
+    public function testParseNtfyEmpty(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('config.ntfy missing topic field');
+        $this->configParser->parse($this->getBasicConfig() + [
+            'ntfy' => [
+            ],
+        ]);
+    }
+
+    public function testParseNtfyValidDefaultServer(): void
+    {
+        $config = $this->configParser->parse($this->getBasicConfig() + [
+            'ntfy' => [
+                'topic' => 'termin_fun',
+            ],
+        ]);
+
+        self::assertEquals($config->getNtfy()->getServer(), Ntfy::DEFAULT_SERVER);
+        self::assertEquals($config->getNtfy()->getTopic(), 'termin_fun');
+    }
+
+    public function testParseNtfyValid(): void
+    {
+        $config = $this->configParser->parse($this->getBasicConfig() + [
+            'ntfy' => [
+                'server' => 'https://my-server.com',
+                'topic' => 'termin_fun',
+            ],
+        ]);
+
+        self::assertEquals($config->getNtfy()->getServer(), 'https://my-server.com');
+        self::assertEquals($config->getNtfy()->getTopic(), 'termin_fun');
     }
 
     public function testParseTelegramEmpty(): void

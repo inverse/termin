@@ -3,7 +3,7 @@
     "description": "Simple PHP tool for finding a termin in Berlin",
     "license": "MIT",
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.0",
         "ext-curl": "*",
         "ext-dom": "*",
         "fabpot/goutte": "^4.0.0",
@@ -12,7 +12,8 @@
         "pimple/pimple": "^3.2",
         "psr/log": "^1.1.4",
         "symfony/yaml": "^5.3",
-        "telegram-bot/api": "^2.3"
+        "telegram-bot/api": "^2.3",
+        "verifiedjoseph/ntfy-php-library": "^4"
     },
     "autoload": {
         "psr-4": {

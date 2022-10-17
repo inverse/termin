@@ -15,10 +15,11 @@ Supports notifications via:
 
 - [Pushbullet][1]
 - [Telegram][2]
+- [ntfy][6]
 
 # Requirements
 
-- PHP 7.4+
+- PHP 8.0+
 - composer
 
 # Setup
@@ -45,7 +46,18 @@ Configure an `config.yml` file based on the `example.config.yml` file located in
 
 Termin supports various notifiers, it will send notifications to each one you configure.
 
-#### Push bullet (Easiest)
+#### ntfy (Easiest)
+
+Set `ntfy.topic` within `config.yml` to something unique to you.
+
+_You can customise the server if you wish to use a 3rd party or self-hosted one._
+
+Configure your client to listen to the same configured server/topic.
+
+- From your [phone][7]
+- From your [browser][8]
+
+#### Push bullet
 
 Set `pushbullet.api_token` within `config.yml` with an API token from your account. Follow their [quick start guide][3] on how to get this.
 
@@ -193,3 +205,6 @@ MIT
 [3]: https://docs.pushbullet.com/#api-quick-start
 [4]: https://core.telegram.org/bots#3-how-do-i-create-a-bot
 [5]: https://www.php.net/manual/en/dateinterval.construct.php
+[6]: https://ntfy.sh/
+[7]: https://ntfy.sh/docs/subscribe/phone/
+[8]: https://ntfy.sh/docs/subscribe/web/
