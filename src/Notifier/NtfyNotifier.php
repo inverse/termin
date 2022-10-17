@@ -5,20 +5,19 @@ declare(strict_types=1);
 namespace Inverse\Termin\Notifier;
 
 use DateTime;
-use Inverse\Termin\Config\Notifier\Ntfy;
 use Ntfy\Message;
-use Ntfy\Server;
+use Ntfy\Client;
 
 class NtfyNotifier implements NotifierInterface
 {
+    private Client $client;
+
     private string $topic;
 
-    private Server $server;
-
-    public function __construct(Ntfy $ntfy)
+    public function __construct(Client $client, string $topic)
     {
-        $this->topic = $ntfy->getTopic();
-        $this->server = new Server($ntfy->getServer());
+        $this->client = $client;
+        $this->topic = $topic;
     }
 
     public function notify(string $label, string $url, DateTime $date): void
@@ -29,6 +28,6 @@ class NtfyNotifier implements NotifierInterface
         $message->title('Appointment Found');
         $message->body($body);
         $message->clickAction($url);
-        $message->send();
+        $this->client->send($message);
     }
 }

@@ -7,6 +7,9 @@ namespace Inverse\Termin\Notifier;
 use Inverse\Termin\Config\Config;
 use Pushbullet\Pushbullet;
 use TelegramBot\Api\BotApi;
+use Ntfy\Client;
+use Ntfy\Server;
+
 
 class NotifierFactory
 {
@@ -32,7 +35,8 @@ class NotifierFactory
         }
 
         if (null !== $config->getNtfy()) {
-            $this->notifier->addNotifier(new NtfyNotifier($config->getNtfy()));
+            $client = new Client(new Server($config->getNtfy()->getServer()));
+            $this->notifier->addNotifier(new NtfyNotifier($client, $config->getNtfy()->getTopic()));
         }
 
         return $this->notifier;
