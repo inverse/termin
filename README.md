@@ -57,7 +57,7 @@ Configure your client to listen to the same configured server/topic.
 - From your [phone][7]
 - From your [browser][8]
 
-#### Push bullet
+#### Pushbullet
 
 Set `pushbullet.api_token` within `config.yml` with an API token from your account. Follow their [quick start guide][3] on how to get this.
 
@@ -85,6 +85,8 @@ Take care when copying the leading `-` as this is required for group chat IDs.
 
 ### Site configuration
 
+You can configure Termin to notify on multiple appointment types.
+
 ```yaml
 sites:
   -
@@ -100,7 +102,7 @@ sites:
 ```
 
 - `label` - the friendly label that will be displayed in the notification
-- `type` - The type of scraper to use
+- `type` - The type of scraper to use (`berlin_service` currently supported)
 - `params.url` - the service URL you want to book. e.g. the URL behind the "Book an Appointment button"
 
 ![](https://i.imgur.com/zqSScD5.png)
