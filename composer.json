@@ -10,8 +10,8 @@
         "ivkos/pushbullet": "^3.3",
         "monolog/monolog": "^2.1.1",
         "pimple/pimple": "^3.2",
-        "psr/log": "^1.1.4",
-        "symfony/yaml": "^5.3",
+        "psr/log": "^3",
+        "symfony/yaml": "^6.2",
         "telegram-bot/api": "^2.3",
         "verifiedjoseph/ntfy-php-library": "^4"
     },
