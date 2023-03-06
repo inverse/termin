@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Inverse\Termin\Notifier;
 
-use DateTime;
 use Pushbullet\Pushbullet;
 
 class PushbulletNotifier implements NotifierInterface
@@ -16,7 +15,7 @@ class PushbulletNotifier implements NotifierInterface
         $this->pushbullet = $pushbullet;
     }
 
-    public function notify(string $label, string $url, DateTime $date): void
+    public function notify(string $label, string $url, \DateTime $date): void
     {
         $title = 'Appointment Found';
         $body = sprintf('%s appointment found for %s', $label, $date->format('jS M Y'));

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Inverse\Termin\Scraper;
 
-use DOMElement;
-use DOMNode;
 use Goutte\Client;
 use Inverse\Termin\Config\Site;
 use Inverse\Termin\DateHelper;
@@ -61,7 +59,7 @@ class BerlinServiceScraper implements ScraperInterface
         return array_merge([], ...$results);
     }
 
-    private function processMonth(DOMNode $element, string $url, Site $site): array
+    private function processMonth(\DOMNode $element, string $url, Site $site): array
     {
         $crawler = new Crawler($element, $url);
         $monthStr = trim($crawler->filter('.month')->text());
@@ -69,7 +67,7 @@ class BerlinServiceScraper implements ScraperInterface
         $crawler = $crawler->filter('tr td');
         $results = [];
 
-        /** @var DOMElement $node */
+        /** @var \DOMElement $node */
         foreach ($crawler as $node) {
             $class = $node->getAttribute('class');
             $classes = explode(' ', $class);

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Inverse\Termin\HttpClient;
 
+use Campo\UserAgent;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -18,8 +19,16 @@ class HttpClientFactory implements HttpClientFactoryInterface
     {
         return HttpClient::create([
             'headers' => [
-                'User-Agent' => self::USER_AGENT,
+                'User-Agent' => $this->getUserAgent(),
             ],
+        ]);
+    }
+
+    private function getUserAgent(): string
+    {
+        return UserAgent::random([
+            'os_type' => ['Android', 'iOS'],
+            'device_type' => ['Mobile', 'Tablet'],
         ]);
     }
 }

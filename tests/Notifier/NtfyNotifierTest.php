@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Inverse\Termin\Notifier;
 
-use DateTime;
 use Inverse\Termin\Notifier\NtfyNotifier;
 use Ntfy\Client;
 use Ntfy\Message;
@@ -29,6 +28,6 @@ class NtfyNotifierTest extends TestCase
         ;
 
         $notifier = new NtfyNotifier($mockClient, $topic);
-        $notifier->notify('foo', 'http://example.com/1', new DateTime('2022-01-01 00:00:00'));
+        $notifier->notify('foo', 'http://example.com/1', new \DateTime('2022-01-01 00:00:00'));
     }
 }

@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Inverse\Termin\Config\Rules;
 
-use DateInterval;
-use DateTime;
 use Inverse\Termin\Result;
 
 class AfterRule implements RuleInterface
 {
     use DateIntervalRuleTrait;
 
-    private DateInterval $after;
+    private \DateInterval $after;
 
     public function __construct(string $after)
     {
@@ -21,6 +19,6 @@ class AfterRule implements RuleInterface
 
     public function passes(Result $result): bool
     {
-        return $result->getDateTime() > (new DateTime())->add($this->after);
+        return $result->getDateTime() > (new \DateTime())->add($this->after);
     }
 }
