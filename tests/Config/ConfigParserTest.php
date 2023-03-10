@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Inverse\Termin\Config;
 
-use InvalidArgumentException;
 use Inverse\Termin\Config\ConfigParser;
 use Inverse\Termin\Config\Notifier\Ntfy;
 use Inverse\Termin\Config\Rules\AfterDateRule;
@@ -26,21 +25,21 @@ class ConfigParserTest extends TestCase
 
     public function testParseEmpty(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('config missing sites key');
         $this->configParser->parse([]);
     }
 
     public function testParseEmptySites(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('config has no sites defined');
         $this->configParser->parse(['sites' => []]);
     }
 
     public function testParseSiteMissingType(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('site missing type field');
         $this->configParser->parse(['sites' => [
             [
@@ -51,7 +50,7 @@ class ConfigParserTest extends TestCase
 
     public function testParseSiteMissingLabel(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('site missing label field');
         $this->configParser->parse(['sites' => [
             [
@@ -62,7 +61,7 @@ class ConfigParserTest extends TestCase
 
     public function testParseSiteMissingParams(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('site missing params field');
         $this->configParser->parse(['sites' => [
             [
@@ -74,7 +73,7 @@ class ConfigParserTest extends TestCase
 
     public function testParseSiteParamsNotArray(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('site.params field must be array');
         $this->configParser->parse(['sites' => [
             [
@@ -105,7 +104,7 @@ class ConfigParserTest extends TestCase
 
     public function testParseNtfyEmpty(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('config.ntfy missing topic field');
         $this->configParser->parse($this->getBasicConfig() + [
             'ntfy' => [
@@ -140,7 +139,7 @@ class ConfigParserTest extends TestCase
 
     public function testParseTelegramEmpty(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('config.telegram missing api_key field');
         $this->configParser->parse($this->getBasicConfig() + [
             'telegram' => [
@@ -150,7 +149,7 @@ class ConfigParserTest extends TestCase
 
     public function testParseTelegramMissingApiKey(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('config.telegram missing api_key field');
         $this->configParser->parse($this->getBasicConfig() + [
             'telegram' => [
@@ -161,7 +160,7 @@ class ConfigParserTest extends TestCase
 
     public function testParseTelegramMissingChatId(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('config.telegram missing chat_id field');
         $this->configParser->parse($this->getBasicConfig() + [
             'telegram' => [
@@ -209,7 +208,7 @@ class ConfigParserTest extends TestCase
 
     public function testParsePushbulletEmpty(): void
     {
-        self::expectException(InvalidArgumentException::class);
+        self::expectException(\InvalidArgumentException::class);
         self::expectExceptionMessage('config.pushbullet missing api_token field');
         $this->configParser->parse($this->getBasicConfig() + [
             'pushbullet' => [
@@ -241,7 +240,7 @@ class ConfigParserTest extends TestCase
 
     public function testParseRulesNotArray(): void
     {
-        self::expectException(InvalidArgumentException::class);
+        self::expectException(\InvalidArgumentException::class);
         self::expectExceptionMessage('rules must be an array');
         $this->configParser->parse($this->getBasicConfig() + [
             'rules' => 'foo',
@@ -250,7 +249,7 @@ class ConfigParserTest extends TestCase
 
     public function testParseRulesRuleNotArray(): void
     {
-        self::expectException(InvalidArgumentException::class);
+        self::expectException(\InvalidArgumentException::class);
         self::expectExceptionMessage('rule must be an array');
         $this->configParser->parse($this->getBasicConfig() + [
             'rules' => [
@@ -321,7 +320,7 @@ class ConfigParserTest extends TestCase
 
     public function testParseRulesInvalidRuleType(): void
     {
-        self::expectException(InvalidArgumentException::class);
+        self::expectException(\InvalidArgumentException::class);
         self::expectExceptionMessage('foo is an invalid rule type');
         $this->configParser->parse($this->getBasicConfig() + [
             'rules' => [
@@ -351,7 +350,7 @@ class ConfigParserTest extends TestCase
 
     public function testParseLogLevelInvalid(): void
     {
-        self::expectException(InvalidArgumentException::class);
+        self::expectException(\InvalidArgumentException::class);
         $this->configParser->parse($this->getBasicConfig() + [
             'logger' => [
                 'level' => 'foobar',

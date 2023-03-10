@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Inverse\Termin\Config;
 
-use InvalidArgumentException;
 use Inverse\Termin\Config\Notifier\Ntfy;
 use Inverse\Termin\Config\Notifier\Pushbullet;
 use Inverse\Termin\Config\Notifier\Telegram;
@@ -21,29 +20,29 @@ class ConfigParser
     public function parse(array $config): Config
     {
         if (!array_key_exists('sites', $config)) {
-            throw new InvalidArgumentException('config missing sites key');
+            throw new \InvalidArgumentException('config missing sites key');
         }
 
         if (0 === count($config['sites'])) {
-            throw new InvalidArgumentException('config has no sites defined');
+            throw new \InvalidArgumentException('config has no sites defined');
         }
 
         $sites = [];
         foreach ($config['sites'] as $site) {
             if (!array_key_exists('label', $site)) {
-                throw new InvalidArgumentException('site missing label field');
+                throw new \InvalidArgumentException('site missing label field');
             }
 
             if (!array_key_exists('type', $site)) {
-                throw new InvalidArgumentException('site missing type field');
+                throw new \InvalidArgumentException('site missing type field');
             }
 
             if (!array_key_exists('params', $site)) {
-                throw new InvalidArgumentException('site missing params field');
+                throw new \InvalidArgumentException('site missing params field');
             }
 
             if (!is_array($site['params'])) {
-                throw new InvalidArgumentException('site.params field must be array');
+                throw new \InvalidArgumentException('site.params field must be array');
             }
 
             $sites[] = new Site($site['label'], $site['type'], $site['params']);
@@ -82,12 +81,12 @@ class ConfigParser
         }
 
         if (!is_array($config['rules'])) {
-            throw new InvalidArgumentException('rules must be an array');
+            throw new \InvalidArgumentException('rules must be an array');
         }
 
         foreach ($config['rules'] as $rule) {
             if (!is_array($rule)) {
-                throw new InvalidArgumentException('rule must be an array');
+                throw new \InvalidArgumentException('rule must be an array');
             }
 
             $type = $rule['type'];
@@ -114,7 +113,7 @@ class ConfigParser
                     break;
 
                 default:
-                    throw new InvalidArgumentException(sprintf('%s is an invalid rule type', $type));
+                    throw new \InvalidArgumentException(sprintf('%s is an invalid rule type', $type));
             }
         }
 
@@ -129,11 +128,11 @@ class ConfigParser
 
         $telegramConfig = $config['telegram'];
         if (!array_key_exists('api_key', $telegramConfig)) {
-            throw new InvalidArgumentException('config.telegram missing api_key field');
+            throw new \InvalidArgumentException('config.telegram missing api_key field');
         }
 
         if (!array_key_exists('chat_id', $telegramConfig)) {
-            throw new InvalidArgumentException('config.telegram missing chat_id field');
+            throw new \InvalidArgumentException('config.telegram missing chat_id field');
         }
 
         if (empty($telegramConfig['api_key']) || empty($telegramConfig['chat_id'])) {
@@ -152,7 +151,7 @@ class ConfigParser
         $ntfyConfig = $config['ntfy'];
 
         if (!array_key_exists('topic', $ntfyConfig)) {
-            throw new InvalidArgumentException('config.ntfy missing topic field');
+            throw new \InvalidArgumentException('config.ntfy missing topic field');
         }
 
         $server = $ntfyConfig['server'] ?? Ntfy::DEFAULT_SERVER;
@@ -168,7 +167,7 @@ class ConfigParser
 
         $pushbulletConfig = $config['pushbullet'];
         if (!array_key_exists('api_token', $pushbulletConfig)) {
-            throw new InvalidArgumentException('config.pushbullet missing api_token field');
+            throw new \InvalidArgumentException('config.pushbullet missing api_token field');
         }
 
         if (empty($pushbulletConfig['api_token'])) {

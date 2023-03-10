@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Inverse\Termin\Notifier;
 
-use DateTime;
 use Inverse\Termin\Notifier\NotifierInterface;
 
 class TestNotifier implements NotifierInterface
@@ -16,7 +15,7 @@ class TestNotifier implements NotifierInterface
         $this->notifications = [];
     }
 
-    public function notify(string $label, string $url, DateTime $date): void
+    public function notify(string $label, string $url, \DateTime $date): void
     {
         $this->notifications[] = [
             'name' => $label,

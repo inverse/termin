@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Inverse\Termin;
 
-use DateTime;
 use Inverse\Termin\Config\Config;
 use Inverse\Termin\Config\Site;
 use Inverse\Termin\Exceptions\TerminException;
@@ -49,7 +48,7 @@ class TerminTest extends TestCase
         $mockScraper = $this->createMock(BerlinServiceScraper::class);
 
         $mockScraper->method('scrape')
-            ->willReturn([new Result('https://example.com', 'Hello', new DateTime('2020-01-01 00:00:00'))])
+            ->willReturn([new Result('https://example.com', 'Hello', new \DateTime('2020-01-01 00:00:00'))])
         ;
 
         $mockConfig = $this->createMock(Config::class);
@@ -78,8 +77,8 @@ class TerminTest extends TestCase
 
         $mockScraper->method('scrape')
             ->willReturn([
-                new Result('https://example.com', 'Hello', new DateTime('2020-01-01 00:00:00')),
-                new Result('https://example.com', 'Hello', new DateTime('2020-01-02 00:00:00')),
+                new Result('https://example.com', 'Hello', new \DateTime('2020-01-01 00:00:00')),
+                new Result('https://example.com', 'Hello', new \DateTime('2020-01-02 00:00:00')),
             ])
         ;
 

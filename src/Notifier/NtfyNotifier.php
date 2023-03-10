@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Inverse\Termin\Notifier;
 
-use DateTime;
 use Ntfy\Client;
 use Ntfy\Message;
 
@@ -20,7 +19,7 @@ class NtfyNotifier implements NotifierInterface
         $this->topic = $topic;
     }
 
-    public function notify(string $label, string $url, DateTime $date): void
+    public function notify(string $label, string $url, \DateTime $date): void
     {
         $body = sprintf('%s appointment found for %s', $label, $date->format('jS M Y'));
         $message = new Message();

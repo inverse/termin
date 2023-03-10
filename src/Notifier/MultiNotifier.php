@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Inverse\Termin\Notifier;
 
-use DateTime;
-
 class MultiNotifier implements NotifierInterface
 {
     /**
@@ -23,7 +21,7 @@ class MultiNotifier implements NotifierInterface
         $this->notifiers[] = $notify;
     }
 
-    public function notify(string $label, string $url, DateTime $date): void
+    public function notify(string $label, string $url, \DateTime $date): void
     {
         if (empty($this->notifiers)) {
             throw new NotifierException('No notifiers configured');

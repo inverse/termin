@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Inverse\Termin;
 
-use DateTime;
 use Inverse\Termin\Config\Rules\RuleInterface;
 use Inverse\Termin\Filter;
 use Inverse\Termin\Result;
@@ -22,7 +21,7 @@ class FilterTest extends TestCase
     {
         $filter = new Filter([]);
 
-        $results = [new Result('', '', new DateTime())];
+        $results = [new Result('', '', new \DateTime())];
         self::assertEquals($results, $filter->applyRules($results));
     }
 
@@ -33,7 +32,7 @@ class FilterTest extends TestCase
 
         $filter = new Filter([$mockRule]);
 
-        $results = [new Result('', '', new DateTime())];
+        $results = [new Result('', '', new \DateTime())];
         self::assertEquals($results, $filter->applyRules($results));
     }
 
@@ -44,7 +43,7 @@ class FilterTest extends TestCase
 
         $filter = new Filter([$mockRule]);
 
-        $results = [new Result('', '', new DateTime())];
+        $results = [new Result('', '', new \DateTime())];
         self::assertEmpty($filter->applyRules($results));
     }
 }

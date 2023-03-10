@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Inverse\Termin\Notifier;
 
-use DateTime;
 use Inverse\Termin\Notifier\PushbulletNotifier;
 use PHPUnit\Framework\TestCase;
 use Pushbullet\Device;
@@ -28,6 +27,6 @@ class PushbulletNotifierTest extends TestCase
             ->willReturn($mockDevice)
         ;
         $notifier = new PushbulletNotifier($mockBotApi);
-        $notifier->notify('foo', 'http://example.com/1', new DateTime('2022-01-01 00:00:00'));
+        $notifier->notify('foo', 'http://example.com/1', new \DateTime('2022-01-01 00:00:00'));
     }
 }

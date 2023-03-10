@@ -4,21 +4,17 @@ declare(strict_types=1);
 
 namespace Inverse\Termin;
 
-use DateTime;
-use DateTimeZone;
-use Throwable;
-
 class DateHelper
 {
-    public static function createDateTime(string $day, string $month): ?DateTime
+    public static function createDateTime(string $day, string $month): ?\DateTime
     {
         if (empty($day) || empty($month)) {
             return null;
         }
 
         try {
-            return new DateTime(sprintf('%s %s', $day, $month), new DateTimeZone('Europe/Berlin'));
-        } catch (Throwable $exception) {
+            return new \DateTime(sprintf('%s %s', $day, $month), new \DateTimeZone('Europe/Berlin'));
+        } catch (\Throwable $exception) {
             return null;
         }
     }

@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace Inverse\Termin;
 
-use DateTime;
-use DateTimeInterface;
-
 class Result
 {
     private string $url;
 
     private string $label;
 
-    private DateTime $dateTime;
+    private \DateTime $dateTime;
 
-    public function __construct(string $url, string $label, DateTime $dateTime)
+    public function __construct(string $url, string $label, \DateTime $dateTime)
     {
         $this->url = $url;
         $this->label = $label;
@@ -24,7 +21,7 @@ class Result
 
     public function __toString()
     {
-        return $this->dateTime->format(DateTimeInterface::ATOM);
+        return $this->dateTime->format(\DateTimeInterface::ATOM);
     }
 
     public function getUrl(): string
@@ -37,7 +34,7 @@ class Result
         return $this->label;
     }
 
-    public function getDateTime(): DateTime
+    public function getDateTime(): \DateTime
     {
         return $this->dateTime;
     }
