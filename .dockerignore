@@ -1,0 +1,10 @@
+# Ignore everything
+*
+
+# Allow files and directories
+!/src/
+!/var/
+
+!/app.php
+!/composer.json
+!/composer.lock
