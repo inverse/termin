@@ -19,7 +19,7 @@ jobs:
       run: |
         XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover coverage.xml
     - uses: codecov/codecov-action@v3
-      if: matrix.php-version == '8.1'
+      if: matrix.php-version == '8.2'
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
   phpstan:
@@ -35,7 +35,7 @@ jobs:
   php-cs-fixer:
     runs-on: ubuntu-latest
     container:
-      image: jakzal/phpqa:php8.1
+      image: jakzal/phpqa:php8.2
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
