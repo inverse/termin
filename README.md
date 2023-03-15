@@ -190,7 +190,7 @@ Wait for a notification!
 Configure the application following the above steps and then run the prebuilt docker image.
 
 ```bash
-docker run -it -v $(pwd)/config.yml:/app/config.yml inversechi/termin:latest
+docker run -it -v $(pwd)/config.yml:/app/config.yml ghcr.io/inverse/termin/termin:latest
 ```
 
 Configure this to run on a regular schedule using something that your OS provides.
