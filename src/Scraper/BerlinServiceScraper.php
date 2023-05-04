@@ -9,9 +9,9 @@ use Inverse\Termin\DateHelper;
 use Inverse\Termin\Exceptions\TerminException;
 use Inverse\Termin\Result;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\BrowserKit\HttpBrowser;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Component\BrowserKit\HttpBrowser;
 
 class BerlinServiceScraper implements ScraperInterface
 {
@@ -51,7 +51,7 @@ class BerlinServiceScraper implements ScraperInterface
         $results = [];
 
         $nextUrl = $this->extractNextUrl($crawler);
-        if ($nextUrl !== null) {
+        if (null !== $nextUrl) {
             $results = array_merge($results, $this->scrapeSite($nextUrl, $site));
         }
 
@@ -60,12 +60,9 @@ class BerlinServiceScraper implements ScraperInterface
         foreach ($crawler as $element) {
             $results[] = $this->processAvailable($element, $url, $site);
         }
-      
 
         return $results;
     }
-
-
 
     private function processAvailable(\DOMNode $element, string $url, Site $site): Result
     {
