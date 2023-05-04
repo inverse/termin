@@ -14,4 +14,10 @@ class DateHelperTest extends TestCase
         $datetime = DateHelper::createDateTime('01.01.2023');
         self::assertEquals('01-01-2023', $datetime->format('m-d-Y'));
     }
+
+    public function testCreateDateTimeInvalid(): void
+    {
+        self::expectException(\InvalidArgumentException::class);
+        DateHelper::createDateTime('foo');
+    }
 }
