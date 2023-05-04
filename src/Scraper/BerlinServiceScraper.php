@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Inverse\Termin\Scraper;
 
-use Goutte\Client;
 use Inverse\Termin\Config\Site;
 use Inverse\Termin\DateHelper;
 use Inverse\Termin\Exceptions\TerminException;
@@ -12,12 +11,11 @@ use Inverse\Termin\Result;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Component\BrowserKit\HttpBrowser;
 
 class BerlinServiceScraper implements ScraperInterface
 {
-    private const CLASS_AVAILABLE = 'buchbar';
-
-    private Client $client;
+    private HttpClientInterface $httpClient;
 
     private LoggerInterface $logger;
 
@@ -25,7 +23,7 @@ class BerlinServiceScraper implements ScraperInterface
         HttpClientInterface $httpClient,
         LoggerInterface $logger
     ) {
-        $this->client = new Client($httpClient);
+        $this->httpClient = $httpClient;
         $this->logger = $logger;
     }
 
@@ -47,45 +45,35 @@ class BerlinServiceScraper implements ScraperInterface
     {
         $this->logger->debug(sprintf('GET %s', $url));
 
-        $crawler = $this->client->request('GET', $url);
-
-        $crawler = $crawler->filter('.calendar-table table');
+        $browser = new HttpBrowser($this->httpClient);
+        $crawler = $browser->request('GET', $url);
 
         $results = [];
-        foreach ($crawler as $element) {
-            $results[] = $this->processMonth($element, $url, $site);
-        }
 
-        return array_merge([], ...$results);
-    }
-
-    private function processMonth(\DOMNode $element, string $url, Site $site): array
-    {
-        $crawler = new Crawler($element, $url);
-        $monthStr = trim($crawler->filter('.month')->text());
         $nextUrl = $this->extractNextUrl($crawler);
-        $crawler = $crawler->filter('tr td');
-        $results = [];
-
-        /** @var \DOMElement $node */
-        foreach ($crawler as $node) {
-            $class = $node->getAttribute('class');
-            $classes = explode(' ', $class);
-
-            if (in_array(self::CLASS_AVAILABLE, $classes, true)) {
-                $dateTime = DateHelper::createDateTime($node->textContent, DateHelper::monthConvert($monthStr));
-
-                if (isset($dateTime)) {
-                    $results[] = new Result($site->getParams()['url'], $site->getLabel(), $dateTime);
-                }
-            }
-        }
-
-        if (null !== $nextUrl) {
+        if ($nextUrl !== null) {
             $results = array_merge($results, $this->scrapeSite($nextUrl, $site));
         }
 
+        $crawler = $crawler->filter('td.buchbar');
+
+        foreach ($crawler as $element) {
+            $results[] = $this->processAvailable($element, $url, $site);
+        }
+      
+
         return $results;
+    }
+
+
+
+    private function processAvailable(\DOMNode $element, string $url, Site $site): Result
+    {
+        $crawler = new Crawler($element, $url);
+        $title = $crawler->filter('a')->extract(['title']);
+        $dateTime = DateHelper::createDateTime(explode(' ', $title[0])[0]);
+
+        return new Result($site->getParams()['url'], $site->getLabel(), $dateTime);
     }
 
     private function extractNextUrl(Crawler $crawler): ?string
@@ -96,6 +84,6 @@ class BerlinServiceScraper implements ScraperInterface
             return null;
         }
 
-        return $crawler->filter('th a')->first()->link()->getUri();
+        return $crawler->filter('th.next a')->first()->link()->getUri();
     }
 }
