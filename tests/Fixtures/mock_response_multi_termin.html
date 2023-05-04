@@ -1,968 +1,704 @@
-
-
-
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
-<head>
-    <title>Terminvergabe - Auswahl des Tages - Service Berlin - Berlin.de</title>
-    <meta name="robots" content="NOINDEX NOFOLLOW">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8" />
-    <link rel="alternate" hreflang="en" href="/terminvereinbarung/termin/day/" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" type="text/css" href="//service.berlin.de/i9f/v4/css/vendor.css?ts=1599665887"/>
-
-    <!-- theme switch begin -->
-    <link rel="stylesheet" type="text/css" href="//service.berlin.de/i9f/v4/css/bde-bootstrap.css?ts=1599665887"/>
-    <link rel="stylesheet" type="text/css" href="//service.berlin.de/i9f/v4/css/bde-index.css?ts=1599665887"/>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
-    <link rel="apple-touch-icon" sizes="180x180" href="//service.berlin.de/i9f/v4/css/images/misc/apple-touch-icon.png" type="image/png"/>
-    <!-- theme switch end -->
-
-    <!-- "property" validiert nicht, nimm "name" -->
-    <meta name="og:image" content="http://service.berlin.de/i9f/images/facebook_default_icon_land.png" />
-    <meta name="og:image:secure_url" content="https://service.berlin.de/i9f/images/facebook_default_icon_land.png" />
-    <script src="//service.berlin.de/i9f/v4/js/bo-head.js?ts=1599665887"></script>
-    <script src="//service.berlin.de/i9f/v4/js/bo-info.js?ts=1599665887"></script>
-
-
-    <!--
-      layout: ohne
-      url: /service.berlin.de/terminvereinbarung/__i9/ohne/head.inc  created on: Thu, 10 Sep 2020 21:10:51 +0200
-    -->
-
-
-    <link rel="stylesheet" type="text/css" href="/terminvereinbarung/termin/_css/appointment.css">
-    <link rel="canonical" href="http://service.berlin.de/">
-</head>
-
-
-<body class="locale_de" id="dayselect">
-
-
-<div class="bo-page-wrapper">
-
-    <div class="container-wrapper container-portal-header">
-        <!-- Werbung -->
-        <div class="skyscraper hidden-phone">
-            <!-- kommunal: beberlin -->
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="span12">
-
-                    <!-- NAVIGATION BEGIN: portal -->
-
-                    <div class="html5-header portal-header hidden-phone">
-                        <div class="red-line"></div>
-                        <div class="html5-figure main-image">
-                            <a href="https://www.berlin.de/">
-                                <img class="portal-logo hide-mobile" src="//service.berlin.de/i9f/v4/css/images/berlin_de.png" alt="Zur Homepage von Berlin.de" />
-                            </a>
-                        </div><!-- /html5-figure -->
-
-                        <p class="navSkip hidden-phone osvnp">Navigiere direkt zu:</p>
-                        <ul class="navSkip hidden-phone">
-                            <li><a href="#aural_institutionssuche">Suche</a></li>
-                            <li><a href="#aural_maincontent">Inhalt</a></li>
-                        </ul>
-
-                        <nav aria-label="Portal Navigation">
-                            <h6 class="aural">Portal Navigation</h6>
-                            <p class="aural" id="bo-portalnavilinkslabel">Besuchen Sie auch unsere anderen Themen-Bereiche:</p>
-                            <ul class="portal-navi" id="bo-portalnavilinks" aria-labelledby="bo-portalnavilinkslabel">
-                                <li class="active"><a href="https://www.berlin.de/politik-verwaltung-buerger/">Politik, Verwaltung, B&#252;rger</a></li>
-                                <li><a href="https://www.berlin.de/kultur-und-tickets/">Kultur &#38; Ausgehen</a></li>
-                                <li><a href="https://www.berlin.de/tourismus/">Tourismus</a></li>
-                                <li><a href="https://www.berlin.de/wirtschaft/">Wirtschaft</a></li>
-                                <li><a href="https://www.berlin.de/special/">Lifestyle</a></li>
-                                <li><a href="https://www.berlin.de/adressen/">BerlinFinder</a></li>
-                                <li><a href="https://www.berlin.de/stadtplan/">Stadtplan</a></li>
-                            </ul>
-                        </nav><!-- /html5-nav -->
-                    </div><!-- /html5-header -->
-                    <!-- NAVIGATION END: portal -->
-                </div>
+   <head>
+      <title>Terminvergabe - Auswahl des Tages - Service Berlin - Berlin.de</title>
+      <meta name="robots" content="NOINDEX NOFOLLOW">
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta charset="UTF-8" />
+      <!-- head.view.php -->
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" href="//service.berlin.de/i9f/r1/bundle/default.css?ts=1683120311" media="all">
+      <script src="//service.berlin.de/i9f/r1/bundle/jquery.min.js?ts=1683120311" crossorigin="anonymous"></script>
+      <script src="//service.berlin.de/i9f/r1/bundle/default.js?ts=1683120311" id="bo-behavior-js"></script>
+      <link rel="stylesheet" type="text/css" href="//service.berlin.de/i9f/v4/css/sub-vendor.css?ts=1683120311"/>
+      <!-- theme switch begin (Screen zwischen) -->
+      <link rel="stylesheet" type="text/css" href="//service.berlin.de/i9f/v4/css/bde-bootstrap.css?ts=1683120311"/>
+      <link rel="stylesheet" type="text/css" href="//service.berlin.de/i9f/v4/css/bde-index.css?ts=1683120311"/>
+      <link rel="apple-touch-icon" sizes="180x180" href="//service.berlin.de/i9f/v4/css/images/misc/apple-touch-icon.png" type="image/png"/>
+      <link rel="icon" type="image/png" href="//service.berlin.de/i9f/r1/images/favicon/Berlin_de-32x32.png">
+      <!-- theme switch end -->
+      <!-- "property" validiert nicht, nimm "name" -->
+      <meta name="og:image" content="http://service.berlin.de/i9f/r1/images/favicon/Berlin_de_FB_Social.png" />
+      <meta name="og:image:secure_url" content="https://service.berlin.de/i9f/r1/images/favicon/Berlin_de_FB_Social.png" />
+      <script src="//service.berlin.de/i9f/v4/js/bo-head.js?ts=1683120311"></script>
+      <script src="//service.berlin.de/i9f/v4/js/bo-info.js?ts=1683120311"></script>
+      <!--
+         layout: ohne
+         url: /service.berlin.de/terminvereinbarung/layout/__i9/ohne/head.inc  created on: Thu, 04 May 2023 09:39:44 +0200
+         -->
+      <link rel="stylesheet" type="text/css" href="/terminvereinbarung/termin/_css/appointment.css">
+      <link rel="canonical" href="http://service.berlin.de/">
+   </head>
+   <body class="locale_de" id="dayselect">
+      <div class="skyscraper palm-hide hidden-phone">
+         <!-- kommunal: beberlin -->
+      </div>
+      <!-- START: PAGEWRAPPER -->
+      <div id="page-wrapper" class=" container-content ">
+         <div class="container-wrapper container-portal-header" style="display:none !important">
+         </div>
+         <!-- START: PORTALHEADER -->
+         <header id="header" class="kiekma" data-nosnippet="true">
+            <!-- Portal.view -->
+            <div class="header__row-portalbrand">
+               <div class="logo">
+                  <a href="https://www.berlin.de">
+                  <img class="logo" title="Link f&#252;hrt zur Startseite von Berlin.de" alt="Bild zeigt: Berlin.de Logo" src="//service.berlin.de/i9f/r1/images/logo_berlin_m_srgb.svg" />
+                  </a>
+               </div>
             </div>
-        </div>
-    </div>
-
-    <!-- navi mobil header inc -->
-    <div class="sticky-header hidden-desktop hidden-tablet bde-gradient">
-        <div class="red-line"></div>
-        <div class="portal-logo">
-            <a title="Link f&#252;hrt zur Startseite von Berlin.de" href="https://www.berlin.de" >
-                <img title="Link f&#252;hrt zur Startseite von Berlin.de" alt="Bild zeigt: Berlin.de Logo" src="//service.berlin.de/i9f/v4/css/images/berlin_de.png" />
-            </a>
-        </div>
-    </div>
-    <!-- navi mobil header inc -->
-
-
-    <div id="top" class="container-wrapper container-content template-land_overview">
-        <div class="container">
-            <div class="row">
-                <div class="span12">
-                    <!-- NAVIGATION BEGIN: horizontal-->
-                    <div class="row">
-                        <div class="span12">
-                            <!--NAVIGATION BEGIN: meta-->
-                            <div class="html5-header content-header ">
-                                <div class="row">
-                                    <div class="span5">
-                                        <div class="html5-section section-logo
- without-logo">
-                                            <div class="html5-section text">
-                                                <a href="https://service.berlin.de/" title="Link zu: Startseite von &#34;Service-Portal Berlin&#34;"><span class="institution">Service-Portal</span>
-                                                    <span class="title">Berlin</span></a>                </div>
-                                        </div>
-                                        <div class="beberlin hidden-desktop hidden-tablet">
-                                            <img class="berlin-logo" alt="Berlin" src="//service.berlin.de/i9f/v4/css/images/logo_berlin_m_srgb.svg">
-                                        </div>
-                                    </div>
-
-                                    <div class="span7">
-                                        <div class="html5-nav meta-navi">
-                                            <ul class="nav">
-                                            </ul>
-                                        </div>
-                                        <!--META BEGIN: SEARCH-->
-                                        <div class="html5-section search navbar">
-                                            <div class="navbar-inner">
-                                                <div class="nav-collapse search-collapse collapse">
-                                                    <form class="institutionssuche" method="get" action="https://service.berlin.de/suche/stichwort/">
-                                                        <div class="control-group searchform " role="search">
-                                                            <label class="aural" id="aural_institutionssuche">
-                                                                Suche auf der Internetseite &#34;Service-Portal Berlin&#34;:        </label>
-                                                            <input type="search" placeholder="Suchbegriff"
-                                                                   name="x" aria-labelledby="aural_institutionssuche"
-                                                                   maxlength="255"
-                                                                   title="Hier k&#246;nnen Sie einen Text eingeben, um die Internetseite &#34;Service-Portal Berlin&#34; zu durchsuchen"
-                                                            />
-                                                            <button class="btn global-search-submit" type="submit">
-                                                                <span class="hidden-phone">Suchen</span>
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--META END: SEARCH-->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- NAVIGATION END: meta-->
+            <!-- /Portal.view -->
+            <!-- Horizontal.view -->
+            <div class="header__row-pageheader">
+               <div class="pageheader__logo without-logo">
+                  <p class="textlogo">
+                     <a href="https://service.berlin.de/" title="Startseite von &#34;Service-Portal Berlin&#34;"><span class="institution">Service-Portal</span><span class="title">Berlin</span></a>            
+                  </p>
+               </div>
+               <nav class="pageheader__quicklinks" aria-label="Bereichsnavigation">
+                  <ul>
+                     <li class="">
+                        <a href="https://service.berlin.de/dienstleistungen/" >Dienst&#173;leistungen</a>        
+                     </li>
+                     <li class="">
+                        <a href="https://service.berlin.de/standorte/" >Standorte</a>        
+                     </li>
+                     <li class=" active">
+                        <a href="https://service.berlin.de/terminvereinbarung/" >Termin&#173;vereinbarung</a>        
+                     </li>
+                     <li class="">
+                        <a href="https://service.berlin.de/online-erledigen/" >Online erledigen</a>        
+                     </li>
+                     <li class="">
+                        <a href="https://service.berlin.de/app/" >App</a>        
+                     </li>
+                     <li class="">
+                        <a href="https://service.berlin.de/themen/" >Themen</a>        
+                     </li>
+                  </ul>
+               </nav>
+               <div class="pageheader__services">
+                  <div id="servicebuttonAccessibility" class="service-button-overlay js-service-button-overlay accessibility" data-nosnippet="true">
+                     <div class="service-button-overlay__button">
+                        <button type="button" class="icon-button js-button-overlay-open" aria-haspopup="dialog">
+                        <i class="icon fas fa-universal-access" aria-hidden="true"></i>
+                        <span class="aural">Einstellungen zur Barrierefreiheit &#246;ffnen</span>
+                        <span class="text">Barrierefrei</span>
+                        </button>
+                     </div>
+                     <div class="service-button-overlay__overlay overlay js-overlay-container" aria-modal="true" role="dialog">
+                        <div class="overlay__header">
+                           <h2 class="heading">Barrierefreiheit</h2>
+                           <button type="button" class="close-button js-button-overlay-close">
+                           <i class="fas fa-times" aria-hidden="true"></i>
+                           <span class="aural">Schlie&#223;en: Barrierefreiheit</span>
+                           </button>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="span12">
-                            <span class="mobile-blue-line hidden-desktop hidden-tablet"></span>
-                            <div class="content-navi-wrapper navbar hidden-phone">
-                                <div class="html5-nav content-navi-top navbar-inner
-">
-                                    <nav class="nav-collapse mainnav-collapse collapse" aria-label="Hauptnavigation">
-                                        <h6 class="aural">Hauptnavigation</h6>
-                                        <ul class="nav level1"
-                                        >
-                                            <li class=" has-submenu">
-                                                <a href="https://service.berlin.de/dienstleistungen/" >Dienst&#173;leistungen</a>                </li>
-                                            <li class=" has-submenu">
-                                                <a href="https://service.berlin.de/standorte/" >Standorte</a>        <ul class="nav"><li class="">
-                                                <a href="https://service.berlin.de/standorte/" >Standorte A-Z</a>            </li>
-                                                <li class="">
-                                                    <a href="https://service.berlin.de/behoerden/" >Beh&#246;rden A-Z</a>            </li>
-                                                <li class="">
-                                                    <a href="https://service.berlin.de/serviceatlas/" >Serviceatlas</a>            </li>
-                                                <li class="">
-                                                    <a href="https://service.berlin.de/standorte/buergeraemter/" >B&#252;rger&#228;mter</a>            </li>
-                                                <li class="">
-                                                    <a href="https://service.berlin.de/standorte/einwanderungsamt/" >Einwanderungs&#173;amt</a>            </li>
-                                                <li class="">
-                                                    <a href="https://service.berlin.de/standorte/finanzaemter/" >Finanz&#228;mter</a>            </li>
-                                                <li class="">
-                                                    <a href="https://service.berlin.de/standorte/gesundheitsaemter/" >Gesundheits&#173;&#228;mter</a>            </li>
-                                                <li class="">
-                                                    <a href="https://service.berlin.de/standorte/jugendaemter/" >Jugend&#228;mter</a>            </li>
-                                                <li class="">
-                                                    <a href="https://service.berlin.de/standorte/kfz-zulassungsstellen/" >KFZ-Zulassungs&#173;stellen</a>            </li>
-                                                <li class="">
-                                                    <a href="https://service.berlin.de/standorte/ordnungsaemter/" >Ordnungs&#228;mter</a>            </li>
-                                                <li class="">
-                                                    <a href="https://service.berlin.de/standorte/sozialaemter/" >Sozial&#228;mter</a>            </li>
-                                                <li class="">
-                                                    <a href="https://service.berlin.de/standorte/standesaemter/" >Standes&#228;mter</a>            </li>
-                                                <li class="">
-                                                    <a href="https://service.berlin.de/standorte/weitere/" >Weitere Standorte</a>            </li></ul>        </li>
-                                            <li class=" active has-submenu">
-                                                <a href="https://service.berlin.de/terminvereinbarung/" >Termin&#173;vereinbarung</a>        <ul class="nav"><li class="">
-                                                <a href="https://service.berlin.de/terminvereinbarung/hinweise/" >Hinweise</a>            </li>
-                                                <li class="">
-                                                    <a href="https://service.berlin.de/terminvereinbarung/termin/terminaendern.php" >Termin &#228;ndern</a>            </li>
-                                                <li class="">
-                                                    <a href="https://service.berlin.de/terminvereinbarung/datenschutzerklaerung/" >Datenschutz&#173;erkl&#228;rung</a>            </li></ul>        </li>
-                                            <li class=" has-submenu">
-                                                <a href="https://service.berlin.de/onlineverfahren-onlinedienstleistungen/" >Online-Verfahren</a>                </li>
-                                            <li class=" has-submenu">
-                                                <a href="https://service.berlin.de/app/" >App</a>        <ul class="nav"><li class="">
-                                                <a href="https://service.berlin.de/app/datenschutzerklaerung/" >Daten&#173;schutz&#173;erkl&#228;rung</a>            </li></ul>        </li>
-                                            <li class=" has-submenu">
-                                                <a href="https://service.berlin.de/themen/" >Themen</a>                </li>
-                                        </ul>
-                                        <div class="berlinmarke beberlin"><img alt="Logo Berlin" title="Berlin Marke Bär" src="//service.berlin.de/i9f/v4/css/images/logo_berlin_m_srgb.svg" /></div>
-                                    </nav>
-                                </div>
-                            </div>
+                        <div class="overlay__body">
+                           <div class="inner">
+                              <h3>Wo gibt es zus&#228;tzliche Informationen zur Barrierefreiheit im Land Berlin?</h3>
+                              <a href="https://www.berlin.de/moderne-verwaltung/barrierefreie-it/" class="extern" target="_blank" title=" (&#214;ffnet in neuem Fenster)">Barrierefreie Informations- und Kommunikationstechnik (IKT)</a>            
+                           </div>
                         </div>
-                    </div>
-                    <div class="emergency-box">
-                        <div class="textile">&#10; <p>&#10; In den Vormittagsstunden ist der eMail-Versand aus dem Terminbuchungssystem etwas verz&#246;gert.&#10; </p>&#10;</div></div>
-                    <!--NAVIGATION END: horizontal-->
-
-                    <!-- content start -->
-                    <!-- row - span12 -->
-
-                    <div class="row row-breadcrumb noprint">
+                     </div>
+                  </div>
+                  <div id="servicebuttonSearch" class="service-button-overlay js-service-button-overlay search fullwidth">
+                     <div class="service-button-overlay__button">
+                        <button type="button" class="icon-button js-button-overlay-open" aria-haspopup="dialog">
+                        <i class="icon fa fa-search" aria-hidden="true"></i>
+                        <span class="text">Suche</span>
+                        </button>
+                     </div>
+                     <div class="service-button-overlay__overlay overlay js-overlay-container"  aria-modal="true" role="dialog">
+                        <div class="overlay__header">
+                           <h2 class="heading"><span class="aural">Suche</span></h2>
+                           <button type="button" class="close-button js-button-overlay-close"><i class="fas fa-times" aria-hidden="true"></i><span class="aural">Men&#252; schlie&#223;en</span></button>
+                        </div>
+                        <div class="overlay__body">
+                           <div class="search-container">
+                              <form class="search-form institutionssuche" method="get" action="https://service.berlin.de/suche/stichwort/">
+                                 <label class="" for="searchFormInput_q" id="aural_institutionssuche">
+                                 Suche auf der Internetseite &#34;Service-Portal Berlin&#34;    </label>
+                                 <div class="form-group " role="search">
+                                    <input
+                                       class="form-control"
+                                       type="search"
+                                       id="searchFormInput_q"
+                                       placeholder="Suchbegriff"
+                                       name="x"
+                                       aria-labelledby="aural_institutionssuche"
+                                       maxlength="255"
+                                       title="Hier k&#246;nnen Sie einen Text eingeben, um die Internetseite &#34;Service-Portal Berlin&#34; zu durchsuchen"
+                                       />
+                                    <button type="submit" class="button">
+                                    <i class="fas fa-search" aria-hidden="true"></i> <span>Suchen</span>
+                                    </button>
+                                 </div>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div id="servicebuttonMenu" class="service-button-overlay js-service-button-overlay menu">
+                     <div class="service-button-overlay__button">
+                        <button type="button" class="icon-button js-button-overlay-open" aria-haspopup="menu">
+                        <i class="icon fa fa-bars" aria-hidden="true"></i>
+                        <span class="text">Men&#252;</span>
+                        </button>
+                     </div>
+                     <div class="service-button-overlay__overlay overlay js-overlay-container" aria-modal="true" role="dialog">
+                        <div class="overlay__header">
+                           <h2 class="heading">Hauptnavigation</h2>
+                           <button type="button" class="close-button js-button-overlay-close"><i class="fas fa-times" aria-hidden="true"></i><span class="aural">Men&#252; schlie&#223;en</span></button>
+                        </div>
+                        <div class="overlay__body">
+                           <nav id="navigation-primary" class="js-navigation-primary" aria-label="Hauptnavigation">
+                              <div class="tree-wrapper js-navigation-tree-wrapper">
+                                 <ul class="navigation-tree">
+                                    <li class="">
+                                       <a href="https://service.berlin.de/dienstleistungen/" >Dienst&#173;leistungen</a>    
+                                    </li>
+                                    <li class="">
+                                       <a href="https://service.berlin.de/standorte/" >Standorte</a>    
+                                       <ul class="navigation-tree">
+                                          <li class="">
+                                             <a href="https://service.berlin.de/standorte/" >Standorte A-Z</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/behoerden/" >Beh&#246;rden A-Z</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/serviceatlas/" >Serviceatlas</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/standorte/buergeraemter/" >B&#252;rger&#228;mter</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/standorte/einwanderungsamt/" >Einwanderungs&#173;amt</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/standorte/finanzaemter/" >Finanz&#228;mter</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/standorte/gesundheitsaemter/" >Gesundheits&#173;&#228;mter</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/standorte/jugendaemter/" >Jugend&#228;mter</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/standorte/kfz-zulassungsstellen/" >KFZ-Zulassungs&#173;stellen</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/standorte/ordnungsaemter/" >Ordnungs&#228;mter</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/standorte/sozialaemter/" >Sozial&#228;mter</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/standorte/standesaemter/" >Standes&#228;mter</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/standorte/wahlaemter/" >Wahl&#228;mter</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/standorte/weitere/" >Weitere Standorte</a>    
+                                          </li>
+                                       </ul>
+                                    </li>
+                                    <li class=" active">
+                                       <a href="https://service.berlin.de/terminvereinbarung/" >Termin&#173;vereinbarung</a>    
+                                       <ul class="navigation-tree">
+                                          <li class="">
+                                             <a href="https://service.berlin.de/terminvereinbarung/hinweise/" >Hinweise</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/terminvereinbarung/termin/manage/" >Termin &#228;ndern</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/terminvereinbarung/datenschutzerklaerung/" >Datenschutz&#173;erkl&#228;rung</a>    
+                                          </li>
+                                       </ul>
+                                    </li>
+                                    <li class="">
+                                       <a href="https://service.berlin.de/online-erledigen/" >Online erledigen</a>    
+                                    </li>
+                                    <li class="">
+                                       <a href="https://service.berlin.de/app/" >App</a>    
+                                       <ul class="navigation-tree">
+                                          <li class="">
+                                             <a href="https://service.berlin.de/app/datenschutzerklaerung/" >Daten&#173;schutz&#173;erkl&#228;rung</a>    
+                                          </li>
+                                       </ul>
+                                    </li>
+                                    <li class="">
+                                       <a href="https://service.berlin.de/themen/" >Themen</a>    
+                                       <ul class="navigation-tree">
+                                          <li class="">
+                                             <a href="https://service.berlin.de/arbeit-beruf-soziales/" >Arbeit, Beruf und Soziales</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/auto-verkehr/" >Auto und Verkehr</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/behinderung/" >Behinderung</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/familie-partnerschaft-gleichstellung/" >Familie, Partnerschaft und Gleichstellung</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/freizeit-sport/" >Freizeit und Sport</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/gesundheit-pflege/" >Gesundheit und Pflege</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/kultur-medien-wissenschaft/" >Kultur, Medien und Wissenschaft</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/meldewesen-ordnung/" >Meldewesen und Ordnung</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/migration-integration/" >Migration und Integration</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/politik-engagement/" >Politik und Engagement</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/schule-ausbildung-studium/" >Schule, Ausbildung und Studium</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/sicherheit-notlagen/" >Sicherheit und Notlagen</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/steuern-finanzen-recht/" >Steuern, Finanzen und Recht</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/tourismus-veranstaltungen/" >Tourismus und Veranstaltungen</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/umwelt-natur-tiere/" >Umwelt, Natur und Tiere</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/verbraucherschutz/" >Verbraucher&#173;schutz</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/wirtschaft/" >Wirtschaft</a>    
+                                          </li>
+                                          <li class="">
+                                             <a href="https://service.berlin.de/wohnen-bauen/" >Wohnen und Bauen</a>    
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </div>
+                              <!-- Meta.view -->
+                              <!-- Global Languagelist -->
+                              <!-- Metalinks (socialmedia, login, einfache Sprache, ...) -->
+                              <!-- Login -->
+                              <!-- /Meta.view -->
+                           </nav>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- /#pageheader -->
+            <!-- /Horizontal.view -->
+         </header>
+         <!-- END: PORTALHEADER -->
+         <!-- START: CONTENTWRAPPERGRID -->
+         <div role="main" id="layout-grid" class="template-land_overview">
+            <div id="layout-grid__area--contentheader">
+               <div id="content-header">
+               </div>
+            </div>
+            <div id="layout-grid__area--leftcolumn">
+            </div>
+            <div id="layout-grid__area--marginal">
+            </div>
+            <div id="layout-grid__area--maincontent">
+               <div class="container-wrapper">
+                  <div class="container">
+                     <div class="row row-breadcrumb noprint">
                         <div class="span10">
-                            <div class="html5-section breadcrumb">
-                                <ul>
-                                    <li><a href="https://service.berlin.de" class="homehaus">Service Berlin</a></li>
-                                    <li><a href="https://service.berlin.de/terminvereinbarung/" class="pos1">Terminvereinbarung</a></li>
-                                </ul>
-                            </div>
+                           <div class="html5-section breadcrumb">
+                              <ul>
+                                 <li><a href="https://service.berlin.de" class="homehaus">Service Berlin</a></li>
+                                 <li><a href="https://service.berlin.de/terminvereinbarung/" class="pos1">Terminvereinbarung</a></li>
+                              </ul>
+                           </div>
                         </div>
-                    </div>
-
-
-                    <div class="row">
+                     </div>
+                     <div class="row">
                         <div class="span2 column-left">
-                            <!-- NAVIGATION BEGIN: vertical -->
-                            <div class="html5-nav content-navigation-left navbar">
-                                <div class="navbar-inner">
-                                    <nav class="hidden-phone nav-collapse collapse" aria-label="Sekund&#228;re Navigation">
-                                        <h6 class="aural">Sekund&#228;re Navigation</h6>
-                                        <ul class="nav level-0">
-                                            <li class="active"><a href="https://service.berlin.de/terminvereinbarung/" >Termin&#173;vereinbarung</a>                        <ul class="level-1" ><li
-                                            >
-                                                <a href="https://service.berlin.de/terminvereinbarung/hinweise/" >Hinweise</a>    </li>
-                                                <li
-                                                >
-                                                    <a href="https://service.berlin.de/terminvereinbarung/termin/terminaendern.php" >Termin &#228;ndern</a>    </li>
-                                                <li
-                                                >
-                                                    <a href="https://service.berlin.de/terminvereinbarung/datenschutzerklaerung/" >Datenschutz&#173;erkl&#228;rung</a>    </li>
-                                            </ul>                </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <!-- NAVIGATION END: vertical -->
-
-
+                           <!-- NAVIGATION BEGIN: vertical -->
+                           <!-- NAVIGATION END: vertical -->
                         </div>
                         <div class="span7 column-content">
-                            <div class="html5-section article" role="main">
-                                <div class="zms">
-                                    <div class="html5-header header">
-                                        <h1 class="title">Terminvereinbarung</h1>
+                           <div class="html5-section article" role="main">
+                              <div class="zms">
+                                 <div class="html5-header header">
+                                    <h1 class="title">Terminvereinbarung</h1>
+                                 </div>
+                                 <div class="collapsible-group closed">
+                                    <div class="collapsible-heading row-fluid">
+                                       <div class="collapsible-toggle">
+                                          <div class="table-cell collapsible-counter span1">1</div>
+                                          <div class="table-cell collapsible-title span3">Dienstleistung</div>
+                                          <div class="table-cell collapsible-description span7">
+                                             <ul class="list-bullet">
+                                                <li data-url="https://service.berlin.de/dienstleistung/121151/">Reisepass beantragen</li>
+                                             </ul>
+                                          </div>
+                                          <div class="table-cell collapsible-options span1">
+                                             <a href="https://service.berlin.de/dienstleistungen/" class="edit icon-pencil" title="Zur Dienstleistungsauswahl">Bearbeiten</a>
+                                          </div>
+                                       </div>
                                     </div>
-
-                                    <div class="collapsible-group closed">
-                                        <div class="collapsible-heading row-fluid">
-                                            <div class="collapsible-toggle">
-                                                <div class="table-cell collapsible-counter span1">1</div>
-                                                <div class="table-cell collapsible-title span3">Dienstleistung</div>
-                                                <div class="table-cell collapsible-description span7">
-                                                    <ul class="list-bullet">
-                                                        <li data-url="https://service.berlin.de/dienstleistung/318966/">Eheschließung im Ausland - Beratung und Nachbeurkundung einer Eheschließung</li>
-                                                    </ul>
-
-                                                </div>
-                                                <div class="table-cell collapsible-options span1">
-                                                    <a href="https://service.berlin.de/dienstleistungen/" class="edit icon-pencil" title="Zur Dienstleistungsauswahl">Bearbeiten</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                 </div>
+                                 <div class="collapsible-group">
+                                    <div class="collapsible-heading row-fluid">
+                                       <div class="collapsible-toggle">
+                                          <div class="table-cell collapsible-counter span1">2</div>
+                                          <div class="table-cell collapsible-title span11">Datum</div>
+                                          <div class="table-cell collapsible-description span7">
+                                          </div>
+                                       </div>
                                     </div>
-
-                                    <div class="collapsible-group closed">
-                                        <div class="collapsible-heading row-fluid">
-                                            <div class="collapsible-toggle">
-                                                <div class="table-cell collapsible-counter span1">2</div>
-                                                <div class="table-cell collapsible-title span3">Standort</div>
-                                                <div class="table-cell collapsible-description span7">
-                                                    Standesamt Pankow - Eheregister und Lebenspartnerschaftsregister - Breite Str. 24A-26, 13187 Berlin
-                                                    <br />
-                                                    <strong>Zahlungshinweis:</strong><br />
-                                                    Am Standort kann bar und mit girocard (mit PIN) bezahlt werden.
-
-
-                                                </div>
-                                                <div class="table-cell collapsible-options span1">
-                                                    <a href="https://service.berlin.de/standorte/" class="edit icon-pencil" title="Zur Standortsauswahl">Bearbeiten</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                 </div>
+                                 <div class="collapsible-body">
+                                    <div class="calendar-table">
+                                       <div class="calendar-head">
+                                          <h2 class="title">Bitte wählen Sie ein Datum:</h2>
+                                          <div class="calendar-legend">
+                                             <span class="legend-element"><span class="legend-color buchbar">&nbsp;</span>verfügbar</span>
+                                             <span class="legend-element"><span class="legend-color nichtbuchbar">&nbsp;</span>ausgebucht</span>
+                                          </div>
+                                       </div>
+                                       <div class="row-fluid">
+                                          <div class="calendar-month-table span6">
+                                             <table style="margin-bottom:-1px;">
+                                                <thead>
+                                                   <tr class="controll">
+                                                      <th class="prev">
+                                                      </th>
+                                                      <th colspan="5" class="month">Mai 2023</th>
+                                                      <th>&nbsp;</th>
+                                                   </tr>
+                                                </thead>
+                                                <tbody>
+                                                   <tr class="dayname">
+                                                      <th aria-label=Montag title=Montag>Mo</th>
+                                                      <th aria-label=Dienstag title=Dienstag>Di</th>
+                                                      <th aria-label=Mittwoch title=Mittwoch>Mi</th>
+                                                      <th aria-label=Donnerstag title=Donnerstag>Do</th>
+                                                      <th aria-label=Freitag title=Freitag>Fr</th>
+                                                      <th aria-label=Samstag title=Samstag>Sa</th>
+                                                      <th aria-label=Sonntag title=Sonntag class="sonnfeiertag">So</th>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
+                                          <div class="calendar-month-table span6">
+                                             <table style="margin-bottom:-1px;">
+                                                <thead>
+                                                   <tr class="controll">
+                                                      <th>&nbsp;</th>
+                                                      <th colspan="5" class="month">Juni 2023</th>
+                                                      <th class="next">
+                                                         <a tabindex="0" aria-label="zu nächstem Monat ab 01.07.2023" title="zu nächstem Monat ab 01.07.2023" href="/terminvereinbarung/termin/day/1685570400/">»</a>
+                                                      </th>
+                                                   </tr>
+                                                </thead>
+                                                <tbody>
+                                                   <tr class="dayname">
+                                                      <th aria-label=Montag title=Montag>Mo</th>
+                                                      <th aria-label=Dienstag title=Dienstag>Di</th>
+                                                      <th aria-label=Mittwoch title=Mittwoch>Mi</th>
+                                                      <th aria-label=Donnerstag title=Donnerstag>Do</th>
+                                                      <th aria-label=Freitag title=Freitag>Fr</th>
+                                                      <th aria-label=Samstag title=Samstag>Sa</th>
+                                                      <th aria-label=Sonntag title=Sonntag class="sonnfeiertag">So</th>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
+                                       </div>
+                                       <div class="row-fluid">
+                                          <div class="calendar-month-table span6">
+                                             <table>
+                                                <tbody>
+                                                   <tr>
+                                                      <td  class="" aria-label="01.05.2023 - An diesem Tag sind keine Termine möglich" title="01.05.2023 - An diesem Tag sind keine Termine möglich">01</td>
+                                                      <td  class="" aria-label="02.05.2023 - An diesem Tag sind keine Termine möglich" title="02.05.2023 - An diesem Tag sind keine Termine möglich">02</td>
+                                                      <td  class="" aria-label="03.05.2023 - An diesem Tag sind keine Termine möglich" title="03.05.2023 - An diesem Tag sind keine Termine möglich">03</td>
+                                                      <td tabindex=0 class="nichtbuchbar heutemarkierung" aria-label="04.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="04.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">04</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="05.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="05.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">05</td>
+                                                      <td tabindex=0 class="" aria-label="06.05.2023 - An diesem Tag sind keine Termine möglich" title="06.05.2023 - An diesem Tag sind keine Termine möglich">06</td>
+                                                      <td  class="" aria-label="07.05.2023 - An diesem Tag sind keine Termine möglich" title="07.05.2023 - An diesem Tag sind keine Termine möglich">07</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="08.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="08.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">08</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="09.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="09.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">09</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="10.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="10.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">10</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="11.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="11.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">11</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="12.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="12.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">12</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="13.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="13.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">13</td>
+                                                      <td  class="" aria-label="14.05.2023 - An diesem Tag sind keine Termine möglich" title="14.05.2023 - An diesem Tag sind keine Termine möglich">14</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="15.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="15.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">15</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="16.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="16.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">16</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="17.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="17.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">17</td>
+                                                      <td tabindex=0 class="" aria-label="18.05.2023 - An diesem Tag sind keine Termine möglich" title="18.05.2023 - An diesem Tag sind keine Termine möglich">18</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="19.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="19.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">19</td>
+                                                      <td tabindex=0 class="" aria-label="20.05.2023 - An diesem Tag sind keine Termine möglich" title="20.05.2023 - An diesem Tag sind keine Termine möglich">20</td>
+                                                      <td  class="" aria-label="21.05.2023 - An diesem Tag sind keine Termine möglich" title="21.05.2023 - An diesem Tag sind keine Termine möglich">21</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="22.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="22.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">22</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="23.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="23.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">23</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="24.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="24.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">24</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="25.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="25.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">25</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="26.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="26.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">26</td>
+                                                      <td tabindex=0 class="" aria-label="27.05.2023 - An diesem Tag sind keine Termine möglich" title="27.05.2023 - An diesem Tag sind keine Termine möglich">27</td>
+                                                      <td  class="" aria-label="28.05.2023 - An diesem Tag sind keine Termine möglich" title="28.05.2023 - An diesem Tag sind keine Termine möglich">28</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td tabindex=0 class="" aria-label="29.05.2023 - An diesem Tag sind keine Termine möglich" title="29.05.2023 - An diesem Tag sind keine Termine möglich">29</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="30.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="30.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">30</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="31.05.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="31.05.2023 - An diesem Tag sind keine Termine mehr verfügbar">31</td>
+                                                      <td colspan="4">&nbsp;</td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
+                                          <div class="calendar-month-table span6">
+                                             <table>
+                                                <tbody>
+                                                   <tr>
+                                                      <td colspan="3"></td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="01.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="01.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">01</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="02.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="02.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">02</td>
+                                                      <td tabindex=0 class="" aria-label="03.06.2023 - An diesem Tag sind keine Termine möglich" title="03.06.2023 - An diesem Tag sind keine Termine möglich">03</td>
+                                                      <td  class="" aria-label="04.06.2023 - An diesem Tag sind keine Termine möglich" title="04.06.2023 - An diesem Tag sind keine Termine möglich">04</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="05.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="05.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">05</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="06.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="06.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">06</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="07.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="07.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">07</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="08.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="08.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">08</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="09.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="09.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">09</td>
+                                                      <td tabindex=0 class="" aria-label="10.06.2023 - An diesem Tag sind keine Termine möglich" title="10.06.2023 - An diesem Tag sind keine Termine möglich">10</td>
+                                                      <td  class="" aria-label="11.06.2023 - An diesem Tag sind keine Termine möglich" title="11.06.2023 - An diesem Tag sind keine Termine möglich">11</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="12.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="12.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">12</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="13.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="13.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">13</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="14.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="14.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">14</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="15.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="15.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">15</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="16.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="16.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">16</td>
+                                                      <td tabindex=0 class="" aria-label="17.06.2023 - An diesem Tag sind keine Termine möglich" title="17.06.2023 - An diesem Tag sind keine Termine möglich">17</td>
+                                                      <td  class="" aria-label="18.06.2023 - An diesem Tag sind keine Termine möglich" title="18.06.2023 - An diesem Tag sind keine Termine möglich">18</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="19.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="19.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">19</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="20.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="20.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">20</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="21.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="21.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">21</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="22.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="22.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">22</td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="23.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="23.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">23</td>
+                                                      <td tabindex=0 class="" aria-label="24.06.2023 - An diesem Tag sind keine Termine möglich" title="24.06.2023 - An diesem Tag sind keine Termine möglich">24</td>
+                                                      <td  class="" aria-label="25.06.2023 - An diesem Tag sind keine Termine möglich" title="25.06.2023 - An diesem Tag sind keine Termine möglich">25</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="buchbar"><a tabindex=0 aria-label="26.06.2023 - An diesem Tag einen Termin buchen" title="26.06.2023 - An diesem Tag einen Termin buchen" href="/terminvereinbarung/termin/time/1687989600/">26</a></td>
+                                                      <td class="buchbar"><a tabindex=0 aria-label="27.06.2023 - An diesem Tag einen Termin buchen" title="27.06.2023 - An diesem Tag einen Termin buchen" href="/terminvereinbarung/termin/time/1687989600/">27</a></td>
+                                                      <td class="buchbar"><a tabindex=0 aria-label="28.06.2023 - An diesem Tag einen Termin buchen" title="28.06.2023 - An diesem Tag einen Termin buchen" href="/terminvereinbarung/termin/time/1687989600/">28</a></td>
+                                                      <td class="buchbar"><a tabindex=0 aria-label="29.06.2023 - An diesem Tag einen Termin buchen" title="29.06.2023 - An diesem Tag einen Termin buchen" href="/terminvereinbarung/termin/time/1687989600/">29</a></td>
+                                                      <td tabindex=0 class="nichtbuchbar" aria-label="30.06.2023 - An diesem Tag sind keine Termine mehr verfügbar" title="30.06.2023 - An diesem Tag sind keine Termine mehr verfügbar">30</td>
+                                                      <td colspan="2">&nbsp;</td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
+                                       </div>
                                     </div>
-
-                                    <div class="collapsible-group">
-                                        <div class="collapsible-heading row-fluid">
-                                            <div class="collapsible-toggle">
-                                                <div class="table-cell collapsible-counter span1">3</div>
-                                                <div class="table-cell collapsible-title span11">Datum</div>
-                                                <div class="table-cell collapsible-description span7">
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="collapsible-body">
-                                        <div class="calendar-table">
-                                            <div class="calendar-head">
-                                                <h2 class="title">Bitte wählen Sie ein Datum:</h2>
-                                                <div class="calendar-legend">
-                                                    <span class="legend-element"><span class="legend-color buchbar">&nbsp;</span>verfügbar</span>
-                                                    <span class="legend-element"><span class="legend-color nichtbuchbar">&nbsp;</span>ausgebucht</span>
-                                                </div>
-                                            </div>
-                                            <div class="row-fluid">
-                                                <div class="calendar-month-table span6">
-                                                    <table>
-                                                        <thead>
-                                                        <tr class="controll">
-                                                            <th class="prev">
-                                                            </th>
-                                                            <th colspan="5" class="month">September 2020</th>
-                                                            <th>&nbsp;</th>
-                                                        </tr>
-                                                        <tr class="dayname">
-                                                            <th>Mo</th>
-                                                            <th>Di</th>
-                                                            <th>Mi</th>
-                                                            <th>Do</th>
-                                                            <th>Fr</th>
-                                                            <th>Sa</th>
-                                                            <th><span class="sonnfeiertag">So</span></th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td colspan="1"></td>
-                                                            <td class="">01</td>
-
-
-
-
-                                                            <td class="">02</td>
-
-
-
-
-                                                            <td class="">03</td>
-
-
-
-
-                                                            <td class="">04</td>
-
-
-
-
-                                                            <td class="">05</td>
-
-
-
-
-                                                            <td class="">06</td>
-
-
-
-                                                        </tr>
-                                                        <tr>
-
-                                                            <td class="">07</td>
-
-
-
-
-                                                            <td class="">08</td>
-
-
-
-
-                                                            <td class="">09</td>
-
-
-
-
-                                                            <td class=" heutemarkierung">10</td>
-
-
-
-
-                                                            <td class="">11</td>
-
-
-
-
-                                                            <td class="">12</td>
-
-
-
-
-                                                            <td class="">13</td>
-
-
-
-                                                        </tr>
-                                                        <tr>
-
-                                                            <td class="nichtbuchbar">14</td>
-
-
-
-
-                                                            <td class="buchbar">15</td>
-
-
-
-
-                                                            <td class="buchbar">16</td>
-
-
-
-
-                                                            <td class="">17</td>
-
-
-
-
-                                                            <td class="">18</td>
-
-
-
-
-                                                            <td class="buchbar">19</td>
-
-
-
-
-                                                            <td class="buchbar">20</td>
-
-
-
-                                                        </tr>
-                                                        <tr>
-
-                                                            <td class="nichtbuchbar">21</td>
-
-
-
-
-                                                            <td class="nichtbuchbar">22</td>
-
-
-
-
-                                                            <td class="">23</td>
-
-
-
-
-                                                            <td class="">24</td>
-
-
-
-
-                                                            <td class="">25</td>
-
-
-
-
-                                                            <td class="">26</td>
-
-
-
-
-                                                            <td class="">27</td>
-
-
-
-                                                        </tr>
-                                                        <tr>
-
-                                                            <td class="nichtbuchbar">28</td>
-
-
-
-
-                                                            <td class="nichtbuchbar">29</td>
-
-
-
-
-                                                            <td class="">30</td>
-
-
-                                                            <td colspan="4">&nbsp;</td>
-
-
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div class="calendar-month-table span6">
-                                                    <table>
-                                                        <thead>
-                                                        <tr class="controll">
-                                                            <th>&nbsp;</th>
-                                                            <th colspan="5" class="month">Oktober 2020</th>
-                                                            <th class="next">
-                                                                <a title="nächster Monat ab (01-11-2020)" href="/terminvereinbarung/termin/day/1601503200/">»</a>
-                                                            </th>
-                                                        </tr>
-                                                        <tr class="dayname">
-                                                            <th>Mo</th>
-                                                            <th>Di</th>
-                                                            <th>Mi</th>
-                                                            <th>Do</th>
-                                                            <th>Fr</th>
-                                                            <th>Sa</th>
-                                                            <th><span class="sonnfeiertag">So</span></th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td colspan="3"></td>
-                                                            <td class="">01</td>
-
-
-
-
-                                                            <td class="">02</td>
-
-
-
-
-                                                            <td class="">03</td>
-
-
-
-
-                                                            <td class="">04</td>
-
-
-
-                                                        </tr>
-                                                        <tr>
-
-                                                            <td class="nichtbuchbar">05</td>
-
-
-
-
-                                                            <td class="nichtbuchbar">06</td>
-
-
-
-
-                                                            <td class="">07</td>
-
-
-
-
-                                                            <td class="">08</td>
-
-
-
-
-                                                            <td class="">09</td>
-
-
-
-
-                                                            <td class="">10</td>
-
-
-
-
-                                                            <td class="">11</td>
-
-
-
-                                                        </tr>
-                                                        <tr>
-
-                                                            <td class="">12</td>
-
-
-
-
-                                                            <td class="">13</td>
-
-
-
-
-                                                            <td class="">14</td>
-
-
-
-
-                                                            <td class="">15</td>
-
-
-
-
-                                                            <td class="">16</td>
-
-
-
-
-                                                            <td class="">17</td>
-
-
-
-
-                                                            <td class="">18</td>
-
-
-
-                                                        </tr>
-                                                        <tr>
-
-                                                            <td class="">19</td>
-
-
-
-
-                                                            <td class="">20</td>
-
-
-
-
-                                                            <td class="">21</td>
-
-
-
-
-                                                            <td class="">22</td>
-
-
-
-
-                                                            <td class="">23</td>
-
-
-
-
-                                                            <td class="">24</td>
-
-
-
-
-                                                            <td class="">25</td>
-
-
-
-                                                        </tr>
-                                                        <tr>
-
-                                                            <td class="">26</td>
-
-
-
-
-                                                            <td class="">27</td>
-
-
-
-
-                                                            <td class="">28</td>
-
-
-
-
-                                                            <td class="">29</td>
-
-
-
-
-                                                            <td class="">30</td>
-
-
-
-
-                                                            <td class="">31</td>
-
-
-                                                            <td colspan="1">&nbsp;</td>
-
-
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div style="clear:left; background:url(/terminvereinbarung/termin/blank.png);">
-                                        An blau unterlegten und unterstrichenen Tagen sind noch Termine verfügbar.<br>
-                                        An rot unterlegten Tagen sind alle Termine ausgebucht.<br>
-                                        An weiß unterlegten Tagen sind noch keine Termine zur Buchung freigegeben.
-                                    </div>
-
-                                </div>
-                            </div>
+                                 </div>
+                                 <div style="clear:left; background:url(/terminvereinbarung/termin/blank.png);">
+                                    An blau unterlegten und fett geschriebenen Tagen sind noch Termine verfügbar.<br>
+                                    An rot unterlegten Tagen sind alle Termine ausgebucht.<br>
+                                    An weiß unterlegten Tagen sind noch keine Termine zur Buchung freigegeben.
+                                 </div>
+                              </div>
+                           </div>
                         </div>
                         <!-- INCLUDE BEGIN: Infocolumn -->
-
                         <div class="span3 column-right html5-aside" role="complementary">
-                            <h2 class="aural">Es folgen die Inhalte der rechten Seitenspalte</h2>
-                            <div class="html5-section content-marginal">
-
-
-
-
-                                <!--FLEX BEGIN: Text/Bild-->
-                                <div class="html5-section block modul-text_bild">    <div class="html5-header header">
-                                    <h2 class="title" id="headline_8_0">Vorzugstermine:</h2>    </div>
-                                    <div class="html5-section body">
-                                        <div class="text ">
-                                            <div class="textile">
-                                                <ul>
-                                                    <li>
-                                                        <a href="https://service.berlin.de/terminvereinbarung/hinweise/#vorzugstermine">Hinweis zu Vorzugstermin-Standorten der Bürgerämter</a>
-                                                    </li>
-                                                </ul>
-                                            </div>        </div>
+                           <h2 class="aural">Es folgen die Inhalte der rechten Seitenspalte</h2>
+                           <div class="html5-section content-marginal">
+                              <!--FLEX BEGIN: Text/Bild-->
+                              <div class="html5-section block modul-text_bild">
+                                 <div class="html5-header header">
+                                    <h2 class="title" id="headline_8_15">FAQ / Hilfestellung</h2>
+                                 </div>
+                                 <div class="html5-section body">
+                                    <div class="text ">
+                                       <div class="textile">
+                                          <ul>
+                                             <li>
+                                                <a href="https://service.berlin.de/terminvereinbarung/hinweise/">Häufig gestellte Fragen zum Terminbuchungssystem</a>
+                                             </li>
+                                          </ul>
+                                       </div>
                                     </div>
-                                </div>
-
-                                <!--FLEX END: Text/Bild-->
-                                <!-- FLEX BEGIN: ContactInclude --><div class="html5-section modul-contactinclude"><!--FLEX BEGIN: Text/Bild-->
-                                <div class="html5-section block modul-text_bild float">    <div class="html5-header header">
-                                    <h2 class="title" id="headline_2_0">Bürgertelefon 115</h2>    </div>
-                                    <div class="html5-figure image
-     main-image type-teaser"
-                                         style="">
-                                        <img
-                                                src="https://service.berlin.de/converjon/?ts=1435756104&#38;width=166&#38;height=125&#38;mime=image%2Fpng&#38;url=https%3A%2F%2Fservice.berlin.de%2Flandalle9%2F_assets%2F115_logo_contact.png%3Fts%3D1435756104.png"
-                                                alt="Logo B&#252;rgertelefon 115"
-                                                loading="lazy"
-                                        />
-
-                                        <div class="caption">
-
-                                            <span class="copyright">Bild: BMI</span>
-
-                                        </div>
-
-                                    </div>
-                                    <div class="html5-section body">
-                                        <div class="text ">
-                                            <div class="textile">
-                                                <p>
-                                                    Die durch die Corona-Pandemie ausgelösten Ereignisse führen zu einem hohen Anrufaufkommen und leider zu Einschränkungen der Erreichbarkeit des Bürgertelefons 115. Bitte nutzen Sie auch die <a href="https://service.berlin.de/standorte/">schriftlichen Kontaktwege der Behörden</a>.
-                                                </p>
-                                                <p>
-                                                    Telefon: (030) 115
-                                                </p>
-                                                <p>
-                                                    Montag &#8211; Freitag von<br />
-                                                    08:00 bis 18:00 Uhr
-                                                </p>
-                                                <ul>
-                                                    <li>
-                                                        <a href="https://www.berlin.de/115">Bürgertelefon 115</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="https://service.berlin.de/chatbot/chatbot-bobbi-606279.php" title="Betaversion des Chatbots Bobbi">Chatbot Bobbi (beta)</a>
-                                                    </li>
-                                                </ul>
-                                            </div>        </div>
-                                    </div>
-                                </div>
-
-                                <!--FLEX END: Text/Bild-->
-                            </div><!-- FLEX END: ContactInclude -->
-                            </div>
+                                 </div>
+                              </div>
+                              <!--FLEX END: Text/Bild-->
+                              <!-- FLEX BEGIN: ContactInclude -->
+                              <div class="html5-section modul-contactinclude"></div>
+                              <!-- FLEX END: ContactInclude -->
+                           </div>
                         </div>
                         <!-- INCLUDE END: Infocolumn -->
-
-
-                    </div>
-                    <!--    container-wrapper + container + row + span12 -->
-
-                    <div class="row">
-                        <div class="span12">
-                            <div class="html5-footer content-footer" role="contentinfo">
-                                <!-- NAVIGATION BEGIN: footer -->
-                                <div class="html5-nav">
-                                    <ul class="nav">
-                                        <li><a href="https://service.berlin.de/hinweise/artikel.2696.php" class="ic-fa-impressum">Impressum</a></li>
-                                        <li class="right"><a class="ic-fa-print" href="javascript:window.print();">Druckversion</a></li>
-                                        <li class="right"><a class="ic-fa-totop" href="#top">zum Seitenanfang</a></li>
-                                    </ul>
-                                </div>
-
-                                <!-- NAVIGATION END: footer -->
-
-                                <div class="section_splitter hidden-desktop hidden-tablet"></div>
-                                <div class="html5-nav meta-navi hidden-desktop hidden-tablet">
-                                    <ul class="nav">
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                     </div>
+                  </div>
+                  <!-- /container -->
+               </div>
+               <!-- /container-wrapper -->
             </div>
-        </div>
-    </div>
-
-
-    <!-- MOBILE NAVIGATION START -->
-    <div class="navigation-mobile hidden-desktop hidden-tablet" role="navigation">
-        <p class="navSkip">Navigiere direkt zu:</p>
-        <ul class="navSkip">
-            <li><a href="#mobile-nav-toggle" tabindex="1" id="hiddenNavToggler">Navigation <!-- append text per css here --></a></li>
-        </ul>
-
-        <button class="btn nav-toggle" id="mobile-nav-toggle" title="Mobile Navigation" aria-labelledby="hiddenNavToggler">
-            <span class="aural">Öffnet und schließt die mobile Navigation</span>
-            <span class="icon-menu">
-                    <span class="line line-1"></span>
-                    <span class="line line-2"></span>
-                    <span class="line line-3"></span>
-                </span>
-        </button>
-
-        <div class="wrapper">
-            <div class="sticky-container-head">
-                <div class="offcanvas-search">
-                    <form class="institutionssuche institutionssuche-mobile" method="get" action="https://service.berlin.de/suche/stichwort/">
-                        <div class="control-group searchform mobile" role="search">
-                            <label class="aural" id="aural_institutionssuche_mobile">
-                                Suche auf der Internetseite &#34;Service-Portal Berlin&#34;:        </label>
-                            <input type="search" placeholder="Suchbegriff"
-                                   name="x" aria-labelledby="aural_institutionssuche_mobile"
-                                   maxlength="255"
-                                   title="Hier k&#246;nnen Sie einen Text eingeben, um die Internetseite &#34;Service-Portal Berlin&#34; zu durchsuchen"
-                            />
-                            <button class="btn global-search-submit" type="submit">
-                                <span class="hidden-phone">Suchen</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="nav-container">
-                <div class="nav-container-body">
-                    <ul class="nav-menu menu">
-                        <li class="menu-item has-dropdown ">
-                            <a href="#!" class="menu-link">
-                                Service-Portal Berlin                                </a>
-                            <!-- HIER 0 -->
-                            <ul class="nav-dropdown menu ">
-                                <li class="menu-item">
-                                    <a href="https://service.berlin.de/" class="menu-link" title="Link zu: Startseite von &#34;Service-Portal Berlin&#34;">Service-Portal Berlin: Startseite</a>    <ul class="nav"><li class=" menu-item">
-                                    <a href="https://service.berlin.de/dienstleistungen/" class=" menu-link">Dienst&#173;leistungen</a>            </li>
-                                    <li class=" menu-item">
-                                        <a href="https://service.berlin.de/standorte/" class=" menu-link">Standorte</a>            </li>
-                                    <li class=" menu-item active">
-                                        <a href="https://service.berlin.de/terminvereinbarung/" class=" menu-link">Termin&#173;vereinbarung</a>            </li>
-                                    <li class=" menu-item">
-                                        <a href="https://service.berlin.de/onlineverfahren-onlinedienstleistungen/" class=" menu-link">Online-Verfahren</a>            </li>
-                                    <li class=" menu-item">
-                                        <a href="https://service.berlin.de/app/" class=" menu-link">App</a>            </li>
-                                    <li class=" menu-item">
-                                        <a href="https://service.berlin.de/themen/" class=" menu-link">Themen</a>            </li></ul>                                    </li>
-                            </ul>
-                            <!-- HIER 1 -->
-
-                            <ul class="sub crumbs1">
-                                <li class="menu-item has-no-dropdown">
-                                    <a href="https://service.berlin.de/terminvereinbarung/" class="menu-link">Termin&#173;vereinbarung</a><ul class="sub level-1">
-                                    <li class="menu-item has-no-dropdown">
-                                        <a href="https://service.berlin.de/terminvereinbarung/hinweise/" class="menu-link">Hinweise</a>
-                                    </li>
-                                    <li class="menu-item has-no-dropdown">
-                                        <a href="https://service.berlin.de/terminvereinbarung/termin/terminaendern.php" class="menu-link">Termin &#228;ndern</a>
-                                    </li>
-                                    <li class="menu-item has-no-dropdown">
-                                        <a href="https://service.berlin.de/terminvereinbarung/datenschutzerklaerung/" class="menu-link">Datenschutz&#173;erkl&#228;rung</a>
-                                    </li>
-                                </ul><!-- class="sub level-1" -->
-                                </li>
-                            </ul><!-- crumbs1 -->
-                            <!-- HIER 2 -->
+            <!-- /layout-grid__area--maincontent -->
+            <div id="layout-grid__area--contentfooter" class="kiekma">
+               <!-- Footer.view -->
+               <section id="content-footer" aria-label="Fussbereich mit weiteren Links zu diesem Auftritt">
+                  <div class="content-footer__brand">
+                  </div>
+                  <nav class="content-footer__links" aria-label="Weiterf&#252;hrende Links">
+                     <ul class="js-collapse-palm">
+                        <li class="initial-open">
+                           <!--FLEX BEGIN: Footerlinklist-->
+                           <h3 class="heading js-trigger">ServicePortal</h3>
+                           <ul>
+                              <li><a href="https://service.berlin.de/hinweise/artikel.2696.php" >Impressum</a></li>
+                              <li><a href="https://service.berlin.de/terminvereinbarung/datenschutzerklaerung/index.php" >Datenschutzerkl&#228;rung</a></li>
+                           </ul>
+                           <!--FLEX END: Footerlinklist-->
                         </li>
-                    </ul>
-
-                </div>
+                     </ul>
+                  </nav>
+               </section>
+               <!-- /Footer.view -->
             </div>
-        </div>
-    </div>
-    <!-- MOBILE NAVIGATION END -->
-
-
-    <div class="container-wrapper container-footer">
-        <div class="container">
-            <div class="row">
-                <div class="span12">
-
-                    <!-- template start: portal-footer -->
-                    <div class="html5-footer portal-footer">
-                        <div>
-                            <div class="textile">
-                                <p>
-                                    Diese Seiten werden verantwortet durch die Senatsverwaltung für Inneres und Sport.
-                                </p>
-                            </div>        <p>
-                            Berlin.de ist ein Angebot des Landes Berlin und der BerlinOnline Stadtportal GmbH &#38; Co. KG.            Weitere Informationen hierzu finden Sie im <a href="https://www.berlin.de/wir-ueber-uns-be/impressum/">Impressum</a>.        </p>
-                        </div>
-                        <div class="html5-nav">
-                            <ul class="nav">
-                                <li>Weitere Metropol-Webseiten:</li>
-                                <li><a href="https://www.hamburg.de/">Hamburg</a></li>
-                                <li><a href="https://www.muenchen.de/">M&#252;nchen</a></li>
-                                <li><a href="https://www.koeln.de/">K&#246;ln</a></li>
-                            </ul>
-                        </div><!-- /html5-nav -->
-                    </div><!-- /html5-footer -->
-                    <!-- /template end: portal-footer -->
-                </div>
+         </div>
+         <!-- END: CONTENTWRAPPERGRID #layout-grid -->
+         <!-- Landesfooter.view -->
+         <footer id="footer" class="kiekma screendefault" data-nosnippet="true">
+            <!-- portalfooter logo -->
+            <div class="footer__brand">
+               <div class="image__image">
+                  <a href="https://www.berlin.de" title="Berlin.de Startseite">
+                  <img alt="Berlin.de zur Startseite" src="https://service.berlin.de/i9f/r1/images/logo_berlin_m_negativ.svg" />
+                  </a>
+               </div>
             </div>
-        </div>
-    </div>
-
-    <script src="//service.berlin.de/i9f/v4/js/bo-foot.js?ts=1599665887"></script>
-
-</div><!-- /bo-page-wrapper -->
-
-
-<!-- Zaehlpixel -->
-
-<div id="cp">
-    <script>/*<![CDATA[*/
-    if (typeof(DartIvwKategorie) == "undefined") DartIvwKategorie="beberlin";
-
-    /*]]>*/</script>
-
-</div>
-<!-- /Zaehlpixel -->
-
-<script type="text/javascript">window.bolocal = {"zmsappointment": {"getIncludepath": function () { return "/terminvereinbarung/termin";}}};</script>
-<script type="text/javascript" src="/terminvereinbarung/termin/_js/index.js"></script>
-</body>
+            <!-- portalfooter links -->
+            <nav class="footer__links" aria-label="Weitere Bereiche auf Berlin.de">
+               <h2 class="aural">Weitere Informationen zu Berlin.de</h2>
+               <ul class="js-collapse-palm">
+                  <li>
+                     <!--FLEX BEGIN: Footerlinklist-->
+                     <h3 class="heading js-trigger">Service</h3>
+                     <ul>
+                        <li><a href="https://service.berlin.de/onlineverfahren-onlinedienstleistungen/" >Online-Dienstleistungen</a></li>
+                        <li><a href="https://service.berlin.de/app/" >Service-App</a></li>
+                        <li><a href="https://service.berlin.de/terminvereinbarung/" >Termin vereinbaren</a></li>
+                        <li><a href="https://service.berlin.de/buergertelefon/" >B&#252;rgertelefon 115</a></li>
+                        <li><a href="https://www.berlin.de/polizei/service/so-erreichen-sie-uns/artikel.532842.php" >Notdienste</a></li>
+                        <li><a href="https://www.berlin.de/ea/" >Gewerbeservice</a></li>
+                     </ul>
+                     <!--FLEX END: Footerlinklist-->
+                  </li>
+                  <li>
+                     <!--FLEX BEGIN: Footerlinklist-->
+                     <h3 class="heading js-trigger">Behörden</h3>
+                     <ul>
+                        <li><a href="https://service.berlin.de/behoerden/" >Beh&#246;rden A-Z</a></li>
+                        <li><a href="https://service.berlin.de/senatsverwaltungen/" >Senatsverwaltungen</a></li>
+                        <li><a href="https://service.berlin.de/bezirksaemter/" >Bezirks&#228;mter</a></li>
+                        <li><a href="https://service.berlin.de/standorte/buergeraemter/" >B&#252;rger&#228;mter</a></li>
+                        <li><a href="https://service.berlin.de/jobcenter/" >Jobcenter</a></li>
+                        <li><a href="https://www.berlin.de/einwanderung/" >Einwanderungsamt</a></li>
+                     </ul>
+                     <!--FLEX END: Footerlinklist-->
+                  </li>
+                  <li>
+                     <!--FLEX BEGIN: Footerlinklist-->
+                     <h3 class="heading js-trigger">Politik & Verwaltung</h3>
+                     <ul>
+                        <li><a href="https://www.berlin.de/rbmskzl/regierende-buergermeisterin/senat/" >Landesregierung</a></li>
+                        <li><a href="https://www.berlin.de/karriereportal/" >Karriere im Land Berlin</a></li>
+                        <li><a href="https://mein.berlin.de" target="_blank" title=" (&#214;ffnet in neuem Fenster)">B&#252;rgerbeteiligung</a></li>
+                        <li><a href="https://daten.berlin.de" target="_blank" title=" (&#214;ffnet in neuem Fenster)">Open Data</a></li>
+                        <li><a href="https://www.berlin.de/vergabeplattform/" >Vergaben</a></li>
+                        <li><a href="https://www.berlin.de/buergeraktiv/" >Ehrenamt</a></li>
+                     </ul>
+                     <!--FLEX END: Footerlinklist-->
+                  </li>
+                  <li>
+                     <!--FLEX BEGIN: Footerlinklist-->
+                     <h3 class="heading js-trigger">Aktuelles</h3>
+                     <ul>
+                        <li><a href="https://www.berlin.de/energie/" >Energiekrise</a></li>
+                        <li><a href="https://www.berlin.de/ukraine/" >Ukraine</a></li>
+                        <li><a href="https://www.berlin.de/corona/" >Covid-19</a></li>
+                        <li><a href="https://www.berlin.de/presse/" >Pressemitteilungen</a></li>
+                        <li><a href="https://www.berlin.de/polizei/polizeimeldungen/" >Polizeimeldungen</a></li>
+                        <li><a href="https://www.berlin.de/land/kalender/" >Veranstaltungen</a></li>
+                     </ul>
+                     <!--FLEX END: Footerlinklist-->
+                  </li>
+                  <li>
+                     <!--FLEX BEGIN: Footerlinklist-->
+                     <h3 class="heading js-trigger">Themen</h3>
+                     <ul>
+                        <li><a href="https://gemeinsamdigital.berlin.de/" target="_blank" title=" (&#214;ffnet in neuem Fenster)">Gemeinsam Digital</a></li>
+                        <li><a href="https://berlin.de/grundsteuer" target="_blank" title=" (&#214;ffnet in neuem Fenster)">Grundsteuer</a></li>
+                        <li><a href="https://www.berlin.de/sen/uvk/verkehr/mobilitaetswende/verkehr-888873.php" >Mobilit&#228;tswende</a></li>
+                        <li><a href="https://www.berlin.de/moderne-verwaltung/" >Moderne Verwaltung</a></li>
+                        <li><a href="https://www.berlin.de/mauer/" >Berliner Mauer</a></li>
+                        <li><a href="https://www.berlin.de/berlin-im-ueberblick/" >Berlin im &#220;berblick</a></li>
+                     </ul>
+                     <!--FLEX END: Footerlinklist-->
+                  </li>
+                  <li>
+                     <!--FLEX BEGIN: Footerlinklist-->
+                     <h3 class="heading js-trigger">Weitere Informationen</h3>
+                     <ul>
+                        <li><a href="https://www.berlin.de/kultur-und-tickets/" >Kultur &#38; Ausgehen</a></li>
+                        <li><a href="https://www.berlin.de/tourismus/" >Tourismus</a></li>
+                        <li><a href="https://www.berlin.de/wirtschaft/" >Wirtschaft</a></li>
+                        <li><a href="https://www.berlin.de/special/" >Stadtleben</a></li>
+                        <li><a href="https://www.berlin.de/adressen/" >BerlinFinder</a></li>
+                        <li><a href="https://www.berlin.de/stadtplan/" >Stadtplan</a></li>
+                     </ul>
+                     <!--FLEX END: Footerlinklist-->
+                  </li>
+               </ul>
+            </nav>
+            <div class="footer__claim">
+               <p>
+                  Berlin.de ist ein Angebot des Landes Berlin.            
+               </p>
+            </div>
+         </footer>
+         <!-- /Landesfooter.view -->
+      </div>
+      <!-- END: PAGEWRAPPER #page-wrapper -->
+      <script src="//service.berlin.de/i9f/v4/js/bo-foot.js?ts=1683120311"></script>
+      <span id="js-is_palm"></span>  <span id="js-is_tablet"></span>
+      <script type="text/javascript" src="/terminvereinbarung/termin/_js/index.js"></script>
+      <script type="text/javascript">window.bo.zmsappointment.includepath="/terminvereinbarung/termin"</script>
+      <script type="text/javascript">window.bo.zmsappointment.refreshSessionInterval=60</script>
+   </body>
 </html>

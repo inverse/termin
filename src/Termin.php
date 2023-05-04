@@ -58,6 +58,7 @@ class Termin
     private function processSite(Site $site): void
     {
         $scraper = $this->scraperLocator->locate($site->getType());
+        $this->logger->debug(sprintf('Using %s for %s', $scraper::class, $site->getLabel()));
         $results = $scraper->scrape($site);
 
         if (empty($results)) {

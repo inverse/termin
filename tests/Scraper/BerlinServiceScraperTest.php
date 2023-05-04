@@ -77,7 +77,7 @@ class BerlinServiceScraperTest extends TestCase
             ]
         ));
         self::assertNotEmpty($results);
-        self::assertEquals('2020-11-15T00:00:00+01:00', $results[0]->getDateTime()->format(\DateTimeInterface::ATOM));
+        self::assertEquals('2023-06-29T00:00:00+02:00', $results[0]->getDateTime()->format(\DateTimeInterface::ATOM));
     }
 
     public function testScrapeSiteOneAppointment(): void
@@ -98,7 +98,7 @@ class BerlinServiceScraperTest extends TestCase
             ]
         ));
         self::assertNotEmpty($results);
-        self::assertEquals('2020-09-15T00:00:00+02:00', $results[0]->getDateTime()->format(\DateTimeInterface::ATOM));
+        self::assertEquals('2023-06-29T00:00:00+02:00', $results[0]->getDateTime()->format(\DateTimeInterface::ATOM));
     }
 
     public function testScrapeSiteMultiAppointment(): void
