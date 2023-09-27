@@ -8,7 +8,7 @@ jobs:
       matrix:
         php-version: ['8.2', '8.1', '8.0']
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Install PHP
       uses: shivammathur/setup-php@master
       with:
@@ -27,7 +27,7 @@ jobs:
     container:
       image: jakzal/phpqa:php8.1
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install dependencies
         run: composer install
       - name: PHPStan
@@ -37,7 +37,7 @@ jobs:
     container:
       image: jakzal/phpqa:php8.1
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install dependencies
         run: composer install
       - name: PHP-CS-Fixer
