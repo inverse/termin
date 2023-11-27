@@ -14,7 +14,7 @@ class BeforeDateRuleTest extends TestCase
     {
         self::expectException(\InvalidArgumentException::class);
         new BeforeDateRule('HelloWorld');
-        self::assertStringStartsWith('Failed to parse before', self::getExpectedExceptionMessage());
+        self::expectExceptionMessage('Failed to parse before');
     }
 
     public function testPassesValid(): void
