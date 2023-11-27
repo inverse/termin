@@ -35,7 +35,7 @@ jobs:
   php-cs-fixer:
     runs-on: ubuntu-latest
     container:
-      image: jakzal/phpqa:php8.3
+      image: jakzal/phpqa:php8.2
     steps:
       - uses: actions/checkout@v4
       - name: Install dependencies
