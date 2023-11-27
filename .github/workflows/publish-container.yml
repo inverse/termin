@@ -12,7 +12,7 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@master
         with:
-          php-version: '8.2'
+          php-version: '8.3'
       - name: Install dependencies
         run: composer install
       - name: Run tests

@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ['8.2', '8.1', '8.0']
+        php-version: ['8.3', '8.2', '8.1', '8.0']
     steps:
     - uses: actions/checkout@v4
     - name: Install PHP
@@ -19,7 +19,7 @@ jobs:
       run: |
         XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover coverage.xml
     - uses: codecov/codecov-action@v3
-      if: matrix.php-version == '8.2'
+      if: matrix.php-version == '8.3'
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
   phpstan:
@@ -35,7 +35,7 @@ jobs:
   php-cs-fixer:
     runs-on: ubuntu-latest
     container:
-      image: jakzal/phpqa:php8.1
+      image: jakzal/phpqa:php8.3
     steps:
       - uses: actions/checkout@v4
       - name: Install dependencies
