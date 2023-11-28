@@ -109,7 +109,7 @@ sites:
 
 ### Rules
 
-Termin also has a simple rule engine that can be used for only notifying when certain conditions are met. Below listed are the currenly supported rules that can be used to control the triggering of notifications.
+Termin also has a simple rule engine that can be used for only notifying when certain conditions are met. Below listed are the currently supported rules that can be used to control the triggering of notifications.
 
 #### after
 
