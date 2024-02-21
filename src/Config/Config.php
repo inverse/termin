@@ -23,6 +23,8 @@ class Config
 
     private int $logLevel;
 
+    private bool $logToFile;
+
     private bool $allowMultipleNotifications;
 
     private ?Telegram $telegram;
@@ -41,6 +43,7 @@ class Config
         array $sites,
         array $rules,
         int $logLevel,
+        bool $logToFile,
         bool $allowMultipleNotifications,
         ?Pushbullet $pushbullet,
         ?Telegram $telegram,
@@ -49,6 +52,7 @@ class Config
         $this->sites = $sites;
         $this->rules = $rules;
         $this->logLevel = $logLevel;
+        $this->logToFile = $logToFile;
         $this->allowMultipleNotifications = $allowMultipleNotifications;
         $this->pushbullet = $pushbullet;
         $this->telegram = $telegram;
@@ -71,6 +75,11 @@ class Config
     public function getLogLevel(): int
     {
         return $this->logLevel;
+    }
+
+    public function getLogToFile(): bool
+    {
+        return $this->logToFile;
     }
 
     public function isAllowMultipleNotifications(): bool

@@ -197,7 +197,30 @@ Configure this to run on a regular schedule using something that your OS provide
 
 _Note: Don't set the schedule frequency to high to not overload their website_
 
-# Licence
+## Run (serverless)
+
+Termin can also be run as a serverless application. Configure the application like you would normally.
+
+Then configure your environment with [serverless tooling][9].
+
+```bash
+npm install
+```
+
+And finally deploy:
+
+```bash
+./node_modules/.bin/serverless  deploy
+```
+
+To remove run:
+
+```bash
+./node_modules/.bin/serverless remove
+```
+
+
+# License
 
 MIT
 
@@ -210,3 +233,4 @@ MIT
 [6]: https://ntfy.sh/
 [7]: https://ntfy.sh/docs/subscribe/phone/
 [8]: https://ntfy.sh/docs/subscribe/web/
+[9]: https://bref.sh/docs/setup

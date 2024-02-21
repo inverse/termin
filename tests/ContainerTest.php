@@ -14,7 +14,7 @@ class ContainerTest extends TestCase
 {
     public function testGetTermin(): void
     {
-        $config = new Config([], [], Logger::DEBUG, false, null, null, null);
+        $config = new Config([], [], Logger::DEBUG, false, false, null, null, null);
         $container = new Container($config);
         self::assertInstanceOf(Termin::class, $container->getTermin());
     }

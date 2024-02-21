@@ -10,3 +10,5 @@
 /.php_cs.cache
 /.php-cs-fixer.cache
 /coverage.xml
+/.serverless/
+/node_modules/

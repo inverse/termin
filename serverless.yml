@@ -1,0 +1,21 @@
+service: app
+
+provider:
+    name: aws
+    region: eu-west-1
+
+plugins:
+    - ./vendor/bref/bref
+
+functions:
+    termin:
+        handler: serverless.php
+        description: 'Simple PHP script for notifying for a free appointments on the Berlin services website'
+        runtime: php-83
+        events:
+          - schedule: cron(0 0 * * ? *)
+
+package:
+    patterns:
+        - '!tests/**'
+        - '!node_modules/**'
