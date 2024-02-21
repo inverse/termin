@@ -60,7 +60,9 @@ class ConfigParser
 
         $logLevel = $this->getLogLevel($config);
 
-        return new Config($sites, $rules, $logLevel, $allowMultipleNotifications, $pushbullet, $telegram, $ntfy);
+        $logToFile = $this->getLogToFile($config);
+
+        return new Config($sites, $rules, $logLevel, $logToFile, $allowMultipleNotifications, $pushbullet, $telegram, $ntfy);
     }
 
     private function getLogLevel(array $config): int
@@ -70,6 +72,13 @@ class ConfigParser
         $level = $logger['level'] ?? self::DEFAULT_LOG_LEVEL;
 
         return Logger::toMonologLevel($level);
+    }
+
+    private function getLogToFile(array $config): bool
+    {
+        $logger = $config['logger'] ?? [];
+
+        return $logger['file'] ?? false;
     }
 
     private function getRules(array $config): array
