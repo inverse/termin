@@ -20,15 +20,15 @@ class Container extends Pimple
 {
     private const ROOT_DIR = __DIR__.'/../';
 
-    public function __construct(Config $config)
+    public function __construct(Config $config, string $runtime = 'normal')
     {
         parent::__construct();
 
         $this[NotifierInterface::class] = static fn () => (new NotifierFactory(new MultiNotifier()))->create($config);
 
-        $this[LoggerInterface::class] = static function () use ($config) {
+        $this[LoggerInterface::class] = static function () use ($config, $runtime) {
             $logger = new Logger('termin');
-            if ($config->getLogToFile()) {
+            if ($config->getLogToFile() || 'serverless' !== $runtime) {
                 $logger->pushHandler(new StreamHandler(self::ROOT_DIR.'var/log/app.log', $config->getLogLevel()));
             }
             $logger->pushHandler(new StreamHandler('php://stdout', $config->getLogLevel()));

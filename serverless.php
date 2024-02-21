@@ -15,7 +15,7 @@ class Handler implements \Bref\Event\Handler
         $configLoader = new ConfigParser();
         $config = $configLoader->parse(Yaml::parseFile(__DIR__ . '/config.yml'));
         
-        $container = new Container($config);
+        $container = new Container($config, 'serverless');
         
         $termin = $container->getTermin();
         $termin->run($config->getSites());

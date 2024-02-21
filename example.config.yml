@@ -31,6 +31,7 @@ telegram:
 # Logger configuration
 logger:
   level: info
+  log_to_file: false # If true will log to file as well as stdout
 
 # Configure rules
 rules:
