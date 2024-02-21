@@ -24,21 +24,25 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }}
   phpstan:
     runs-on: ubuntu-latest
-    container:
-      image: jakzal/phpqa:php8.1
     steps:
       - uses: actions/checkout@v4
+      - name: Install PHP
+        uses: shivammathur/setup-php@master
+        with:
+          php-version: '8.3'
       - name: Install dependencies
         run: composer install
       - name: PHPStan
-        run: phpstan analyse
+        run: ./vendor/bin/phpstan analyse
   php-cs-fixer:
     runs-on: ubuntu-latest
-    container:
-      image: jakzal/phpqa:php8.1
     steps:
       - uses: actions/checkout@v4
+      - name: Install PHP
+        uses: shivammathur/setup-php@master
+        with:
+          php-version: '8.3'
       - name: Install dependencies
         run: composer install
       - name: PHP-CS-Fixer
-        run: php-cs-fixer fix
+        run: ./vendor/bin/php-cs-fixer fix

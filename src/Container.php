@@ -28,7 +28,7 @@ class Container extends Pimple
 
         $this[LoggerInterface::class] = static function () use ($config) {
             $logger = new Logger('termin');
-            $logger->pushHandler(new StreamHandler(self::ROOT_DIR.'var/log/app.log', $config->getLogLevel()));
+            // $logger->pushHandler(new StreamHandler(self::ROOT_DIR.'var/log/app.log', $config->getLogLevel()));
             $logger->pushHandler(new StreamHandler('php://stdout', $config->getLogLevel()));
 
             return $logger;
