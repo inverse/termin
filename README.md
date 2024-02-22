@@ -199,13 +199,16 @@ _Note: Don't set the schedule frequency to high to not overload their website_
 
 ## Run (serverless)
 
-Termin can also be run as a serverless application. Configure the application like you would normally.
+Termin can also be run as a serverless application. Configure the application like you would like any other way.
 
-Then configure your environment with [serverless tooling][9].
+Install serverless toolchain:
 
 ```bash
 npm install
 ```
+
+Then configure your environment with [serverless tooling][9].
+
 
 And finally deploy:
 

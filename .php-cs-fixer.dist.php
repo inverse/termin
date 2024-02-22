@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
-$finder = PhpCsFixer\Finder::create()
-    ->in(['src', 'tests'])
+$finder = (new PhpCsFixer\Finder())
+    ->in(__DIR__)
+    ->exclude([
+        'node_modules',
+    ])
 ;
 
 $config = new PhpCsFixer\Config();
