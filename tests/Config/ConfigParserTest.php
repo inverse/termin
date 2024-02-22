@@ -89,7 +89,7 @@ class ConfigParserTest extends TestCase
         $config = $this->configParser->parse($this->getBasicConfig());
 
         self::assertCount(1, $config->getSites());
-        self::assertEquals($config->getSites()[0]->getLabel(), 'Important');
+        self::assertEquals('Important', $config->getSites()[0]->getLabel());
         self::assertEquals(['param_1' => 'value_1'], $config->getSites()[0]->getParams());
         self::assertFalse($config->isAllowMultipleNotifications());
         self::assertNull($config->getTelegram());
@@ -120,8 +120,13 @@ class ConfigParserTest extends TestCase
             ],
         ]);
 
-        self::assertEquals($config->getNtfy()->getServer(), Ntfy::DEFAULT_SERVER);
-        self::assertEquals($config->getNtfy()->getTopic(), 'termin_fun');
+        $ntfy = $config->getNtfy();
+        if (null === $ntfy) {
+            self::fail('Ntfy config must not be null');
+        }
+
+        self::assertEquals(Ntfy::DEFAULT_SERVER, $ntfy->getServer());
+        self::assertEquals('termin_fun', $ntfy->getTopic());
     }
 
     public function testParseNtfyValid(): void
@@ -133,8 +138,13 @@ class ConfigParserTest extends TestCase
             ],
         ]);
 
-        self::assertEquals($config->getNtfy()->getServer(), 'https://my-server.com');
-        self::assertEquals($config->getNtfy()->getTopic(), 'termin_fun');
+        $ntfy = $config->getNtfy();
+        if (null === $ntfy) {
+            self::fail('Ntfy config must not be null');
+        }
+
+        self::assertEquals('https://my-server.com', $ntfy->getServer());
+        self::assertEquals('termin_fun', $ntfy->getTopic());
     }
 
     public function testParseTelegramEmpty(): void
@@ -202,8 +212,13 @@ class ConfigParserTest extends TestCase
             ],
         ]);
 
-        self::assertEquals($config->getTelegram()->getApiKey(), 'api');
-        self::assertEquals($config->getTelegram()->getChatId(), 1);
+        $telegram = $config->getTelegram();
+        if (null === $telegram) {
+            self::fail('Telegram config must not be null');
+        }
+
+        self::assertEquals('api', $telegram->getApiKey());
+        self::assertEquals(1, $telegram->getChatId());
     }
 
     public function testParsePushbulletEmpty(): void
@@ -235,7 +250,12 @@ class ConfigParserTest extends TestCase
             ],
         ]);
 
-        self::assertEquals($config->getPushbullet()->getApiToken(), 'token');
+        $pushbullet = $config->getPushbullet();
+        if (null === $pushbullet) {
+            self::fail('Pushbullet config must not be null');
+        }
+
+        self::assertEquals('token', $pushbullet->getApiToken());
     }
 
     public function testParseRulesNotArray(): void

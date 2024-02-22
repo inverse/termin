@@ -4,5 +4,5 @@ parameters:
 		- %currentWorkingDirectory%/tests
 	excludePaths:
 		- %currentWorkingDirectory%/src/Container.php
-	level: 7
+	level: 8
 	checkMissingIterableValueType: false
