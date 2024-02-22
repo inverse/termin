@@ -20,7 +20,7 @@ class Container extends Pimple
 {
     private const ROOT_DIR = __DIR__.'/../';
 
-    public function __construct(Config $config, string $runtime = 'normal')
+    public function __construct(Config $config, Runtime $runtime = Runtime::NORMAL)
     {
         parent::__construct();
 
@@ -28,7 +28,7 @@ class Container extends Pimple
 
         $this[LoggerInterface::class] = static function () use ($config, $runtime) {
             $logger = new Logger('termin');
-            if ($config->getLogToFile() || 'serverless' !== $runtime) {
+            if ($config->getLogToFile() || Runtime::SERVERLESS !== $runtime) {
                 $logger->pushHandler(new StreamHandler(self::ROOT_DIR.'var/log/app.log', $config->getLogLevel()));
             }
             $logger->pushHandler(new StreamHandler('php://stdout', $config->getLogLevel()));
