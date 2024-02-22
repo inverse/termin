@@ -13,7 +13,7 @@ functions:
         description: 'Simple PHP script for notifying for a free appointments on the Berlin services website'
         runtime: php-83
         events:
-          - schedule: cron(0 0 * * ? *)
+          - schedule: cron(0 * * * ? *)
 
 package:
     patterns:
