@@ -210,13 +210,13 @@ npm install
 And finally deploy:
 
 ```bash
-./node_modules/.bin/serverless  deploy
+npx serverless deploy
 ```
 
 To remove run:
 
 ```bash
-./node_modules/.bin/serverless remove
+npx serverless remove
 ```
 
 

@@ -12,6 +12,7 @@ functions:
         handler: serverless.php
         description: 'Simple PHP script for notifying for a free appointments on the Berlin services website'
         runtime: php-83
+        architecture: arm64
         events:
           - schedule: cron(0 * * * ? *)
 
