@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ae90ffd7e94847c639e6cdbe21565f7",
+    "content-hash": "b83e0a59a6f825f785a96525fe4690aa",
     "packages": [
         {
             "name": "bref/bref",
@@ -2152,31 +2152,32 @@
         },
         {
             "name": "telegram-bot/api",
-            "version": "v2.3.26",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TelegramBot/Api.git",
-                "reference": "58897c23420a678ab2debef7a73834b54c14e796"
+                "reference": "eaae3526223db49a1bad76a2dfa501dc287979cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TelegramBot/Api/zipball/58897c23420a678ab2debef7a73834b54c14e796",
-                "reference": "58897c23420a678ab2debef7a73834b54c14e796",
+                "url": "https://api.github.com/repos/TelegramBot/Api/zipball/eaae3526223db49a1bad76a2dfa501dc287979cf",
+                "reference": "eaae3526223db49a1bad76a2dfa501dc287979cf",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
+                "ext-json": "*",
                 "php": ">=5.5.0"
             },
             "require-dev": {
-                "codeception/codeception": "*",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "2.*"
+                "friendsofphp/php-cs-fixer": "^3.16",
+                "symfony/phpunit-bridge": "*",
+                "vimeo/psalm": "^5.9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -2206,9 +2207,9 @@
             ],
             "support": {
                 "issues": "https://github.com/TelegramBot/Api/issues",
-                "source": "https://github.com/TelegramBot/Api/tree/v2.3.26"
+                "source": "https://github.com/TelegramBot/Api/tree/v2.5.0"
             },
-            "time": "2023-04-21T18:10:37+00:00"
+            "time": "2023-08-09T13:53:12+00:00"
         },
         {
             "name": "verifiedjoseph/ntfy-php-library",
