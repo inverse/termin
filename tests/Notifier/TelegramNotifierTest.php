@@ -12,7 +12,7 @@ class TelegramNotifierTest extends TestCase
 {
     public function testNotify(): void
     {
-        $mockBotApi = $this->getMockBuilder(BotApi::class)->setConstructorArgs(['fake-api-key'])->getMock();
+        $mockBotApi = $this->getMockBuilder(BotApi::class)->setConstructorArgs(['fake-token'])->getMock();
         $mockBotApi
             ->expects($this->once())
             ->method('sendMessage')
