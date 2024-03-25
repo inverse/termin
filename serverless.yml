@@ -15,6 +15,7 @@ functions:
         architecture: arm64
         events:
           - schedule: cron(0 * * * ? *)
+          - schedule: cron(*/15 07-10 * * ? *)
 
 package:
     patterns:
