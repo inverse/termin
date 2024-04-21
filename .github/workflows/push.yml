@@ -46,3 +46,22 @@ jobs:
         run: composer install
       - name: PHP-CS-Fixer
         run: ./vendor/bin/php-cs-fixer fix
+  serverless-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Get Node version from .mise.toml
+        uses: SebRollen/toml-action@v1.0.2
+        id: get-node-version
+        with:
+          file: .mise.toml
+          field: tools.node
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '${{ steps.get-node-version.outputs.value }}'
+      - name: Install dependencies
+        run: npm ci
+      - name: Check serverless.yml
+        run: npx serverless print
