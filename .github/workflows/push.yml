@@ -51,6 +51,12 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+      - name: Install PHP dependencies
+        run: composer install
       - name: Get Node version from .mise.toml
         uses: SebRollen/toml-action@v1.0.2
         id: get-node-version
@@ -61,7 +67,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '${{ steps.get-node-version.outputs.value }}'
-      - name: Install dependencies
+      - name: Install Node.js dependencies
         run: npm ci
       - name: Check serverless.yml
         run: npx serverless print
