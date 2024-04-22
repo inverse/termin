@@ -58,7 +58,7 @@ jobs:
       - name: Install PHP dependencies
         run: composer install
       - name: Get Node version from .mise.toml
-        uses: SebRollen/toml-action@v1.0.2
+        uses: SebRollen/toml-action@v1.2.0
         id: get-node-version
         with:
           file: .mise.toml
