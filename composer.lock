@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "bref/bref",
-            "version": "2.3.12",
+            "version": "2.3.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brefphp/bref.git",
-                "reference": "5a92388dfb654b4ca7ccda884353a00a1b8b0bc3"
+                "reference": "6fbc3d0b6d1f7a9ccf64d4f440f6397015ecc043"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brefphp/bref/zipball/5a92388dfb654b4ca7ccda884353a00a1b8b0bc3",
-                "reference": "5a92388dfb654b4ca7ccda884353a00a1b8b0bc3",
+                "url": "https://api.github.com/repos/brefphp/bref/zipball/6fbc3d0b6d1f7a9ccf64d4f440f6397015ecc043",
+                "reference": "6fbc3d0b6d1f7a9ccf64d4f440f6397015ecc043",
                 "shasum": ""
             },
             "require": {
@@ -71,7 +71,7 @@
             ],
             "support": {
                 "issues": "https://github.com/brefphp/bref/issues",
-                "source": "https://github.com/brefphp/bref/tree/2.3.12"
+                "source": "https://github.com/brefphp/bref/tree/2.3.13"
             },
             "funding": [
                 {
@@ -83,7 +83,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-20T13:00:03+00:00"
+            "time": "2025-01-18T15:13:23+00:00"
         },
         {
             "name": "campo/random-user-agent",
