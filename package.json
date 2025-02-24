@@ -1,5 +1,5 @@
 {
   "devDependencies": {
-    "serverless": "^3.38.0"
+    "serverless": "^4.6.4"
   }
 }
