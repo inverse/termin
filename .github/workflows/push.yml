@@ -1,12 +1,15 @@
 name: CI
 on: [push]
 
+env:
+  PHP_CS_FIXER_IGNORE_ENV: 1
+
 jobs:
   unit-tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ['8.3', '8.2', '8.1']
+        php-version: ['8.4', '8.3', '8.2', '8.1']
     steps:
     - uses: actions/checkout@v4
     - name: Install PHP
@@ -19,7 +22,7 @@ jobs:
       run: |
         XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover coverage.xml
     - uses: codecov/codecov-action@v5
-      if: matrix.php-version == '8.3'
+      if: matrix.php-version == '8.4'
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
   phpstan:
@@ -29,7 +32,7 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '8.4'
       - name: Install dependencies
         run: composer install
       - name: PHPStan
@@ -41,7 +44,7 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '8.4'
       - name: Install dependencies
         run: composer install
       - name: PHP-CS-Fixer
@@ -54,7 +57,7 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '8.4'
       - name: Install PHP dependencies
         run: composer install
       - name: Get Node version from .mise.toml
