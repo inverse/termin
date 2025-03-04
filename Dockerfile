@@ -4,7 +4,7 @@ COPY composer.json /app
 
 RUN composer install --no-dev --optimize-autoloader
 
-FROM php:8.3-alpine
+FROM php:8.4-alpine
 
 COPY . /app
 
