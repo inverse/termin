@@ -33,7 +33,7 @@ git clone https://github.com/inverse/termin.git
 ## Dependencies
 
 Install dependencies
- 
+
  ```bash
  composer install
 ```
@@ -69,7 +69,7 @@ Follow the [official documentation][4] on setting up a bot.
 
 Within `config.yml` Set `telegram.api_key` with the API key provided from this process.
 
-You will first need to make communication with the bot to enable it to send messages to you. 
+You will first need to make communication with the bot to enable it to send messages to you.
 
 Once you have done that find your chat ID. You can get this by interacting with `@raw_data_bot` bot.
 
@@ -156,7 +156,7 @@ Only notify when found appointments happen before date condition.
 rules:
   -
     type: before_date
-    param: '2022-01-01 00:00:00' 
+    param: '2022-01-01 00:00:00'
 ```
 
 ## Run
