@@ -1,4 +1,4 @@
-# Modify for your needs, should be a array of objects with a friendly label of whats notified and the URL to scrape
+# Modify for your needs, should be an array of objects with a friendly label of what's notified and the URL to scrape
 sites:
   -
     label: Vaterschaftsanerkennung
@@ -33,8 +33,14 @@ logger:
   level: info
   log_to_file: false # If true will log to file as well as stdout
 
-# Configure rules
+# Configure trigger rules
 rules:
   -
     type: after
-    param: PT24H # Uses PHP DateInterval construct. See: https://www.php.net/manual/en/dateinterval.construct.php
+    param: PT48H # At least 48h notice, uses PHP DateInterval construct. See: https://www.php.net/manual/en/dateinterval.construct.php
+  -
+    type: before_date
+    param: '2025-04-09 23:59:59' # Before Easter break
+  -
+    type: after_date
+    param: '2025-04-28 00:00:00' # After Easter break
