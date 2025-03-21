@@ -5,4 +5,6 @@ parameters:
 	excludePaths:
 		- %currentWorkingDirectory%/src/Container.php
 	level: 8
-	checkMissingIterableValueType: false
+	ignoreErrors:
+		- '#(Property|Method) .+ type has no value type specified in iterable type array.#'
+		- '#Method .+ has parameter .+ with no value type specified in iterable type array.#'

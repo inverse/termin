@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b83e0a59a6f825f785a96525fe4690aa",
+    "content-hash": "beb72991537ca187dcc02394683cff60",
     "packages": [
         {
             "name": "bref/bref",
@@ -2666,16 +2666,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.72.0",
+            "version": "v3.73.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "900389362c43d116fee1ffc51f7878145fa61b57"
+                "reference": "ffcb8200a42045e65049af7910cfd022f631b064"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/900389362c43d116fee1ffc51f7878145fa61b57",
-                "reference": "900389362c43d116fee1ffc51f7878145fa61b57",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/ffcb8200a42045e65049af7910cfd022f631b064",
+                "reference": "ffcb8200a42045e65049af7910cfd022f631b064",
                 "shasum": ""
             },
             "require": {
@@ -2683,6 +2683,7 @@
                 "composer/semver": "^3.4",
                 "composer/xdebug-handler": "^3.0.3",
                 "ext-filter": "*",
+                "ext-hash": "*",
                 "ext-json": "*",
                 "ext-tokenizer": "*",
                 "fidry/cpu-core-counter": "^1.2",
@@ -2757,7 +2758,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.72.0"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.73.1"
             },
             "funding": [
                 {
@@ -2765,7 +2766,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-13T11:25:37+00:00"
+            "time": "2025-03-19T23:42:16+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -3005,20 +3006,20 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.19",
+            "version": "2.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "c42ba9bab7a940ed00092ecb1c77bad98896d789"
+                "reference": "f9adff3b87c03b12cc7e46a30a524648e497758f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/c42ba9bab7a940ed00092ecb1c77bad98896d789",
-                "reference": "c42ba9bab7a940ed00092ecb1c77bad98896d789",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f9adff3b87c03b12cc7e46a30a524648e497758f",
+                "reference": "f9adff3b87c03b12cc7e46a30a524648e497758f",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2|^8.0"
+                "php": "^7.4|^8.0"
             },
             "conflict": {
                 "phpstan/phpstan-shim": "*"
@@ -3059,7 +3060,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-19T15:42:21+00:00"
+            "time": "2025-03-09T09:30:48+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -5938,7 +5939,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
@@ -5946,9 +5947,9 @@
         "ext-curl": "*",
         "ext-dom": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "platform-overrides": {
         "php": "8.1.27"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
