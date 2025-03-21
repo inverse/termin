@@ -45,23 +45,19 @@ class Container extends Pimple
             );
         };
 
-        $this[ScraperLocator::class] = static function (self $container) {
-            return new ScraperLocator([
-                'berlin_service' => $container[BerlinServiceScraper::class],
-            ]);
-        };
+        $this[ScraperLocator::class] = static fn (self $container) => new ScraperLocator([
+            'berlin_service' => $container[BerlinServiceScraper::class],
+        ]);
 
         $this[Filter::class] = static fn () => new Filter($config->getRules());
 
-        $this[Termin::class] = static function (self $container) use ($config) {
-            return new Termin(
-                $container[ScraperLocator::class],
-                $container[LoggerInterface::class],
-                $container[NotifierInterface::class],
-                $container[Filter::class],
-                $config
-            );
-        };
+        $this[Termin::class] = static fn (self $container) => new Termin(
+            $container[ScraperLocator::class],
+            $container[LoggerInterface::class],
+            $container[NotifierInterface::class],
+            $container[Filter::class],
+            $config
+        );
     }
 
     public function getTermin(): Termin
