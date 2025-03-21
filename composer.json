@@ -11,7 +11,7 @@
         "ivkos/pushbullet": "^3.3",
         "monolog/monolog": "^2.1.1",
         "pimple/pimple": "^3.2",
-        "psr/log": "^1.1.4",
+        "psr/log": "^3.0.2",
         "symfony/browser-kit": "^6.3",
         "symfony/css-selector": "^6.3",
         "symfony/dom-crawler": "^6.3",
