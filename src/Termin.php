@@ -13,29 +13,13 @@ use Psr\Log\LoggerInterface;
 
 class Termin
 {
-    private ScraperLocator $scraperLocator;
-
-    private LoggerInterface $logger;
-
-    private MultiNotifier $notifier;
-
-    private Filter $filter;
-
-    private Config $config;
-
     public function __construct(
-        ScraperLocator $scraperLocator,
-        LoggerInterface $logger,
-        MultiNotifier $notifier,
-        Filter $filter,
-        Config $config
-    ) {
-        $this->scraperLocator = $scraperLocator;
-        $this->logger = $logger;
-        $this->notifier = $notifier;
-        $this->filter = $filter;
-        $this->config = $config;
-    }
+        private readonly ScraperLocator $scraperLocator,
+        private readonly LoggerInterface $logger,
+        private readonly MultiNotifier $notifier,
+        private readonly Filter $filter,
+        private readonly Config $config
+    ) {}
 
     /**
      * @param Site[] $sites

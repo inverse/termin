@@ -12,52 +12,19 @@ use Inverse\Termin\Config\Rules\RuleInterface;
 class Config
 {
     /**
-     * @var Site[]
-     */
-    private array $sites;
-
-    /**
-     * @var RuleInterface[]
-     */
-    private array $rules;
-
-    private int $logLevel;
-
-    private bool $logToFile;
-
-    private bool $allowMultipleNotifications;
-
-    private ?Telegram $telegram;
-
-    private ?Pushbullet $pushbullet;
-
-    private ?Ntfy $ntfy;
-
-    /**
-     * Config constructor.
-     *
      * @param Site[]          $sites
      * @param RuleInterface[] $rules
      */
     public function __construct(
-        array $sites,
-        array $rules,
-        int $logLevel,
-        bool $logToFile,
-        bool $allowMultipleNotifications,
-        ?Pushbullet $pushbullet,
-        ?Telegram $telegram,
-        ?Ntfy $ntfy
-    ) {
-        $this->sites = $sites;
-        $this->rules = $rules;
-        $this->logLevel = $logLevel;
-        $this->logToFile = $logToFile;
-        $this->allowMultipleNotifications = $allowMultipleNotifications;
-        $this->pushbullet = $pushbullet;
-        $this->telegram = $telegram;
-        $this->ntfy = $ntfy;
-    }
+        private readonly array $sites,
+        private readonly array $rules,
+        private readonly int $logLevel,
+        private readonly bool $logToFile,
+        private readonly bool $allowMultipleNotifications,
+        private readonly ?Pushbullet $pushbullet,
+        private readonly ?Telegram $telegram,
+        private readonly ?Ntfy $ntfy,
+    ) {}
 
     /**
      * @return Site[]
@@ -67,6 +34,9 @@ class Config
         return $this->sites;
     }
 
+    /**
+     * @return RuleInterface[]
+     */
     public function getRules(): array
     {
         return $this->rules;

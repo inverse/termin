@@ -6,18 +6,11 @@ namespace Inverse\Termin\Config;
 
 class Site
 {
-    private string $label;
-
-    private string $type;
-
-    private array $params;
-
-    public function __construct(string $label, string $type, array $params)
-    {
-        $this->label = $label;
-        $this->type = $type;
-        $this->params = $params;
-    }
+    public function __construct(
+        private readonly string $label,
+        private readonly string $type,
+        private readonly array $params
+    ) {}
 
     public function getLabel(): string
     {

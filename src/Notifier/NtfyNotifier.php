@@ -9,15 +9,10 @@ use Ntfy\Message;
 
 class NtfyNotifier implements NotifierInterface
 {
-    private Client $client;
-
-    private string $topic;
-
-    public function __construct(Client $client, string $topic)
-    {
-        $this->client = $client;
-        $this->topic = $topic;
-    }
+    public function __construct(
+        private readonly Client $client,
+        private readonly string $topic
+    ) {}
 
     public function notify(string $label, string $url, \DateTime $date): void
     {

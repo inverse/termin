@@ -8,15 +8,10 @@ use TelegramBot\Api\BotApi;
 
 class TelegramNotifier implements NotifierInterface
 {
-    private BotApi $botApi;
-
-    private string $chatId;
-
-    public function __construct(BotApi $botApi, string $chatId)
-    {
-        $this->botApi = $botApi;
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        private readonly BotApi $botApi,
+        private readonly string $chatId
+    ) {}
 
     public function notify(string $label, string $url, \DateTime $date): void
     {
