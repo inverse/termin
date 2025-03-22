@@ -15,17 +15,10 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class BerlinServiceScraper implements ScraperInterface
 {
-    private HttpClientInterface $httpClient;
-
-    private LoggerInterface $logger;
-
     public function __construct(
-        HttpClientInterface $httpClient,
-        LoggerInterface $logger
-    ) {
-        $this->httpClient = $httpClient;
-        $this->logger = $logger;
-    }
+        private readonly HttpClientInterface $httpClient,
+        private readonly LoggerInterface $logger
+    ) {}
 
     /**
      * @return Result[]

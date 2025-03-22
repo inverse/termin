@@ -9,17 +9,9 @@ use Inverse\Termin\Exceptions\TerminException;
 class ScraperLocator
 {
     /**
-     * @var ScraperInterface[]
-     */
-    private array $scrapers;
-
-    /**
      * @param ScraperInterface[] $scrapers
      */
-    public function __construct(array $scrapers)
-    {
-        $this->scrapers = $scrapers;
-    }
+    public function __construct(private readonly array $scrapers) {}
 
     /**
      * @throws TerminException

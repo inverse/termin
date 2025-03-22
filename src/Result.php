@@ -6,18 +6,11 @@ namespace Inverse\Termin;
 
 class Result
 {
-    private string $url;
-
-    private string $label;
-
-    private \DateTime $dateTime;
-
-    public function __construct(string $url, string $label, \DateTime $dateTime)
-    {
-        $this->url = $url;
-        $this->label = $label;
-        $this->dateTime = $dateTime;
-    }
+    public function __construct(
+        private readonly string $url,
+        private readonly string $label,
+        private readonly \DateTime $dateTime
+    ) {}
 
     public function __toString()
     {

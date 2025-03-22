@@ -8,15 +8,7 @@ class Ntfy
 {
     public const DEFAULT_SERVER = 'https://ntfy.sh';
 
-    private string $server;
-
-    private string $topic;
-
-    public function __construct(string $server, string $topic)
-    {
-        $this->server = $server;
-        $this->topic = $topic;
-    }
+    public function __construct(private readonly string $server, private readonly string $topic) {}
 
     public function getServer(): string
     {

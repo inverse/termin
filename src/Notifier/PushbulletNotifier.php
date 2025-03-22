@@ -8,12 +8,9 @@ use Pushbullet\Pushbullet;
 
 class PushbulletNotifier implements NotifierInterface
 {
-    private Pushbullet $pushbullet;
-
-    public function __construct(Pushbullet $pushbullet)
-    {
-        $this->pushbullet = $pushbullet;
-    }
+    public function __construct(
+        private readonly Pushbullet $pushbullet
+    ) {}
 
     public function notify(string $label, string $url, \DateTime $date): void
     {
