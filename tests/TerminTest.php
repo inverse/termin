@@ -14,7 +14,7 @@ use Inverse\Termin\Scraper\BerlinServiceScraper;
 use Inverse\Termin\Scraper\ScraperLocator;
 use Inverse\Termin\Termin;
 use PHPUnit\Framework\TestCase;
-use Psr\Log\Test\TestLogger;
+use ColinODell\PsrTestLogger\TestLogger;
 use Tests\Inverse\Termin\Notifier\TestNotifier;
 
 class TerminTest extends TestCase
