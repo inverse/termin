@@ -11,6 +11,7 @@ use Inverse\Termin\Config\Rules\AfterDateRule;
 use Inverse\Termin\Config\Rules\AfterRule;
 use Inverse\Termin\Config\Rules\BeforeDateRule;
 use Inverse\Termin\Config\Rules\BeforeRule;
+use Monolog\Level;
 use Monolog\Logger;
 
 class ConfigParser
@@ -65,7 +66,7 @@ class ConfigParser
         return new Config($sites, $rules, $logLevel, $logToFile, $allowMultipleNotifications, $pushbullet, $telegram, $ntfy);
     }
 
-    private function getLogLevel(array $config): int
+    private function getLogLevel(array $config): Level
     {
         $logger = $config['logger'] ?? [];
 
