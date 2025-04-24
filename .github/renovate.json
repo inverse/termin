@@ -11,7 +11,8 @@
       {
         "matchPackagePrefixes": [
           "symfony/",
-          "phpunit/phpunit"
+          "phpunit/phpunit",
+          "verifiedjoseph/ntfy-php-library"
         ],
         "groupName": "symfony",
         "versioning": "composer",
