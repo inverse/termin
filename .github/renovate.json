@@ -6,5 +6,18 @@
     ],
     "pre-commit": {
       "enabled": true
-    }
+    },
+    "packageRules": [
+      {
+        "matchPackagePrefixes": [
+          "symfony/",
+          "phpunit/phpunit"
+        ],
+        "groupName": "symfony",
+        "versioning": "composer",
+        "major": {
+          "enabled": false
+        }
+      }
+    ]
 }
