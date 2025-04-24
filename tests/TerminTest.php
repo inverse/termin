@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Inverse\Termin;
 
+use ColinODell\PsrTestLogger\TestLogger;
 use Inverse\Termin\Config\Config;
 use Inverse\Termin\Config\Site;
 use Inverse\Termin\Exceptions\TerminException;
@@ -14,7 +15,6 @@ use Inverse\Termin\Scraper\BerlinServiceScraper;
 use Inverse\Termin\Scraper\ScraperLocator;
 use Inverse\Termin\Termin;
 use PHPUnit\Framework\TestCase;
-use ColinODell\PsrTestLogger\TestLogger;
 use Tests\Inverse\Termin\Notifier\TestNotifier;
 
 class TerminTest extends TestCase

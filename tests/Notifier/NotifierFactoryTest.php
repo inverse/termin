@@ -13,7 +13,7 @@ use Inverse\Termin\Notifier\NotifierFactory;
 use Inverse\Termin\Notifier\NtfyNotifier;
 use Inverse\Termin\Notifier\PushbulletNotifier;
 use Inverse\Termin\Notifier\TelegramNotifier;
-use Monolog\Logger;
+use Monolog\Level;
 use PHPUnit\Framework\TestCase;
 
 class NotifierFactoryTest extends TestCase
@@ -23,7 +23,7 @@ class NotifierFactoryTest extends TestCase
         $config = new Config(
             [],
             [],
-            Logger::INFO,
+            Level::Info,
             false,
             true,
             null,
@@ -42,7 +42,7 @@ class NotifierFactoryTest extends TestCase
         $config = new Config(
             [],
             [],
-            Logger::INFO,
+            Level::Info,
             false,
             true,
             new Pushbullet('api'),
@@ -66,7 +66,7 @@ class NotifierFactoryTest extends TestCase
         $config = new Config(
             [],
             [],
-            Logger::INFO,
+            Level::Info,
             false,
             true,
             null,
@@ -90,7 +90,7 @@ class NotifierFactoryTest extends TestCase
         $config = new Config(
             [],
             [],
-            Logger::INFO,
+            Level::Info,
             false,
             true,
             null,
@@ -114,7 +114,7 @@ class NotifierFactoryTest extends TestCase
         $config = new Config(
             [],
             [],
-            Logger::INFO,
+            Level::Info,
             false,
             true,
             new Pushbullet('yolo'),
