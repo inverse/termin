@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Inverse\Termin\Scraper;
 
 use Inverse\Termin\Config\Site;
+use Inverse\Termin\Exceptions\InvalidResponseException;
 use Inverse\Termin\Exceptions\TerminException;
 use Inverse\Termin\HttpClient\HttpClientFactoryInterface;
 use Inverse\Termin\Scraper\BerlinServiceScraper;
@@ -119,6 +120,31 @@ class BerlinServiceScraperTest extends TestCase
             ]
         ));
         self::assertCount(4, $results);
+    }
+
+    public function testScrapeSiteInvalidStatusCodeResponse(): void
+    {
+        $mockHttpClientFactory = new MockHttpClientFactory(
+            [
+                new MockResponse('', ['http_code' => 404]),
+            ]
+        );
+
+        $scraper = new BerlinServiceScraper($mockHttpClientFactory->create(), new NullLogger());
+
+        $url = 'https://service.berlin.de/terminvereinbarung/termin/day';
+
+        try {
+            $scraper->scrape(new Site(
+                'Yolo',
+                'berlin_service',
+                ['url' => $url,
+                ]
+            ));
+        } catch (InvalidResponseException $exception) {
+            self::assertEquals(404, $exception->getStatusCode());
+            self::assertEquals($url, $exception->getUrl());
+        }
     }
 }
 
