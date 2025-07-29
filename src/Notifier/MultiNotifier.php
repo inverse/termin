@@ -41,6 +41,7 @@ class MultiNotifier implements NotifierInterface
         }
 
         if (!empty($exceptions)) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             throw new MultiNotifierException('One of more exception was raised when notifying', $exceptions);
         }
     }
