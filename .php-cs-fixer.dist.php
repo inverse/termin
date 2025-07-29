@@ -23,6 +23,7 @@ $config
         'declare_strict_types' => true,
     ])
     ->setFinder($finder)
+    ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
 ;
 
 return $config;

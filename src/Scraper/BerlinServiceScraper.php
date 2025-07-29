@@ -6,6 +6,7 @@ namespace Inverse\Termin\Scraper;
 
 use Inverse\Termin\Config\Site;
 use Inverse\Termin\DateHelper;
+use Inverse\Termin\Exceptions\InvalidResponseException;
 use Inverse\Termin\Exceptions\TerminException;
 use Inverse\Termin\Result;
 use Psr\Log\LoggerInterface;
@@ -40,6 +41,13 @@ class BerlinServiceScraper implements ScraperInterface
 
         $browser = new HttpBrowser($this->httpClient);
         $crawler = $browser->request('GET', $url);
+
+        $response = $browser->getResponse();
+        $statusCode = $response->getStatusCode();
+
+        if (200 !== $statusCode) {
+            throw new InvalidResponseException(sprintf('Got non-successful response (%u) when trying to load the url at %s', $statusCode, $url), $url, $statusCode);
+        }
 
         $results = [];
 
