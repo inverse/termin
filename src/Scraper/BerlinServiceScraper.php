@@ -13,6 +13,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\BrowserKit\HttpBrowser;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class BerlinServiceScraper implements ScraperInterface
 {
@@ -42,6 +43,7 @@ class BerlinServiceScraper implements ScraperInterface
         $browser = new HttpBrowser($this->httpClient);
         $crawler = $browser->request('GET', $url);
 
+        /** @var ResponseInterface $response */
         $response = $browser->getResponse();
         $statusCode = $response->getStatusCode();
 
