@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Inverse\Termin\Notifier;
 
+use Inverse\Termin\Exceptions\MultiNotifierException;
+use Inverse\Termin\Exceptions\NotifierException;
+
 class MultiNotifier implements NotifierInterface
 {
     /**
@@ -27,8 +30,18 @@ class MultiNotifier implements NotifierInterface
             throw new NotifierException('No notifiers configured');
         }
 
+        $exceptions = [];
+
         foreach ($this->notifiers as $notify) {
-            $notify->notify($label, $url, $date);
+            try {
+                $notify->notify($label, $url, $date);
+            } catch (\Throwable $exception) {
+                $exceptions[] = $exception;
+            }
+        }
+
+        if (!empty($exceptions)) {
+            throw new MultiNotifierException('One of more exception was raised when notifying', $exceptions);
         }
     }
 
