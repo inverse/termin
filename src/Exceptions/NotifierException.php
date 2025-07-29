@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Inverse\Termin\Notifier;
+namespace Inverse\Termin\Exceptions;
 
 class NotifierException extends \RuntimeException {}

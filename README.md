@@ -75,6 +75,12 @@ Once you have done that find your chat ID. You can get this by interacting with 
 
 Set the value in `telegram.chat_id`.
 
+#### Additional notifiers
+
+Feel free to contribute additional notifiers. Add a new Notifier in `Inverse\Termin\Notifier` implementing the `NotifierInterface` interface.
+
+Then add the Config in `Inverse\Termin\Config\Notifier` and wire it up in the `NotifierFactory`.
+
 ##### Groups
 
 If you are adding the bot to a group you must add your bot to your group.

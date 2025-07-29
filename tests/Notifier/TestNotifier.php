@@ -10,13 +10,20 @@ class TestNotifier implements NotifierInterface
 {
     private array $notifications;
 
-    public function __construct()
+    private ?\Exception $exception;
+
+    public function __construct(?\Exception $exception = null)
     {
         $this->notifications = [];
+        $this->exception = $exception;
     }
 
     public function notify(string $label, string $url, \DateTime $date): void
     {
+        if (null !== $this->exception) {
+            throw $this->exception;
+        }
+
         $this->notifications[] = [
             'name' => $label,
             'url' => $url,
