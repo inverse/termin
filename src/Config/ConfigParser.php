@@ -55,7 +55,7 @@ class ConfigParser
 
         $rules = $this->getRules($config);
 
-        return new Config($sites, $rules, new LoggerConfig($config), $allowMultipleNotifications, $pushbullet, $telegram, $ntfy);
+        return new Config($sites, $rules, new LoggerConfig($config['logger'] ?? []), $allowMultipleNotifications, $pushbullet, $telegram, $ntfy);
     }
 
     private function getRules(array $config): array

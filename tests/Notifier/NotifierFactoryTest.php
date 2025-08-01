@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Inverse\Termin\Notifier;
 
 use Inverse\Termin\Config\Config;
-use Inverse\Termin\Config\LoggerConfig;
 use Inverse\Termin\Config\Notifier\Ntfy;
 use Inverse\Termin\Config\Notifier\Pushbullet;
 use Inverse\Termin\Config\Notifier\Telegram;
@@ -20,15 +19,7 @@ class NotifierFactoryTest extends TestCase
 {
     public function testEmpty(): void
     {
-        $config = new Config(
-            [],
-            [],
-            new LoggerConfig(),
-            false,
-            null,
-            null,
-            null
-        );
+        $config = new Config();
         $mockMultiNotifier = $this->createMock(MultiNotifier::class);
         $mockMultiNotifier->expects($this->never())->method('addNotifier');
         $notifierFactory = new NotifierFactory($mockMultiNotifier);
@@ -38,15 +29,7 @@ class NotifierFactoryTest extends TestCase
 
     public function testPushbullet(): void
     {
-        $config = new Config(
-            [],
-            [],
-            new LoggerConfig(),
-            false,
-            new Pushbullet('api'),
-            null,
-            null
-        );
+        $config = new Config(pushbullet: new Pushbullet('api'));
 
         $mockMultiNotifier = $this->createMock(MultiNotifier::class);
         $mockMultiNotifier
@@ -61,15 +44,7 @@ class NotifierFactoryTest extends TestCase
 
     public function testTelegram(): void
     {
-        $config = new Config(
-            [],
-            [],
-            new LoggerConfig(),
-            false,
-            null,
-            new Telegram('api', '0'),
-            null
-        );
+        $config = new Config(telegram: new Telegram('api', '0'));
 
         $mockMultiNotifier = $this->createMock(MultiNotifier::class);
         $mockMultiNotifier
@@ -84,15 +59,7 @@ class NotifierFactoryTest extends TestCase
 
     public function testNtfy(): void
     {
-        $config = new Config(
-            [],
-            [],
-            new LoggerConfig(),
-            false,
-            null,
-            null,
-            new Ntfy(Ntfy::DEFAULT_SERVER, 'foobar')
-        );
+        $config = new Config(ntfy: new Ntfy(Ntfy::DEFAULT_SERVER, 'foobar'));
 
         $mockMultiNotifier = $this->createMock(MultiNotifier::class);
         $mockMultiNotifier
@@ -108,13 +75,9 @@ class NotifierFactoryTest extends TestCase
     public function testMultiple(): void
     {
         $config = new Config(
-            [],
-            [],
-            new LoggerConfig(),
-            true,
-            new Pushbullet('yolo'),
-            new Telegram('api', '0'),
-            new Ntfy(Ntfy::DEFAULT_SERVER, 'foobar')
+            pushbullet: new Pushbullet('yolo'),
+            telegram: new Telegram('api', '0'),
+            ntfy: new Ntfy(Ntfy::DEFAULT_SERVER, 'foobar')
         );
 
         $mockMultiNotifier = $this->createMock(MultiNotifier::class);

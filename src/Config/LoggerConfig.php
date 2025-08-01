@@ -20,10 +20,9 @@ class LoggerConfig
 
     public function __construct(array $config = [])
     {
-        $loggerConfig = $config['logger'] ?? [];
-        $this->level = Logger::toMonologLevel($loggerConfig['level'] ?? self::DEFAULT_LOG_LEVEL);
-        $this->logToFile = $loggerConfig['file'] ?? false;
-        $this->logFileLocation = $loggerConfig['log_file_location'] ?? self::DEFAULT_LOG_FILE_LOCATION;
+        $this->level = Logger::toMonologLevel($config['level'] ?? self::DEFAULT_LOG_LEVEL);
+        $this->logToFile = $config['log_to_file'] ?? false;
+        $this->logFileLocation = $config['log_file_location'] ?? self::DEFAULT_LOG_FILE_LOCATION;
     }
 
     public function getLogFileLocation(): string
