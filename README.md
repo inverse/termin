@@ -207,14 +207,14 @@ _Note: Don't set the schedule frequency to high to not overload their website_
 
 Termin can also be run as a serverless application. Configure the application like you would like any other way.
 
-Install serverless toolchain:
+Then, install composer and serverless toolchain:
 
 ```bash
+composer install
 npm install
 ```
 
 Then configure your environment with [serverless tooling][9].
-
 
 And finally deploy:
 
@@ -227,7 +227,6 @@ To remove run:
 ```bash
 npx serverless remove
 ```
-
 
 # License
 
