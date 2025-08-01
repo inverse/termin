@@ -32,6 +32,7 @@ telegram:
 logger:
   level: info
   log_to_file: false # If true will log to file as well as stdout
+  log_file_location: ./var/log/termin.log # Default value, only used if log_to_file is true
 
 # Configure trigger rules
 rules:

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Inverse\Termin\Notifier;
 
 use Inverse\Termin\Config\Config;
+use Inverse\Termin\Config\LoggerConfig;
 use Inverse\Termin\Config\Notifier\Ntfy;
 use Inverse\Termin\Config\Notifier\Pushbullet;
 use Inverse\Termin\Config\Notifier\Telegram;
@@ -13,7 +14,6 @@ use Inverse\Termin\Notifier\NotifierFactory;
 use Inverse\Termin\Notifier\NtfyNotifier;
 use Inverse\Termin\Notifier\PushbulletNotifier;
 use Inverse\Termin\Notifier\TelegramNotifier;
-use Monolog\Level;
 use PHPUnit\Framework\TestCase;
 
 class NotifierFactoryTest extends TestCase
@@ -23,9 +23,8 @@ class NotifierFactoryTest extends TestCase
         $config = new Config(
             [],
             [],
-            Level::Info,
+            new LoggerConfig(),
             false,
-            true,
             null,
             null,
             null
@@ -42,9 +41,8 @@ class NotifierFactoryTest extends TestCase
         $config = new Config(
             [],
             [],
-            Level::Info,
+            new LoggerConfig(),
             false,
-            true,
             new Pushbullet('api'),
             null,
             null
@@ -66,9 +64,8 @@ class NotifierFactoryTest extends TestCase
         $config = new Config(
             [],
             [],
-            Level::Info,
+            new LoggerConfig(),
             false,
-            true,
             null,
             new Telegram('api', '0'),
             null
@@ -90,9 +87,8 @@ class NotifierFactoryTest extends TestCase
         $config = new Config(
             [],
             [],
-            Level::Info,
+            new LoggerConfig(),
             false,
-            true,
             null,
             null,
             new Ntfy(Ntfy::DEFAULT_SERVER, 'foobar')
@@ -114,8 +110,7 @@ class NotifierFactoryTest extends TestCase
         $config = new Config(
             [],
             [],
-            Level::Info,
-            false,
+            new LoggerConfig(),
             true,
             new Pushbullet('yolo'),
             new Telegram('api', '0'),

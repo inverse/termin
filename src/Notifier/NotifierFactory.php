@@ -13,7 +13,7 @@ use TelegramBot\Api\BotApi;
 class NotifierFactory
 {
     public function __construct(
-        private readonly MultiNotifier $notifier
+        private readonly MultiNotifier $notifier = new MultiNotifier()
     ) {}
 
     public function create(Config $config): NotifierInterface

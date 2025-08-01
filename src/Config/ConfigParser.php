@@ -11,13 +11,9 @@ use Inverse\Termin\Config\Rules\AfterDateRule;
 use Inverse\Termin\Config\Rules\AfterRule;
 use Inverse\Termin\Config\Rules\BeforeDateRule;
 use Inverse\Termin\Config\Rules\BeforeRule;
-use Monolog\Level;
-use Monolog\Logger;
 
 class ConfigParser
 {
-    private const DEFAULT_LOG_LEVEL = 'info';
-
     public function parse(array $config): Config
     {
         if (!array_key_exists('sites', $config)) {
@@ -59,27 +55,7 @@ class ConfigParser
 
         $rules = $this->getRules($config);
 
-        $logLevel = $this->getLogLevel($config);
-
-        $logToFile = $this->getLogToFile($config);
-
-        return new Config($sites, $rules, $logLevel, $logToFile, $allowMultipleNotifications, $pushbullet, $telegram, $ntfy);
-    }
-
-    private function getLogLevel(array $config): Level
-    {
-        $logger = $config['logger'] ?? [];
-
-        $level = $logger['level'] ?? self::DEFAULT_LOG_LEVEL;
-
-        return Logger::toMonologLevel($level);
-    }
-
-    private function getLogToFile(array $config): bool
-    {
-        $logger = $config['logger'] ?? [];
-
-        return $logger['file'] ?? false;
+        return new Config($sites, $rules, new LoggerConfig($config), $allowMultipleNotifications, $pushbullet, $telegram, $ntfy);
     }
 
     private function getRules(array $config): array
