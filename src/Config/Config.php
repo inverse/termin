@@ -8,7 +8,6 @@ use Inverse\Termin\Config\Notifier\Ntfy;
 use Inverse\Termin\Config\Notifier\Pushbullet;
 use Inverse\Termin\Config\Notifier\Telegram;
 use Inverse\Termin\Config\Rules\RuleInterface;
-use Monolog\Level;
 
 class Config
 {
@@ -19,8 +18,7 @@ class Config
     public function __construct(
         private readonly array $sites,
         private readonly array $rules,
-        private readonly Level $logLevel,
-        private readonly bool $logToFile,
+        private readonly LoggerConfig $loggerConfig,
         private readonly bool $allowMultipleNotifications,
         private readonly ?Pushbullet $pushbullet,
         private readonly ?Telegram $telegram,
@@ -43,14 +41,9 @@ class Config
         return $this->rules;
     }
 
-    public function getLogLevel(): Level
+    public function getLoggerConfig(): LoggerConfig
     {
-        return $this->logLevel;
-    }
-
-    public function getLogToFile(): bool
-    {
-        return $this->logToFile;
+        return $this->loggerConfig;
     }
 
     public function isAllowMultipleNotifications(): bool

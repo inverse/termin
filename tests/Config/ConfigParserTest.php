@@ -355,7 +355,7 @@ class ConfigParserTest extends TestCase
     public function testParseLogLevelDefault(): void
     {
         $config = $this->configParser->parse($this->getBasicConfig());
-        self::assertEquals(Level::Info, $config->getLogLevel());
+        self::assertEquals(Level::Info, $config->getLoggerConfig()->getLevel());
     }
 
     public function testParseLogLevelOverride(): void
@@ -365,7 +365,7 @@ class ConfigParserTest extends TestCase
                 'level' => 'debug',
             ],
         ]);
-        self::assertEquals(Level::Debug, $config->getLogLevel());
+        self::assertEquals(Level::Debug, $config->getLoggerConfig()->getLevel());
     }
 
     public function testParseLogLevelInvalid(): void
