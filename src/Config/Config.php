@@ -16,13 +16,13 @@ class Config
      * @param RuleInterface[] $rules
      */
     public function __construct(
-        private readonly array $sites,
-        private readonly array $rules,
-        private readonly LoggerConfig $loggerConfig,
-        private readonly bool $allowMultipleNotifications,
-        private readonly ?Pushbullet $pushbullet,
-        private readonly ?Telegram $telegram,
-        private readonly ?Ntfy $ntfy,
+        private readonly array $sites = [],
+        private readonly array $rules = [],
+        private readonly LoggerConfig $loggerConfig = new LoggerConfig(),
+        private readonly bool $allowMultipleNotifications = false,
+        private readonly ?Pushbullet $pushbullet = null,
+        private readonly ?Telegram $telegram = null,
+        private readonly ?Ntfy $ntfy = null,
     ) {}
 
     /**
