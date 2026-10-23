@@ -30,7 +30,7 @@ jobs:
     - name: Run tests
       run: |
         XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover coverage.xml
-    - uses: codecov/codecov-action@v5
+    - uses: codecov/codecov-action@v7
       if: matrix.php-version == '8.4'
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
