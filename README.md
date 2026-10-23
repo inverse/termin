@@ -207,7 +207,7 @@ _Note: Don't set the schedule frequency to high to not overload their website_
 
 Termin can also be run as a serverless application. Configure the application like you would like any other way.
 
-Then, install composer and serverless toolchain:
+Then, install composer and the open-source serverless toolchain ([oss-serverless][10]):
 
 ```bash
 composer install
@@ -215,23 +215,22 @@ npm install
 ```
 
 Then configure your environment with [serverless tooling][9].
-
 And finally deploy:
 
 ```bash
-npx serverless deploy
+npx osls deploy
 ```
 
 To remove run:
 
 ```bash
-npx serverless remove
+npx osls remove
 ```
+
 
 # License
 
 MIT
-
 [0]: https://service.berlin.de/terminvereinbarung/
 [1]: https://www.pushbullet.com/
 [2]: https://telegram.org/
@@ -242,3 +241,5 @@ MIT
 [7]: https://ntfy.sh/docs/subscribe/phone/
 [8]: https://ntfy.sh/docs/subscribe/web/
 [9]: https://bref.sh/docs/setup
+[10]: https://github.com/oss-serverless/serverless
+
