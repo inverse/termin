@@ -20,7 +20,7 @@ jobs:
       id: composer-cache
       run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
     - name: Cache dependencies
-      uses: actions/cache@v6
+      uses: actions/cache@v4
       with:
         path: ${{ steps.composer-cache.outputs.dir }}
         key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -30,7 +30,7 @@ jobs:
     - name: Run tests
       run: |
         XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover coverage.xml
-    - uses: codecov/codecov-action@v7
+    - uses: codecov/codecov-action@v5
       if: matrix.php-version == '8.4'
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
@@ -46,7 +46,7 @@ jobs:
         id: composer-cache
         run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
       - name: Cache dependencies
-        uses: actions/cache@v6
+        uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -67,7 +67,7 @@ jobs:
         id: composer-cache
         run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
       - name: Cache dependencies
-        uses: actions/cache@v6
+        uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -89,7 +89,7 @@ jobs:
         id: composer-cache
         run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
       - name: Cache dependencies
-        uses: actions/cache@v6
+        uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -103,7 +103,7 @@ jobs:
           file: .mise.toml
           field: tools.node
       - name: Setup Node.js
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@v5
         with:
           node-version: '${{ steps.get-node-version.outputs.value }}'
       - name: Install Node.js dependencies
