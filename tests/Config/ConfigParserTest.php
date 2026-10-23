@@ -107,8 +107,7 @@ class ConfigParserTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('config.ntfy missing topic field');
         $this->configParser->parse($this->getBasicConfig() + [
-            'ntfy' => [
-            ],
+            'ntfy' => [],
         ]);
     }
 
@@ -152,8 +151,7 @@ class ConfigParserTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('config.telegram missing api_key field');
         $this->configParser->parse($this->getBasicConfig() + [
-            'telegram' => [
-            ],
+            'telegram' => [],
         ]);
     }
 
@@ -226,8 +224,7 @@ class ConfigParserTest extends TestCase
         self::expectException(\InvalidArgumentException::class);
         self::expectExceptionMessage('config.pushbullet missing api_token field');
         $this->configParser->parse($this->getBasicConfig() + [
-            'pushbullet' => [
-            ],
+            'pushbullet' => [],
         ]);
     }
 
